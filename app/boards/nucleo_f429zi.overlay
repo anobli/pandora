@@ -5,6 +5,12 @@
                 friendly_name = " Zephyr ESPHOME sample device";
                 status = "okay";
 
+                api {
+                        compatible = "nabucasa,esphome-api";
+                        password = "mypassword";
+                        status = "okay";
+                };
+
                 gpio-output {
                         gpio-output-7 {
                                 compatible = "nabucasa,esphome-switch-gpio";
@@ -29,13 +35,5 @@
                                 status = "okay";
                         };
                 };
-        };
-
-        api {
-                compatible = "nabucasa,esphome-api";
-                entity_id = "zephyr_esphome";
-                friendly_name = " Zephyr ESPHOME sample device";
-                password = "mypassword";
-                status = "okay";
         };
 };
