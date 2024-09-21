@@ -1,0 +1,9 @@
+Manufacturer=Phoenix Contact
+PartNumber=1190301
+PartCategory=Connector
+PackageCategory=Other
+PinCount=12
+Version=1.3
+Released=2021-10-24 08:57:58
+Downloaded=2025-01-21 15:13:50
+3D=Y

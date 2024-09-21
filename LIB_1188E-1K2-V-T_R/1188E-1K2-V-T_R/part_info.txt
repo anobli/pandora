@@ -1,0 +1,9 @@
+Manufacturer=Diptronics
+PartNumber=1188E-1K2-V-T/R
+PartCategory=Switch
+PackageCategory=Other
+PinCount=4
+Version=2.2
+Released=2019-08-05 08:54:00
+Downloaded=2025-01-23 10:31:10
+3D=Y

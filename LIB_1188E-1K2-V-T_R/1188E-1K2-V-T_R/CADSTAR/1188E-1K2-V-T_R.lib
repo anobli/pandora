@@ -1,0 +1,16 @@
+.1188E-1K2-V-T_R :1 ;Tactile Switches Side Push Type 3.5*7, Contact Rating 50mA, 12VDC
+"1188E1K2VTR"
+*STM S
+*NGS
+*PLB 1="1" 2="2" 3="COM" 4="NO"
+*MXP 6
+*DFN 1188E-1K2-V-T_R
+~!Mouser Part Number (113-1188E1K2VTR)
+~!Link Mouser Price/Stock (https://www.mouser.co.uk/ProductDetail/Diptronics/1188E-1K2-V-T-R?qs=MLItCLRbWswadUUxegNFmg%3D%3D)
+~!Manufacturer_Name (Diptronics)
+~!Manufacturer_Part_Number (1188E-1K2-V-T/R)
+~!Link Datasheet (http://www.dip.com.tw/en/en-product-information/en-switch004/item/2445-1188?highlight=WzExODhd)
+~!Height (3.5mm)
+~!3D_Model (1188E-1K2-V-T_R)
+"1188E-1K2-V-T_R"
+1.1!U 2.1!U 3.1!U 4.1!U 

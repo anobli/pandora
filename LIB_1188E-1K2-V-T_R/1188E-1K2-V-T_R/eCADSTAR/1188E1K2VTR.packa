@@ -1,0 +1,13 @@
+(unit MM)
+
+(package "1188E-1K2-V-T_R"
+    (type UNDEF)
+    (uver 2)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (utime 2023-02-28-06:02:15)
+    (mountForm default
+        (footprintRef "1188E1K2VTR")
+        (spec "System")
+    )
+)

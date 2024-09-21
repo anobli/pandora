@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "Pandora")(type "KiCad")(uri "/home/alex/workspace/Pandora/HW/common/Pandora.kicad_sym")(options "")(descr ""))
+)

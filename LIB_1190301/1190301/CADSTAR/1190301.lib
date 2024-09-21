@@ -1,0 +1,16 @@
+.1190301 :1 ;Fixed Terminal Blocks LPT 2,5/ 6-5,0
+"1190301"
+*STM J
+*NGS
+*PLB 1="1" 2="2" 3="3" 4="4" 5="5" 6="6" 7="7" 8="8" 9="9" 10="10" 11="11" 12="12"
+*MXP 12
+*DFN 1190301
+~!Mouser Part Number (651-1190301)
+~!Link Mouser Price/Stock (https://www.mouser.co.uk/ProductDetail/Phoenix-Contact/1190301?qs=QNEnbhJQKvbrt33TQcyRIw%3D%3D)
+~!Manufacturer_Name (Phoenix Contact)
+~!Manufacturer_Part_Number (1190301)
+~!Link Datasheet (https://www.phoenixcontact.com/us/products/1190301)
+~!Height (16.64mm)
+~!3D_Model (1190301)
+"1190301"
+1.1!U 2.1!U 3.1!U 4.1!U 5.1!U 6.1!U 7.1!U 8.1!U 9.1!U 10.1!U 11.1!U 12.1!U 

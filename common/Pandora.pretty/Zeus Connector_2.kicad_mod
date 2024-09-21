@@ -1,0 +1,313 @@
+(footprint "Zeus Connector_2"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at 0.9 -3.2 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "9d376011-3a54-43cc-bbef-6a46ff9d1867")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.1)
+			)
+		)
+	)
+	(property "Value" "Zeus Connector_2"
+		(at 0 1 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "0e5e9606-6024-4b93-8599-5b6d663e2516")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Footprint" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "9c37092b-45b1-4a8c-8069-0344bb157cc2")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "e13153f7-b08f-4e97-8b76-11553cdece3d")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "4694c9d6-73b6-4178-aebe-9bf9cd9b17f2")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_line
+		(start -1.682179 6.471189)
+		(end -1.678842 -1.314359)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "Edge.Cuts")
+		(uuid "a3712da8-dfec-400f-adc8-7a0548721b1a")
+	)
+	(fp_line
+		(start -1.657179 14.046189)
+		(end -1.673332 8.732226)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "Edge.Cuts")
+		(uuid "d6554087-4988-4403-9f3c-58f771618923")
+	)
+	(fp_line
+		(start -0.000001 -1.3)
+		(end -0.003338 6.485548)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "Edge.Cuts")
+		(uuid "f8114ac7-40ab-4a6c-bef8-f84d8883247d")
+	)
+	(fp_line
+		(start 0.005509 8.746585)
+		(end 0.021662 14.060548)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "Edge.Cuts")
+		(uuid "11d3ef02-33ea-470a-9b82-cd9522042f21")
+	)
+	(fp_arc
+		(start -1.678842 -1.314359)
+		(mid -0.83218 -2.153811)
+		(end -0.000001 -1.3)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "Edge.Cuts")
+		(uuid "b49e16ef-e066-45f3-b8d2-21fcd55ac03a")
+	)
+	(fp_arc
+		(start -1.673332 8.732226)
+		(mid -0.82667 7.892774)
+		(end 0.005509 8.746585)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "Edge.Cuts")
+		(uuid "5529c8c1-6709-4091-9896-4b441fdc25ba")
+	)
+	(fp_arc
+		(start -0.003338 6.485548)
+		(mid -0.85 7.325)
+		(end -1.682179 6.471189)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "Edge.Cuts")
+		(uuid "d95955e2-e1c0-4eb9-b651-611a50253c82")
+	)
+	(fp_arc
+		(start 0.021662 14.060548)
+		(mid -0.825 14.9)
+		(end -1.657179 14.046189)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "Edge.Cuts")
+		(uuid "17229006-2adc-4b95-91ca-40a0413ebbcc")
+	)
+	(fp_line
+		(start -2.5 37.087)
+		(end -2.5 -2.59)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "88fa5a0c-8b26-44e3-8a64-812dfef3cd4f")
+	)
+	(fp_line
+		(start 2 -2.59)
+		(end -2.5 -2.59)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "9623d49b-0079-49b3-ab54-babab8b102de")
+	)
+	(fp_line
+		(start 2 37.087)
+		(end -2.5 37.087)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "9a307f07-59c4-4f25-ae4b-fc755f5a0673")
+	)
+	(fp_line
+		(start 2 37.087)
+		(end 2 -2.59)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "ba9f2213-67fe-4307-a015-80d423e1f3e6")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 2.5 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "4105863a-a70b-497b-99cc-8487b66d5732")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "" smd rect
+		(at 0.85 0)
+		(size 1 1)
+		(layers "B.Cu" "B.Paste" "B.Mask")
+		(uuid "3f6fdc57-6735-400e-96c5-25cfcda7ee89")
+	)
+	(pad "" smd rect
+		(at 0.85 1.27)
+		(size 1 1)
+		(layers "B.Cu" "B.Paste" "B.Mask")
+		(uuid "e9ef54d2-e78b-4c6b-83b2-1c1cbba15854")
+	)
+	(pad "" smd rect
+		(at 0.85 2.54)
+		(size 1 1)
+		(layers "B.Cu" "B.Paste" "B.Mask")
+		(uuid "a245b9b4-5e2f-4e0f-8127-ef820bc8a0c0")
+	)
+	(pad "" smd rect
+		(at 0.85 3.81)
+		(size 1 1)
+		(layers "B.Cu" "B.Paste" "B.Mask")
+		(uuid "32a006dd-0fc5-465a-a334-3852b310b9e2")
+	)
+	(pad "" smd rect
+		(at 0.85 5.08)
+		(size 1 1)
+		(layers "B.Cu" "B.Paste" "B.Mask")
+		(uuid "269abfa9-31a8-48e5-9e28-85db104cb1ad")
+	)
+	(pad "" smd rect
+		(at 0.85 10.16)
+		(size 1 1)
+		(layers "B.Cu" "B.Paste" "B.Mask")
+		(uuid "9c78cdb3-48de-4a64-9858-d657b4e89edb")
+	)
+	(pad "" smd rect
+		(at 0.85 11.43)
+		(size 1 1)
+		(layers "B.Cu" "B.Paste" "B.Mask")
+		(uuid "57a12578-d32e-44dc-afaf-10246370d2ab")
+	)
+	(pad "" smd rect
+		(at 0.85 12.7)
+		(size 1 1)
+		(layers "B.Cu" "B.Paste" "B.Mask")
+		(uuid "caf1e6d1-6435-4e76-8c52-44198ae58435")
+	)
+	(pad "1" smd rect
+		(at -2.5 0)
+		(size 1 1)
+		(layers "B.Cu" "B.Paste" "B.Mask")
+		(uuid "7c2a92d8-3a41-4585-aa8d-642046cd56a6")
+	)
+	(pad "2" smd rect
+		(at -2.5 1.27)
+		(size 1 1)
+		(layers "B.Cu" "B.Paste" "B.Mask")
+		(uuid "a9948d9d-8b6e-4d61-a8a3-4fdea0cd229f")
+	)
+	(pad "3" smd rect
+		(at -2.5 2.54)
+		(size 1 1)
+		(layers "B.Cu" "B.Paste" "B.Mask")
+		(uuid "23cfa062-3daf-4522-8d64-afa0da0b5c85")
+	)
+	(pad "4" smd rect
+		(at -2.5 3.81)
+		(size 1 1)
+		(layers "B.Cu" "B.Paste" "B.Mask")
+		(uuid "7b146ade-2e3d-49a3-9d9e-3ec0c6214d68")
+	)
+	(pad "5" smd rect
+		(at -2.5 5.08)
+		(size 1 1)
+		(layers "B.Cu" "B.Paste" "B.Mask")
+		(uuid "fd5404ad-88f4-407d-81c8-1faef874968a")
+	)
+	(pad "6" smd rect
+		(at -2.5 10.16)
+		(size 1 1)
+		(layers "B.Cu" "B.Paste" "B.Mask")
+		(uuid "330452fc-aa92-4cf4-a3c8-a5f6d37fd1ec")
+	)
+	(pad "7" smd rect
+		(at -2.5 11.43)
+		(size 1 1)
+		(layers "B.Cu" "B.Paste" "B.Mask")
+		(uuid "9c5265b1-b9a6-47b3-ab0f-8670eb37ca6b")
+	)
+	(pad "8" smd rect
+		(at -2.5 12.7)
+		(size 1 1)
+		(layers "B.Cu" "B.Paste" "B.Mask")
+		(uuid "e4681ab4-0d64-4aaf-af16-169f36720ff3")
+	)
+	(model "/home/alex/workspace/Pandora/HW/mcu-cc1352p7/pandora-mcu-cc1352p7.wrl"
+		(offset
+			(xyz -1 70 179)
+		)
+		(scale
+			(xyz 0.38 0.4 0.38)
+		)
+		(rotate
+			(xyz -180 -90 180)
+		)
+	)
+)

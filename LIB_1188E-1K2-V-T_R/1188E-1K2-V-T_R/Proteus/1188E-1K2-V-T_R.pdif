@@ -1,0 +1,179 @@
+;Proteus Design Interchange Format
+(PDIF
+ (vendor "SamacSys Limited")
+ (version 1 0)
+ (library
+  (part "1188E-1K2-V-T_R"
+   (description "Tactile Switches Side Push Type 3.5*7, Contact Rating 50mA, 12VDC")
+   (family "SWI")
+   (package "1188E1K2VTR")
+   (attribute "Datasheet Link" "http://www.dip.com.tw/en/en-product-information/en-switch004/item/2445-1188?highlight=WzExODhd")
+   (attribute "Geometry.Height" "3.5mm")
+   (attribute "Mouser Part Number" "113-1188E1K2VTR")
+   (attribute "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Diptronics/1188E-1K2-V-T-R?qs=MLItCLRbWswadUUxegNFmg%3D%3D")
+   (attribute "Manufacturer_Name" "Diptronics")
+   (attribute "Manufacturer_Part_Number" "1188E-1K2-V-T/R")
+   (gate
+    (symbol "1188E-1K2-V-T_R")
+    (pin "1" 1 PS)
+    (pin "2" 2 PS)
+    (pin "COM" 3 PS)
+    (pin "NO" 4 PS)
+   )
+  )
+  (symbol "1188E-1K2-V-T_R"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 200 100) (pt 700 100) (pt 700 -200) (pt 200 -200) (pt 200 100) (closed))
+   )
+   (terminal
+    (body (symbol "PIN") (pt 0 0) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 0 -100) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 900 0) (rot 0) (mir X) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 900 -100) (rot 0) (mir X) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+  )
+  (symbol "PIN"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 0 0) (pt 200 0))))
+  (symbol "PINSHORT"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 0 0) (pt 100 0))))
+  (package "1188E1K2VTR"
+   (units MM)
+   (layer TASM
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed true)
+      (pt -3.9 -1.25)
+      (pt 3.9 -1.25)
+      (pt 3.9 1.25)
+      (pt -3.9 1.25)
+      (pt -3.9 -1.25))))
+   (layer TASM
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed true)
+      (pt -1.5 -1.25)
+      (pt 1.5 -1.25)
+      (pt 1.5 -2.25)
+      (pt -1.5 -2.25)
+      (pt -1.5 -1.25))))
+   (layer OCCA
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed true)
+      (pt -5.1 2.55)
+      (pt 5.1 2.55)
+      (pt 5.1 -3.25)
+      (pt -5.1 -3.25)
+      (pt -5.1 2.55))))
+   (layer TSLK
+    (graphic
+     (stroke 0.2)
+     (path
+      (closed false)
+      (pt -2.4 -1.25)
+      (pt 2.4 -1.25))))
+   (layer TSLK
+    (graphic
+     (stroke 0.2)
+     (path
+      (closed false)
+      (pt -1.5 -1.25)
+      (pt -1.5 -2.25)
+      (pt 1.5 -2.25)
+      (pt 1.5 -1.25))))
+   (layer TSLK
+    (graphic
+     (stroke 0.2)
+     (path
+      (closed false)
+      (pt -3.9 -0.2)
+      (pt -3.9 1.25)
+      (pt -2.8 1.25))))
+   (layer TSLK
+    (graphic
+     (stroke 0.2)
+     (path
+      (closed false)
+      (pt -1.4 1.25)
+      (pt 1.4 1.25))))
+   (layer TSLK
+    (graphic
+     (stroke 0.2)
+     (path
+      (closed false)
+      (pt 2.8 1.25)
+      (pt 3.9 1.25)
+      (pt 3.9 -0.2))))
+   (layer TSLK
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed true)
+      (pt -3.375 -2.2)
+      (arc (pt -3.375 -2.200) (pt -3.425 -2.300) (pt -3.325 -2.200) (start 180.0) (sweep 90.0))
+      (pt -3.375 -2.3)
+      (arc (pt -3.375 -2.300) (pt -3.425 -2.300) (pt -3.325 -2.200) (start 180.0) (sweep -90.0))
+      (pt -3.375 -2.2))))
+   (leg 1 (pt -3.375 -0.900) (padstack 0))
+   (leg 2 (pt 3.375 -0.900) (padstack 0))
+   (leg 3 (pt -2.100 0.900) (padstack 3))
+   (leg 4 (pt 2.100 0.900) (padstack 4))
+   (leg MH1 (pt -1.150 -0.400) (padstack 5))
+   (leg MH2 (pt 1.150 -0.400) (padstack 6))
+   (padstack 0
+    (plated false)
+    (pad (layer TCOP) (rectf 1.000 1.450 0 0 0.000))
+   )
+   (padstack 3
+    (plated false)
+    (pad (layer TCOP) (rectf 0.900 1.300 0 0 90.000))
+   )
+   (padstack 4
+    (plated false)
+    (pad (layer TCOP) (rectf 0.900 1.300 0 0 90.000))
+   )
+   (padstack 5
+    (hole 0.9)
+    (plated false)
+    (pad (layer TCOP) (round 0.450))
+    (pad (layer INNER) (round 0.450))
+    (pad (layer BCOP) (round 0.450))
+   )
+   (padstack 6
+    (hole 0.9)
+    (plated false)
+    (pad (layer TCOP) (round 0.450))
+    (pad (layer INNER) (round 0.450))
+    (pad (layer BCOP) (round 0.450))
+   )
+   (model "1188E-1K2-V-T_R.stp"
+    (euler 90 0 0)
+    (offset 0 -1.1799999475479126 1.7699999809265137)
+   )
+  )
+ )
+)

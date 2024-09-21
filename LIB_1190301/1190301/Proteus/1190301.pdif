@@ -1,0 +1,174 @@
+;Proteus Design Interchange Format
+(PDIF
+ (vendor "SamacSys Limited")
+ (version 1 0)
+ (library
+  (part "1190301"
+   (description "Fixed Terminal Blocks LPT 2,5/ 6-5,0")
+   (family "CON")
+   (package "1190301")
+   (attribute "Datasheet Link" "https://www.phoenixcontact.com/us/products/1190301")
+   (attribute "Geometry.Height" "16.64mm")
+   (attribute "Mouser Part Number" "651-1190301")
+   (attribute "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Phoenix-Contact/1190301?qs=QNEnbhJQKvbrt33TQcyRIw%3D%3D")
+   (attribute "Manufacturer_Name" "Phoenix Contact")
+   (attribute "Manufacturer_Part_Number" "1190301")
+   (gate
+    (symbol "1190301")
+    (pin "1" 1 PS)
+    (pin "2" 2 PS)
+    (pin "3" 3 PS)
+    (pin "4" 4 PS)
+    (pin "5" 5 PS)
+    (pin "6" 6 PS)
+    (pin "7" 7 PS)
+    (pin "8" 8 PS)
+    (pin "9" 9 PS)
+    (pin "10" 10 PS)
+    (pin "11" 11 PS)
+    (pin "12" 12 PS)
+   )
+  )
+  (symbol "1190301"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 200 100) (pt 700 100) (pt 700 -600) (pt 200 -600) (pt 200 100) (closed))
+   )
+   (terminal
+    (body (symbol "PIN") (pt 900 0) (rot 0) (mir X) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 0 0) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 900 -100) (rot 0) (mir X) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 0 -100) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 900 -200) (rot 0) (mir X) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 0 -200) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 900 -300) (rot 0) (mir X) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 0 -300) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 900 -400) (rot 0) (mir X) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 0 -400) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 900 -500) (rot 0) (mir X) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 0 -500) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+  )
+  (symbol "PIN"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 0 0) (pt 200 0))))
+  (symbol "PINSHORT"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 0 0) (pt 100 0))))
+  (package "1190301"
+   (units MM)
+   (layer TASM
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed true)
+      (pt -3.96 2.9)
+      (pt 28.67 2.9)
+      (pt 28.67 -14.9)
+      (pt -3.96 -14.9)
+      (pt -3.96 2.9))))
+   (layer TSLK
+    (graphic
+     (stroke 0.2)
+     (path
+      (closed true)
+      (pt -3.96 2.9)
+      (pt 28.67 2.9)
+      (pt 28.67 -14.9)
+      (pt -3.96 -14.9)
+      (pt -3.96 2.9))))
+   (layer OCCA
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed true)
+      (pt -4.96 3.9)
+      (pt 29.67 3.9)
+      (pt 29.67 -15.9)
+      (pt -4.96 -15.9)
+      (pt -4.96 3.9))))
+   (layer TSLK
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed true)
+      (pt 0 3.4)
+      (arc (pt 0.000 3.400) (pt 0.000 3.350) (pt 0.100 3.450) (start 180.0) (sweep 180.0))
+      (pt 0.1 3.4)
+      (arc (pt 0.100 3.400) (pt 0.000 3.350) (pt 0.100 3.450) (start 180.0) (sweep .0))
+      (pt 0 3.4))))
+   (leg 1 (pt 0.000 0.000) (padstack 1))
+   (leg 2 (pt 0.000 -8.200) (padstack 0))
+   (leg 3 (pt 5.000 0.000) (padstack 0))
+   (leg 4 (pt 5.000 -8.200) (padstack 0))
+   (leg 5 (pt 10.000 0.000) (padstack 0))
+   (leg 6 (pt 10.000 -8.200) (padstack 0))
+   (leg 7 (pt 15.000 0.000) (padstack 0))
+   (leg 8 (pt 15.000 -8.200) (padstack 0))
+   (leg 9 (pt 20.000 0.000) (padstack 0))
+   (leg 10 (pt 20.000 -8.200) (padstack 0))
+   (leg 11 (pt 25.000 0.000) (padstack 0))
+   (leg 12 (pt 25.000 -8.200) (padstack 0))
+   (padstack 0
+    (hole 1.3)
+    (plated true)
+    (pad (layer TCOP) (round 1.950))
+    (pad (layer INNER) (round 1.950))
+    (pad (layer BCOP) (round 1.950))
+   )
+   (padstack 1
+    (hole 1.3)
+    (plated true)
+    (pad (layer TCOP) (square 1.950))
+    (pad (layer INNER) (round 1.950))
+    (pad (layer BCOP) (square 1.950))
+   )
+   (model "1190301.stp"
+    (euler 0 0 0)
+    (offset -2.8299999237060547 -13.399999618530273 0.4300000071525574)
+   )
+  )
+ )
+)

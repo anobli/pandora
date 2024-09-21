@@ -1,0 +1,10 @@
+(unit MM)
+
+(package "1188E1K2VTR"
+    (type UNDEF)
+    (uver 2)
+    (mountForm default
+        (footprintRef "1188E1K2VTR")
+        (spec "default")
+    )
+)

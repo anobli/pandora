@@ -1,0 +1,127 @@
+(kicad_sch
+	(version 20231120)
+	(generator "eeschema")
+	(generator_version "8.0")
+	(uuid "c9fe551c-4c0f-41a4-b51f-3c6a88b56edb")
+	(paper "A4")
+	(lib_symbols)
+	(sheet
+		(at 224.79 82.55)
+		(size 41.91 27.94)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "293b9497-c5ac-448b-861f-9fa37b0abea9")
+		(property "Sheetname" "CC1352P7-MCU"
+			(at 224.79 81.8384 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "cc1352p7-mcu.kicad_sch"
+			(at 224.79 111.0746 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "pandora-mcu-cc1352p7"
+				(path "/c9fe551c-4c0f-41a4-b51f-3c6a88b56edb"
+					(page "5")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 175.26 39.37)
+		(size 33.02 21.59)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "48f53fc7-b3f1-4490-b0b3-5833b253cef2")
+		(property "Sheetname" "Pandora-Connector"
+			(at 175.26 38.6584 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "../common/pandora-conector.kicad_sch"
+			(at 175.26 61.5446 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "pandora-mcu-cc1352p7"
+				(path "/c9fe551c-4c0f-41a4-b51f-3c6a88b56edb"
+					(page "3")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 96.52 60.96)
+		(size 67.31 33.02)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "a3b0949f-62ce-4607-97ca-a97dc491f012")
+		(property "Sheetname" "CC1352P7-Wireless-MCU"
+			(at 96.52 60.2484 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "cc1352p7-wireless-muc.kicad_sch"
+			(at 96.52 94.5646 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "pandora-mcu-cc1352p7"
+				(path "/c9fe551c-4c0f-41a4-b51f-3c6a88b56edb"
+					(page "2")
+				)
+			)
+		)
+	)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+)
