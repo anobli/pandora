@@ -1,0 +1,16 @@
+common:
+  harness: net
+  tags:
+    - net
+  min_flash: 140
+sample:
+  description: Zephyr ESPHome Firmware example
+  name: ESPHome Firmware
+tests:
+  sample.net.esphome:
+    build_only: true
+    platform_allow:
+      - native_sim
+      - nucleo_f429zi
+    integration_platforms:
+      - native_sim
