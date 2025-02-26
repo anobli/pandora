@@ -1,0 +1,6 @@
+board:
+  name: zeus
+  full_name: Zeus mother board from Pandora project
+  vendor: gordios
+  socs:
+  - name: cc1352p7
