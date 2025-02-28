@@ -1,0 +1,37 @@
+/*
+ * Copyright (c) 2024 Alexandre Bailon
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+/ {
+	chosen {
+		zephyr,shell-uart = &uart0;
+		zephyr,console = &uart0;
+		zephyr,ieee802154 = &ieee802154;
+	};
+
+	esphome {
+		compatible = "nabucasa,esphome";
+		entity_id = "zephyr_esphome";
+		friendly_name = " Zephyr ESPHOME sample device";
+		status = "okay";
+
+		legacy {
+			hbridge_switch {
+				compatible = "nabucasa,esphome-switch-hbridge";
+				device_name = "Bistable relay";
+				on-gpios = <&gpio0 21 GPIO_ACTIVE_HIGH>;
+				off-gpios = <&gpio0 22 GPIO_ACTIVE_HIGH>;
+				wait_time = <1000>;
+				status = "okay";
+			};
+		};
+
+		api {
+			compatible = "nabucasa,esphome-api";
+			password = "mypassword";
+			status = "okay";
+		};
+	};
+};
