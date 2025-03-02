@@ -1,0 +1,26 @@
+#include <zephyr/dt-bindings/gpio/gpio.h>
+
+/ {
+	esphome: esphome {
+		compatible = "nabucasa,esphome";
+		entity_id = "zephyr_esphome";
+		friendly_name = " Zephyr ESPHOME sample device";
+		password = "mypassword";
+		status = "okay";
+	};
+
+	gpio_switch {
+		compatible = "nabucasa,esphome-switch-gpio";
+		device_name = "Bistablerelay";
+		gpios = <&gpio0 0 GPIO_ACTIVE_HIGH>;
+		status = "okay";
+	};
+
+//	api {
+//		compatible = "nabucasa,esphome-api";
+//		entity_id = "zephyr_esphome";
+//		friendly_name = " Zephyr ESPHOME sample device";
+//		password = "mypassword";
+//		status = "okay";
+//	};
+};
