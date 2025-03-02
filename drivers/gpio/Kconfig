@@ -1,0 +1,3 @@
+config GPIO_FAKE
+    bool "Fake GPIO controller"
+    depends on DT_HAS_ZEPHYR_GPIO_FAKE_ENABLED
