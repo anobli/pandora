@@ -1,0 +1,35 @@
+#include <zephyr/dt-bindings/gpio/gpio.h>
+
+/ {
+	gpio_fake: gpio_fake {
+		status = "okay";
+		compatible = "zephyr,gpio-fake";
+		gpio-controller;
+		#gpio-cells = <2>;
+	};
+
+	esphome: esphome {
+		compatible = "nabucasa,esphome";
+		entity_id = "zephyr_esphome";
+		friendly_name = " Zephyr ESPHOME sample device";
+		password = "mypassword";
+		status = "okay";
+	};
+
+	hbridge_switch {
+		compatible = "nabucasa,esphome-switch-hbridge";
+		device_name = "Bistablerelay";
+		on-gpios = <&gpio_fake 0 GPIO_ACTIVE_HIGH>;
+		off-gpios = <&gpio_fake 1 GPIO_ACTIVE_HIGH>;
+		wait_time = <1000>;
+		status = "okay";
+	};
+
+//	api {
+//		compatible = "nabucasa,esphome-api";
+//		entity_id = "zephyr_esphome";
+//		friendly_name = " Zephyr ESPHOME sample device";
+//		password = "mypassword";
+//		status = "okay";
+//	};
+};
