@@ -11,8 +11,8 @@
 #include <zephyr/drivers/gpio.h>
 #include <zephyr/devicetree.h>
 
-#include <esphome/entity.h>
 #include <esphome/components/api.h>
+#include <esphome/components/entity.h>
 #include <esphome/components/switch.h>
 
 #include <zephyr/logging/log.h>
