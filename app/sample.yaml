@@ -14,3 +14,10 @@ tests:
       - nucleo_f429zi
     integration_platforms:
       - native_sim
+  sample.net.esphome.ot:
+    build_only: true
+    extra_args: EXTRA_CONF_FILE=overlay-openthread.conf
+    platform_allow:
+      - zeus
+    integration_platforms:
+      - zeus
