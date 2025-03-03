@@ -13,7 +13,6 @@ LOG_MODULE_DECLARE(ESPHome);
 #include <openthread/link.h>
 #include "srp.h"
 
-static const char *SRP_INSTANCE_NAME = "ot-esphome";
 static const char *SRP_SERVICE_NAME = "_esphomelib._tcp";
 
 static bool ot_srp_init_done = false;
