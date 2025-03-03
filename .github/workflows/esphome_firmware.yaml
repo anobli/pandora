@@ -1,0 +1,117 @@
+name: ESPHome zephyr firmware
+
+on:
+  push:
+    branches:
+      - main
+      - abailon/dev
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/esphome_firmware.yaml'
+
+permissions:
+  checks: write
+  pull-requests: write
+  contents: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          path: pandora
+
+      - name: Build zephyr using twister
+        uses: ./pandora/.github/actions/twister
+        with:
+          args: -G
+          path: pandora
+
+  build_all:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          path: pandora
+
+      - name: Build zephyr using twister
+        uses: ./pandora/.github/actions/twister
+        with:
+          args: --all -x"ZEPHYR_SCA_VARIANT=codechecker" -x="CODECHECKER_EXPORT=html" -x="CODECHECKER_CONFIG_FILE=$PWD/pandora/.codechecker/codechecker.yml" -x="CODECHECKER_ANALYZE_OPTS=-i;$PWD/pandora/.codechecker/skipfile"
+          path: pandora
+          name: "(All)"
+ 
+      - uses: actions/upload-artifact@v4
+        with:
+          name: codechecker
+          path: twister-out/**/codechecker.plist # or path/to/artifact
+
+  lint_report:
+    runs-on: ubuntu-22.04
+    needs: build_all
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          path: pandora
+
+      - name: Fetch zephyr
+        uses: ./pandora/.github/actions/zephyr-setup
+        with:
+          path: pandora
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: codechecker
+          path: codechecker
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.11
+
+      - name: Install codechecker
+        shell: bash
+        run: pip install codechecker
+
+      - name: Generate CodeChecker html report
+        id: generate_codechecker_report
+        if: always()
+        shell: bash
+        run: |
+          CodeChecker parse -o codechecker-report/ -e html `find -name codechecker.plist`
+
+      - name: Checkout gh-pages
+        uses: actions/checkout@v3
+        if: always()
+        continue-on-error: true
+        with:
+          ref: gh-pages # branch name
+          path: gh-pages-dir # checkout path
+
+      - name: HTML Report
+        if: always()
+        uses: mgrybyk-org/html-trend-report-action@v1
+        id: html-report # used in comment to PR
+        with:
+          report_id: 'CodeChecker'
+          gh_pages: 'gh-pages-dir'
+          report_dir: 'codechecker-report/' # provide path to folder containing the html report
+
+
+      - name: Git Commit and Push Action
+        uses: mgrybyk-org/git-commit-pull-push-action@v1
+        if: always()
+        with:
+          repository: gh-pages-dir
+          branch: gh-pages
+          pull_args: --rebase -X ours
