@@ -1,23 +1,36 @@
-# A YAML binding matching the node
-
-compatible: "nabucasa,esphome-switch-gpio"
-description: "Enable support of esphome gpio switch"
-
-include: [base.yaml, "nabucasa,esphome-entity.yaml"]
-
+compatible: nabucasa,esphome-switch-gpio
+description: |
+  The switch domain includes all platforms that should show up like a switch and can only be turned ON or OFF
 properties:
-    gpios:
-      type: phandle-array
-      required: true
-    restore_mode:
-      type: string
-      enum:
-        - "SWITCH_ALWAYS_OFF"
-        - "SWITCH_ALWAYS_ON"
-        - "SWITCH_RESTORE_DEFAULT_OFF"
-        - "SWITCH_RESTORE_DEFAULT_ON"
-        - "SWITCH_RESTORE_INVERTED_DEFAULT_OFF"
-        - "SWITCH_RESTORE_INVERTED_DEFAULT_ON"
-        - "SWITCH_RESTORE_DISABLED"
-      required: false
-      default: "SWITCH_ALWAYS_OFF"
+  id:
+    type: string
+    required: false
+  device_name:
+    type: string
+    required: false
+  inverted:
+    type: boolean
+    required: false
+  internal:
+    type: boolean
+    required: false
+  restore_mode:
+    type: string
+    required: false
+    enum:
+      - "RESTORE_DEFAULT_OFF"
+      - "RESTORE_DEFAULT_ON"
+      - "RESTORE_INVERTED_DEFAULT_OFF"
+      - "RESTORE_INVERTED_DEFAULT_ON"
+      - "ALWAYS_OFF"
+      - "ALWAYS_ON"
+      - "DISABLED"
+  on_turn_on:
+    type: string
+    required: false
+  on_turn_off:
+    type: string
+    required: false
+  gpios:
+    type: phandle-array
+    required: true
