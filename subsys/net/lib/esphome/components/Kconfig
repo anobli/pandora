@@ -1,3 +1,8 @@
+config ESPHOME_COMPONENT_LOGGER
+    bool "ESPHome logger component"
+    default y
+    depends on DT_HAS_NABUCASA_ESPHOME_LOGGER_ENABLED
+
 config ESPHOME_COMPONENT_API
 	bool "ESPHome API"
 	default y
