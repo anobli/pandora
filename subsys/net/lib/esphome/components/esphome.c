@@ -18,13 +18,13 @@
 DT_DEFINE_ACTION_FUNCTION(ESPHOME_NODE, on_boot);
 DT_DEFINE_ACTION_FUNCTION(ESPHOME_NODE, on_loop);
 DT_DEFINE_ACTION_FUNCTION(ESPHOME_NODE, on_shutdown);
-#include <stdio.h>
+
 int esphome_service(void *arg1, void *arg2, void *arg3)
 {
 	on_boot(NULL);
 	while (1) {
 		on_loop(NULL);
-		k_sleep(K_MSEC(1000));
+		k_sleep(K_MSEC(16));
 	};
 }
 
