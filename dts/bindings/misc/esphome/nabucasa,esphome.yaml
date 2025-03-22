@@ -1,40 +1,47 @@
-# A YAML binding matching the node
-
-compatible: "nabucasa,esphome"
-description: "Enable support of esphome"
-
-include: [base.yaml]
-
+compatible: nabucasa,esphome
+description: |
+  Here you specify some core information that ESPHome needs to create firmwares.
+  Most importantly, this is the section of the configuration where you specify
+  the name of the node.
 properties:
-    "#address-cells":
-      type: int
-      required: false
-      default: 1
-      const: 1
-    "#size-cells":
-      type: int
-      required: false
-      default: 0
-      const: 0
-    entity_id:
-      type: string
-      required: true
-      description: Home assistant entity id to use for this device.
-    friendly_name:
-      type: string
-      required: false
-      description: Friendly name for this device.
-    password:
-      type: string
-      required: true
-      description: password required to connect to device.
-    area:
-      type: string
-      required: false
-      default: unknown
-      description: The area where the device is located.
-    port:
-      type: int
-      required: false
-      default: 6053
-      description: The port to run the API Server on.
+  entity_id:
+    type: string
+    required: true
+    description: |
+      This is the name of the node. It should always be unique in your ESPHome network.
+      May only contain lowercase characters, digits and hyphens, and can be at most 24 characters
+      long by default, or 31 characters long if name_add_mac_suffix is false.
+  friendly_name:
+    type: string
+    required: false
+    description: |
+      This is the name sent to the frontend.
+      It is used by Home Assistant as the integration name, device name,
+      and is automatically prefixed to entities where necessary.
+  area:
+    type: string
+    required: false
+    description: |
+      This is the area sent to the frontend.
+      It is used by Home Assistant as the area / zone which the node belongs to.
+  name_add_mac_suffix:
+    type: boolean
+    required: false
+    description: |
+      Appends the last 3 bytes of the mac address of the device to the name
+      in the form <name>-aabbcc.
+  on_boot:
+    type: string
+    required: false
+    description: |
+      An automation to perform when the node starts.
+  on_shutdown:
+    type: string
+    required: false
+    description: |
+      An automation to perform right before the node shuts down.
+  on_loop:
+    type: string
+    required: false
+    description: |
+      An automation to perform on each loop() iteration.

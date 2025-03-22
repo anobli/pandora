@@ -5,7 +5,6 @@
 		compatible = "nabucasa,esphome";
 		entity_id = "zephyr_esphome";
 		friendly_name = " Zephyr ESPHOME sample device";
-		password = "mypassword";
 		status = "okay";
 	};
 
