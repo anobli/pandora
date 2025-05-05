@@ -1,0 +1,31 @@
+# Copyright (c) 2025 Alexandre Bailon
+# SPDX-License-Identifier: Apache-2.0
+
+menuconfig SENSOR_SIMULATOR
+	bool "Sensor value simulator driver"
+	default n
+	depends on SENSOR
+	help
+	  Enable sensor simulator for testing.
+
+if SENSOR_SIMULATOR
+
+config SENSOR_SIM_TRIGGER
+	bool "Sensor simulator trigger support"
+	default n
+	help
+	  Enable trigger mode for sensor simulator.
+	  
+config SENSOR_SIM_TRIGGER_INTERVAL
+	int "Simulated trigger interval in milliseconds"
+	depends on SENSOR_SIM_TRIGGER
+	default 1000
+	help
+	  Specify the interval between simulated sensor trigger events
+	  in milliseconds.
+
+module = SENSOR_SIMULATOR
+module-str = sensor_simulator
+source "subsys/logging/Kconfig.template.log_config"
+
+endif # SENSOR_SIMULATOR
