@@ -1,0 +1,25 @@
+common:
+  harness: console
+  harness_config:
+    type: multi_line
+    regex:
+      - "Sensor simulator device initialized"
+      - "Temperature: (.*) C"
+      - "Humidity: (.*) %"
+  tags:
+    - sensors
+    - drivers
+    - simulator
+  min_ram: 16
+  min_flash: 32
+sample:
+  description: Sensor simulator driver sample
+  name: Sensor Simulator
+tests:
+  sample.drivers.sensor_simu:
+    build_only: true
+    platform_allow:
+      - native_sim
+    extra_configs:
+      - CONFIG_SENSOR=y
+      - CONFIG_SENSOR_SIMULATOR=y

@@ -1,0 +1,10 @@
+/ {
+        aliases {
+                sensor-sim0 = &sensor;
+        };
+
+        sensor: simu_sensor {
+                compatible = "zephyr,sensor-simulator";
+                status = "okay";
+        };
+};
