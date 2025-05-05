@@ -1,0 +1,67 @@
+description: Sensor Simulator Binding
+
+compatible: "zephyr,sensor-simulator"
+
+include: base.yaml
+
+properties:
+  label:
+    required: false
+    type: string
+    description: Human readable string describing the device
+    
+  default-temperature:
+    type: int
+    required: false
+    default: 25
+    description: |
+      Default temperature value in degrees Celsius
+      
+  default-temperature-frac:
+    type: int
+    required: false
+    default: 0
+    description: |
+      Fractional part of default temperature in 1/100th of degrees Celsius
+      
+  default-humidity:
+    type: int
+    required: false
+    default: 50
+    description: |
+      Default humidity value in percentage
+      
+  default-humidity-frac:
+    type: int
+    required: false
+    default: 0
+    description: |
+      Fractional part of default humidity in 1/100th of percentage
+      
+  temp-noise-amplitude:
+    type: int
+    required: false
+    default: 0
+    description: |
+      Amplitude of noise to add to temperature readings in 1/100th of degrees Celsius
+      
+  temp-noise-frequency:
+    type: int
+    required: false
+    default: 0
+    description: |
+      Frequency parameter for temperature noise pattern (0-100)
+      
+  humidity-noise-amplitude:
+    type: int
+    required: false
+    default: 0
+    description: |
+      Amplitude of noise to add to humidity readings in 1/100th of percentage
+      
+  humidity-noise-frequency:
+    type: int
+    required: false
+    default: 0
+    description: |
+      Frequency parameter for humidity noise pattern (0-100)
