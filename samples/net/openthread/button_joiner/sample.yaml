@@ -1,0 +1,19 @@
+common:
+  harness: net
+  tags:
+    - net
+  min_flash: 140
+sample:
+  description: OpenThread joiner and commissioner sample
+  name: OpenThread Joiner
+tests:
+  sample.openthread.joiner:
+    build_only: true
+    platform_allow:
+      - cc1352p7_lp
+    extra_args: EXTRA_CONF_FILE=joiner.conf
+  sample.openthread.commissioner:
+    build_only: true
+    platform_allow:
+      - cc1352p7_lp
+    extra_args: EXTRA_CONF_FILE=commissioner.conf
