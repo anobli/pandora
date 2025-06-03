@@ -1,0 +1,28 @@
+#include <zephyr/dt-bindings/input/input-event-codes.h>
+
+/ {
+
+	/* TODO: Add a node name to cc1352p7 */
+	buttons: keys {
+		compatible = "gpio-keys";
+		btn0: btn_0 {
+			gpios = <&gpio0 15 BTN_GPIO_FLAGS>;
+			label = "Push button 1";
+			zephyr,code = <INPUT_KEY_0>;
+		};
+		btn1: btn_1 {
+			gpios = <&gpio0 14 BTN_GPIO_FLAGS>;
+			label = "Push button 2";
+			zephyr,code = <INPUT_KEY_1>;
+		};
+	};
+
+	longpress {
+		input = <&buttons>;
+		compatible = "zephyr,input-longpress";
+		input-codes = <INPUT_KEY_0>, <INPUT_KEY_1>;
+		short-codes = <INPUT_KEY_A>, <INPUT_KEY_B>;
+		long-codes = <INPUT_KEY_X>, <INPUT_KEY_Y>;
+		long-delay-ms = <2000>;
+	};
+};
