@@ -1,0 +1,9 @@
+# Copyright (c) 2024 Alexandre Bailon
+# SPDX-License-Identifier: Apache-2.0
+
+build:
+  kconfig: Kconfig
+  cmake: .
+  settings:
+    dts_root: .
+    board_root: .
