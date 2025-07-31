@@ -1,0 +1,5 @@
+# SPDX-License-Identifier: Apache-2.0
+
+zephyr_library_sources_ifdef(CONFIG_NARADA_LIGHT light_common.c)
+zephyr_library_sources_ifdef(CONFIG_NARADA_LIGHT_SERVER light_server.c)
+zephyr_library_sources_ifdef(CONFIG_NARADA_LIGHT_GPIO light_gpio.c)

@@ -1,0 +1,18 @@
+config NARADA_PAIRING
+	bool
+
+config NARADA_PAIRING_CLIENT
+	bool
+	select NARADA_CLIENT
+	select NARADA_PAIRING
+
+config NARADA_PAIRING_CLIENT_INPUT
+	bool "Request pairing using input"
+	default y
+	depends on INPUT && DT_HAS_NARADA_PAIRING_CLIENT_INPUT_ENABLED
+	select NARADA_PAIRING_CLIENT
+
+config NARADA_PAIRING_SERVER
+	bool "Narada pairing server"
+	select NARADA_SERVER
+	select NARADA_PAIRING

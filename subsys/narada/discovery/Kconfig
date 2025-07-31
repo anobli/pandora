@@ -1,0 +1,15 @@
+config NARADA_DISCOVERY
+	bool "Narada Discovery Client"
+	default y
+	select NARADA_CLIENT
+	depends on DT_HAS_NARADA_DISCOVERY_ENABLED && JSON_LIBRARY
+	help
+	  Enable the Narada discovery client that implements the coap2mqtt
+	  discovery protocol. This allows devices to register themselves with
+	  a discovery server and send periodic heartbeats.
+	  
+	  The discovery client supports:
+	  - Device registration with capabilities and resources
+	  - Version checking with discovery server
+	  - Automatic heartbeat management
+	  - JSON-based message encoding/decoding

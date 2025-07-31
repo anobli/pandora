@@ -1,0 +1,14 @@
+config NARADA_LIGHT
+	bool
+
+config NARADA_LIGHT_SERVER
+	bool
+	select NARADA_SERVER
+
+config NARADA_LIGHT_GPIO
+	bool "GPIO light"
+	select NARADA_LIGHT
+	select NARADA_LIGHT_SERVER
+	default y if DT_HAS_NARADA_LIGHT_GPIO_ENABLED
+	help
+	  Support for GPIO light.

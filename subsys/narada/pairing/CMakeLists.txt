@@ -1,0 +1,4 @@
+zephyr_library_sources(pairing_common.c)
+zephyr_library_sources_ifdef(CONFIG_NARADA_PAIRING_CLIENT pairing_client.c)
+zephyr_library_sources_ifdef(CONFIG_NARADA_PAIRING_SERVER pairing_server.c)
+zephyr_library_sources_ifdef(CONFIG_NARADA_PAIRING_CLIENT_INPUT pairing_client_input.c)

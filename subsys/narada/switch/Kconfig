@@ -1,0 +1,20 @@
+config NARADA_SWITCH
+	bool
+
+config NARADA_SWITCH_CLIENT
+	bool "Narada switch client"
+	select NARADA_CLIENT
+	select NARADA_SWITCH
+	default n
+
+config NARADA_SWITCH_SERVER
+	bool
+	select NARADA_SERVER
+
+config NARADA_SWITCH_GPIO
+	bool "GPIO switch"
+	select NARADA_SWITCH
+	select NARADA_SWITCH_SERVER
+	default y if DT_HAS_NARADA_SWITCH_GPIO_ENABLED
+	help
+	  Support for GPIO switch.
