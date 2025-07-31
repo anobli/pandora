@@ -1,0 +1,18 @@
+/ {
+	narada_device: narada_device {
+		compatible = "gordios,narada";
+		device-id = "Narada_light";
+		heartbeat-interval = <60>;
+
+		light1 {
+			device_type = "light";
+			compatible = "narada,light-gpio";
+			gpios = <&gpiob 7 GPIO_ACTIVE_HIGH>;
+		};
+	};
+
+	discovery: discovery {
+		compatible = "narada,discovery";
+		device = <&narada_device>;
+	};
+};
