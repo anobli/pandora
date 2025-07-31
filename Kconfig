@@ -3,3 +3,4 @@
 #
 
 rsource "drivers/sensor/Kconfig"
+rsource "subsys/narada/Kconfig"
