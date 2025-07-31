@@ -1,0 +1,31 @@
+compatible: pandora,device
+description: |
+  Configure a Hermes device.
+properties:
+  device-id:
+    type: string
+    required: true
+    description: |
+      Unique identifier for this device
+
+  manufacturer:
+    type: string
+    description: |
+      Device manufacturer name
+
+  firmware-version:
+    type: string
+    description: |
+      Firmware version string
+
+
+  hardware-version:
+    type: string
+    description: |
+      Hardware version string
+
+  heartbeat-interval:
+    type: int
+    default: 0
+    description: |
+      Heartbeat interval in seconds (0 = no heartbeat)

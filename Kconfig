@@ -3,3 +3,4 @@
 #
 
 rsource "drivers/Kconfig"
+rsource "subsys/hermes/Kconfig"

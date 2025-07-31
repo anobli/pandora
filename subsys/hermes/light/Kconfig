@@ -1,0 +1,22 @@
+config HERMES_LIGHT
+	bool
+
+config HERMES_LIGHT_SERVER
+	bool
+	select HERMES_SERVER
+
+config HERMES_LIGHT_GPIO
+	bool "GPIO light"
+	select HERMES_LIGHT
+	select HERMES_LIGHT_SERVER
+	default y if DT_HAS_PANDORA_LIGHT_GPIO_ENABLED
+	help
+	  Support for GPIO light.
+
+config HERMES_LIGHT_RGBCT
+	bool "RGB-CT light"
+	select HERMES_LIGHT
+	select HERMES_LIGHT_SERVER
+	default y if DT_HAS_PANDORA_LIGHT_RGBCT_ENABLED
+	help
+	  Support for RGB-CT light.

@@ -1,0 +1,20 @@
+description: GPIO light
+
+compatible: "pandora,light-gpio"
+
+properties:
+  device_type:
+    type: string
+    enum:
+      - "light"
+    default: "light"
+  capabilities:
+    type: string-array
+    enum:
+      - "on_off"
+      - "dimming"
+    default:
+      - "on_off"
+  gpios:
+    type: phandle-array
+    required: true

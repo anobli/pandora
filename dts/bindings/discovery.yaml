@@ -1,0 +1,12 @@
+# SPDX-License-Identifier: Apache-2.0
+
+description: Hermes CoAP Discovery Client Configuration
+
+compatible: "pandora,discovery"
+
+properties:
+  device:
+    type: phandle
+    required: true
+    description: |
+      Reference to the hermes device node

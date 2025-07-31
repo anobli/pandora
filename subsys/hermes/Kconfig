@@ -1,0 +1,45 @@
+config HERMES
+	bool "Home Automation Hermes library"
+	default y
+	depends on DT_HAS_PANDORA_DEVICE_ENABLED && JSON_LIBRARY && COAP_CLIENT
+	help
+	  This library provides a CoAP client and server API
+	  for creating Home Automation devices and for controlling them.
+
+if HERMES
+
+config HERMES_SERVICE
+	bool "Hermes service"
+	default y if SMF
+	depends on SMF && EVENTS
+	help
+	  Provide a service that manage the different events
+	  that could affect Hermes state such network disconnection.
+
+config HERMES_SERVER
+	bool
+	depends on COAP && COAP_SERVER
+
+config HERMES_MULTICAST_BUFFER_COUNT
+	int "Number of multicast request buffers"
+	default 2
+	range 1 10
+	help
+	  Number of statically allocated buffers for multicast CoAP requests.
+	  Each buffer can handle one concurrent multicast request.
+
+config HERMES_MULTICAST_BUFFER_SIZE
+	int "Size of each multicast request buffer in bytes"
+	default 1024
+	range 256 4096
+	help
+	  Size of each multicast buffer. Should be large enough to hold
+	  CoAP packet headers, options, and payload.
+
+module = HERMES
+module-str = hermes
+source "subsys/logging/Kconfig.template.log_config"
+
+rsource "light/Kconfig"
+
+endif
