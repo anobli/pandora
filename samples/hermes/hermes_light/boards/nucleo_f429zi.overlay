@@ -1,0 +1,30 @@
+/ {
+	pandora_device: pandora_device {
+		compatible = "pandora,device";
+		device-id = "pandora_light";
+		heartbeat-interval = <60>;
+
+		light1 {
+			device_type = "light";
+			compatible = "pandora,light-gpio";
+			gpios = <&gpiob 7 GPIO_ACTIVE_HIGH>;
+		};
+	};
+
+	discovery: discovery {
+		compatible = "pandora,discovery";
+		device = <&pandora_device>;
+	};
+};
+
+&flash0 {
+	partitions {
+		/* Set 48KB of storage at the beginning of bank2 in order to have 3 sectors smaller than 32K
+		 * 	(nvs.h: uint16_t sector_size)
+		 */
+		storage_partition: partition@100000 {
+			label = "storage";
+			reg = <0x000100000 DT_SIZE_K(48)>;
+		};
+	};
+};

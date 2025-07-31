@@ -1,0 +1,73 @@
+
+#include <zephyr/dt-bindings/pwm/pwm.h>
+
+/ {
+	pandora_device: pandora_device {
+		compatible = "pandora,device";
+		device-id = "pandora_light";
+		heartbeat-interval = <60>;
+
+		light1 {
+			device_type = "light";
+			compatible = "pandora,light-rgbct";
+			pwms = <&ledc0 3 1000 PWM_POLARITY_NORMAL>,
+				<&ledc0 4 1000 PWM_POLARITY_NORMAL>,
+				<&ledc0 0 1000 PWM_POLARITY_NORMAL>,
+				<&ledc0 1 1000 PWM_POLARITY_NORMAL>,
+				<&ledc0 2 1000 PWM_POLARITY_NORMAL>;
+			pwm-names = "red", "green", "blue",
+				    "white_brightness", "color_temperature";
+		};
+	};
+
+	discovery: discovery {
+		compatible = "pandora,discovery";
+		device = <&pandora_device>;
+	};
+};
+
+
+&wifi {
+	status = "okay";
+};
+
+&pinctrl {
+	ledc0_default: ledc0_default {
+		group1 {
+			pinmux = <LEDC_CH0_GPIO4>,
+				<LEDC_CH1_GPIO12>,
+				<LEDC_CH2_GPIO14>,
+				<LEDC_CH3_GPIO5>,
+				<LEDC_CH4_GPIO13>;
+			output-enable;
+		};
+	};
+};
+
+&ledc0 {
+	pinctrl-0 = <&ledc0_default>;
+	pinctrl-names = "default";
+	status = "okay";
+	#address-cells = <1>;
+	#size-cells = <0>;
+	channel0@0 {
+		reg = <0x0>;
+		timer = <0>;
+	};
+	channel0@1 {
+		reg = <0x1>;
+		timer = <0>;
+	};
+	channel0@2 {
+		reg = <0x2>;
+		timer = <0>;
+	};
+	channel0@3 {
+		reg = <0x3>;
+		timer = <0>;
+	};
+	channel0@4 {
+		reg = <0x4>;
+		timer = <0>;
+	};
+};
