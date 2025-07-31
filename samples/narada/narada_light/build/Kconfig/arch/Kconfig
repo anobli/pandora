@@ -1,0 +1,11 @@
+# Load Zephyr Arch Kconfig descriptions.
+osource "/home/alex/workspace/gordios/pandora_workspace/zephyr/arch/rx/Kconfig"
+osource "/home/alex/workspace/gordios/pandora_workspace/zephyr/arch/x86/Kconfig"
+osource "/home/alex/workspace/gordios/pandora_workspace/zephyr/arch/xtensa/Kconfig"
+osource "/home/alex/workspace/gordios/pandora_workspace/zephyr/arch/sparc/Kconfig"
+osource "/home/alex/workspace/gordios/pandora_workspace/zephyr/arch/riscv/Kconfig"
+osource "/home/alex/workspace/gordios/pandora_workspace/zephyr/arch/posix/Kconfig"
+osource "/home/alex/workspace/gordios/pandora_workspace/zephyr/arch/mips/Kconfig"
+osource "/home/alex/workspace/gordios/pandora_workspace/zephyr/arch/arm64/Kconfig"
+osource "/home/alex/workspace/gordios/pandora_workspace/zephyr/arch/arm/Kconfig"
+osource "/home/alex/workspace/gordios/pandora_workspace/zephyr/arch/arc/Kconfig"

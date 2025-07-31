@@ -1,0 +1,65 @@
+cmake:
+  application:
+    configuration-dir: '/home/alex/workspace/gordios/pandora_workspace/pandora/samples/net/openthread/narada_light'
+    source-dir: '/home/alex/workspace/gordios/pandora_workspace/pandora/samples/net/openthread/narada_light'
+  board:
+    name: 'cc1352p7_lp'
+    path:
+     - '/home/alex/workspace/gordios/pandora_workspace/zephyr/boards/ti/cc1352p7_launchpad'
+    qualifiers: 'cc1352p7'
+    revision: ''
+  devicetree:
+    bindings-dirs:
+     - '/home/alex/workspace/gordios/pandora_workspace/pandora/dts/bindings'
+     - '/home/alex/workspace/gordios/pandora_workspace/zephyr/dts/bindings'
+    files:
+     - '/home/alex/workspace/gordios/pandora_workspace/zephyr/boards/ti/cc1352p7_launchpad/cc1352p7_lp.dts'
+     - '/home/alex/workspace/gordios/pandora_workspace/pandora/samples/net/openthread/narada_light/boards/cc1352p7_lp.overlay'
+    include-dirs:
+     - '/home/alex/workspace/gordios/pandora_workspace/pandora/include'
+     - '/home/alex/workspace/gordios/pandora_workspace/pandora/include/zephyr'
+     - '/home/alex/workspace/gordios/pandora_workspace/pandora/dts'
+     - '/home/alex/workspace/gordios/pandora_workspace/modules/hal/ambiq/dts'
+     - '/home/alex/workspace/gordios/pandora_workspace/modules/hal/atmel/include'
+     - '/home/alex/workspace/gordios/pandora_workspace/modules/hal/bouffalolab/include'
+     - '/home/alex/workspace/gordios/pandora_workspace/modules/hal/bouffalolab/include/zephyr'
+     - '/home/alex/workspace/gordios/pandora_workspace/modules/hal/gigadevice/include'
+     - '/home/alex/workspace/gordios/pandora_workspace/modules/hal/microchip/include'
+     - '/home/alex/workspace/gordios/pandora_workspace/modules/hal/microchip/dts'
+     - '/home/alex/workspace/gordios/pandora_workspace/modules/hal/nuvoton/dts'
+     - '/home/alex/workspace/gordios/pandora_workspace/modules/hal/nxp/dts'
+     - '/home/alex/workspace/gordios/pandora_workspace/modules/hal/stm32/dts'
+     - '/home/alex/workspace/gordios/pandora_workspace/modules/hal/ti/dts'
+     - '/home/alex/workspace/gordios/pandora_workspace/zephyr/include'
+     - '/home/alex/workspace/gordios/pandora_workspace/zephyr/include/zephyr'
+     - '/home/alex/workspace/gordios/pandora_workspace/zephyr/dts/common'
+     - '/home/alex/workspace/gordios/pandora_workspace/zephyr/dts/vendor'
+     - '/home/alex/workspace/gordios/pandora_workspace/zephyr/dts/rx'
+     - '/home/alex/workspace/gordios/pandora_workspace/zephyr/dts/x86'
+     - '/home/alex/workspace/gordios/pandora_workspace/zephyr/dts/xtensa'
+     - '/home/alex/workspace/gordios/pandora_workspace/zephyr/dts/sparc'
+     - '/home/alex/workspace/gordios/pandora_workspace/zephyr/dts/riscv'
+     - '/home/alex/workspace/gordios/pandora_workspace/zephyr/dts/posix'
+     - '/home/alex/workspace/gordios/pandora_workspace/zephyr/dts/arm64'
+     - '/home/alex/workspace/gordios/pandora_workspace/zephyr/dts/arm'
+     - '/home/alex/workspace/gordios/pandora_workspace/zephyr/dts/arc'
+     - '/home/alex/workspace/gordios/pandora_workspace/zephyr/dts'
+    user-files:
+     - '/home/alex/workspace/gordios/pandora_workspace/pandora/samples/net/openthread/narada_light/boards/cc1352p7_lp.overlay'
+  kconfig:
+    files:
+     - '/home/alex/workspace/gordios/pandora_workspace/zephyr/boards/ti/cc1352p7_launchpad/cc1352p7_lp_defconfig'
+     - '/home/alex/workspace/gordios/pandora_workspace/pandora/samples/net/openthread/narada_light/prj.conf'
+    user-files:
+     - '/home/alex/workspace/gordios/pandora_workspace/pandora/samples/net/openthread/narada_light/prj.conf'
+  toolchain:
+    name: 'zephyr'
+    path: '/opt/zephyr-sdk-0.16.8'
+  zephyr:
+    version: '4.1.99'
+    zephyr-base: '/home/alex/workspace/gordios/pandora_workspace/zephyr'
+version: '0.1.0'
+west:
+  command: '/home/alex/zephyr-venv/bin/west build -p -b cc1352p7_lp . -- -DOPENOCD=/bin/openocd -DOPENOCD_DEFAULT_PATH=/share/openocd'
+  topdir: '/home/alex/workspace/gordios/pandora_workspace'
+  version: '1.3.0'

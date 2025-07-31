@@ -1,0 +1,14 @@
+/ {
+	switch1 {
+		compatible = "narada,switch-gpio";
+
+		gpios = <&gpio0 7 GPIO_ACTIVE_HIGH>;
+	};
+
+	switch2 {
+		compatible = "narada,switch-gpio";
+
+		gpios = <&gpio0 6 GPIO_ACTIVE_HIGH>;
+	};
+
+};

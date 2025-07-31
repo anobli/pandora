@@ -1,0 +1,2 @@
+# Load Sysbuild board Kconfig descriptions.
+osource "/home/alex/workspace/gordios/pandora_workspace/zephyr/boards/ti/cc1352p7_launchpad/Kconfig.sysbuild"

@@ -1,0 +1,21 @@
+# WARNING. THIS FILE IS AUTO-GENERATED. DO NOT MODIFY!
+#
+# This file contains build system settings derived from your modules.
+#
+# Modules may be set via ZEPHYR_MODULES, ZEPHYR_EXTRA_MODULES,
+# and/or the west manifest file.
+#
+# See the Modules guide for more information.
+"BOARD_ROOT":"/home/alex/workspace/gordios/pandora_workspace/pandora"
+"DTS_ROOT":"/home/alex/workspace/gordios/pandora_workspace/pandora"
+"DTS_ROOT":"/home/alex/workspace/gordios/pandora_workspace/modules/hal/adi"
+"DTS_ROOT":"/home/alex/workspace/gordios/pandora_workspace/modules/hal/ambiq"
+"DTS_ROOT":"/home/alex/workspace/gordios/pandora_workspace/modules/hal/atmel"
+"DTS_ROOT":"/home/alex/workspace/gordios/pandora_workspace/modules/hal/bouffalolab"
+"DTS_ROOT":"/home/alex/workspace/gordios/pandora_workspace/modules/hal/espressif"
+"DTS_ROOT":"/home/alex/workspace/gordios/pandora_workspace/modules/hal/gigadevice"
+"DTS_ROOT":"/home/alex/workspace/gordios/pandora_workspace/modules/hal/microchip"
+"DTS_ROOT":"/home/alex/workspace/gordios/pandora_workspace/modules/hal/nuvoton"
+"DTS_ROOT":"/home/alex/workspace/gordios/pandora_workspace/modules/hal/nxp"
+"DTS_ROOT":"/home/alex/workspace/gordios/pandora_workspace/modules/hal/stm32"
+"DTS_ROOT":"/home/alex/workspace/gordios/pandora_workspace/modules/hal/ti"

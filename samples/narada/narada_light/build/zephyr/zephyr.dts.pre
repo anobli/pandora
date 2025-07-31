@@ -1,0 +1,715 @@
+# 0 "/home/alex/workspace/gordios/pandora_workspace/zephyr/misc/empty_file.c"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "/home/alex/workspace/gordios/pandora_workspace/zephyr/boards/ti/cc1352p7_launchpad/cc1352p7_lp.dts" 1
+
+
+
+
+
+
+/dts-v1/;
+
+# 1 "/home/alex/workspace/gordios/pandora_workspace/zephyr/dts/arm/ti/cc1352r7.dtsi" 1 3 4
+
+
+
+
+
+
+# 1 "/home/alex/workspace/gordios/pandora_workspace/zephyr/dts/common/mem.h" 1 3 4
+# 8 "/home/alex/workspace/gordios/pandora_workspace/zephyr/dts/arm/ti/cc1352r7.dtsi" 2 3 4
+# 1 "/home/alex/workspace/gordios/pandora_workspace/zephyr/dts/arm/ti/cc13xx_cc26xx.dtsi" 1 3 4
+
+
+
+
+
+
+# 1 "/home/alex/workspace/gordios/pandora_workspace/zephyr/dts/arm/armv7-m.dtsi" 1 3 4
+
+
+# 1 "/home/alex/workspace/gordios/pandora_workspace/zephyr/dts/common/skeleton.dtsi" 1 3 4
+# 9 "/home/alex/workspace/gordios/pandora_workspace/zephyr/dts/common/skeleton.dtsi" 3 4
+/ {
+ #address-cells = <1>;
+ #size-cells = <1>;
+ chosen { };
+ aliases { };
+};
+# 4 "/home/alex/workspace/gordios/pandora_workspace/zephyr/dts/arm/armv7-m.dtsi" 2 3 4
+
+/ {
+ soc {
+  #address-cells = <1>;
+  #size-cells = <1>;
+  compatible = "simple-bus";
+  interrupt-parent = <&nvic>;
+  ranges;
+
+  nvic: interrupt-controller@e000e100 {
+   #address-cells = <1>;
+   compatible = "arm,v7m-nvic";
+   reg = <0xe000e100 0xc00>;
+   interrupt-controller;
+   #interrupt-cells = <2>;
+  };
+
+  systick: timer@e000e010 {
+   compatible = "arm,armv7m-systick";
+   reg = <0xe000e010 0x10>;
+  };
+ };
+};
+# 8 "/home/alex/workspace/gordios/pandora_workspace/zephyr/dts/arm/ti/cc13xx_cc26xx.dtsi" 2 3 4
+# 1 "/home/alex/workspace/gordios/pandora_workspace/zephyr/include/zephyr/dt-bindings/adc/adc.h" 1 3 4
+# 9 "/home/alex/workspace/gordios/pandora_workspace/zephyr/include/zephyr/dt-bindings/adc/adc.h" 3 4
+# 1 "/home/alex/workspace/gordios/pandora_workspace/zephyr/include/zephyr/dt-bindings/dt-util.h" 1 3 4
+# 19 "/home/alex/workspace/gordios/pandora_workspace/zephyr/include/zephyr/dt-bindings/dt-util.h" 3 4
+# 1 "/home/alex/workspace/gordios/pandora_workspace/zephyr/include/zephyr/sys/util_macro.h" 1 3 4
+# 34 "/home/alex/workspace/gordios/pandora_workspace/zephyr/include/zephyr/sys/util_macro.h" 3 4
+# 1 "/home/alex/workspace/gordios/pandora_workspace/zephyr/include/zephyr/sys/util_internal.h" 1 3 4
+# 18 "/home/alex/workspace/gordios/pandora_workspace/zephyr/include/zephyr/sys/util_internal.h" 3 4
+# 1 "/home/alex/workspace/gordios/pandora_workspace/zephyr/include/zephyr/sys/util_loops.h" 1 3 4
+# 1083 "/home/alex/workspace/gordios/pandora_workspace/zephyr/include/zephyr/sys/util_loops.h" 3 4
+# 1 "/home/alex/workspace/gordios/pandora_workspace/zephyr/include/zephyr/sys/util_listify.h" 1 3 4
+# 1084 "/home/alex/workspace/gordios/pandora_workspace/zephyr/include/zephyr/sys/util_loops.h" 2 3 4
+# 19 "/home/alex/workspace/gordios/pandora_workspace/zephyr/include/zephyr/sys/util_internal.h" 2 3 4
+# 162 "/home/alex/workspace/gordios/pandora_workspace/zephyr/include/zephyr/sys/util_internal.h" 3 4
+# 1 "/home/alex/workspace/gordios/pandora_workspace/zephyr/include/zephyr/sys/util_internal_is_eq.h" 1 3 4
+# 163 "/home/alex/workspace/gordios/pandora_workspace/zephyr/include/zephyr/sys/util_internal.h" 2 3 4
+# 193 "/home/alex/workspace/gordios/pandora_workspace/zephyr/include/zephyr/sys/util_internal.h" 3 4
+# 1 "/home/alex/workspace/gordios/pandora_workspace/zephyr/include/zephyr/sys/util_internal_util_inc.h" 1 3 4
+# 194 "/home/alex/workspace/gordios/pandora_workspace/zephyr/include/zephyr/sys/util_internal.h" 2 3 4
+
+
+# 1 "/home/alex/workspace/gordios/pandora_workspace/zephyr/include/zephyr/sys/util_internal_util_dec.h" 1 3 4
+# 197 "/home/alex/workspace/gordios/pandora_workspace/zephyr/include/zephyr/sys/util_internal.h" 2 3 4
+
+
+# 1 "/home/alex/workspace/gordios/pandora_workspace/zephyr/include/zephyr/sys/util_internal_util_x2.h" 1 3 4
+# 200 "/home/alex/workspace/gordios/pandora_workspace/zephyr/include/zephyr/sys/util_internal.h" 2 3 4
+# 35 "/home/alex/workspace/gordios/pandora_workspace/zephyr/include/zephyr/sys/util_macro.h" 2 3 4
+# 20 "/home/alex/workspace/gordios/pandora_workspace/zephyr/include/zephyr/dt-bindings/dt-util.h" 2 3 4
+# 10 "/home/alex/workspace/gordios/pandora_workspace/zephyr/include/zephyr/dt-bindings/adc/adc.h" 2 3 4
+# 9 "/home/alex/workspace/gordios/pandora_workspace/zephyr/dts/arm/ti/cc13xx_cc26xx.dtsi" 2 3 4
+# 1 "/home/alex/workspace/gordios/pandora_workspace/zephyr/include/zephyr/dt-bindings/i2c/i2c.h" 1 3 4
+# 10 "/home/alex/workspace/gordios/pandora_workspace/zephyr/dts/arm/ti/cc13xx_cc26xx.dtsi" 2 3 4
+# 1 "/home/alex/workspace/gordios/pandora_workspace/zephyr/include/zephyr/dt-bindings/gpio/gpio.h" 1 3 4
+# 11 "/home/alex/workspace/gordios/pandora_workspace/zephyr/dts/arm/ti/cc13xx_cc26xx.dtsi" 2 3 4
+# 1 "/home/alex/workspace/gordios/pandora_workspace/zephyr/include/zephyr/dt-bindings/pwm/pwm.h" 1 3 4
+# 12 "/home/alex/workspace/gordios/pandora_workspace/zephyr/dts/arm/ti/cc13xx_cc26xx.dtsi" 2 3 4
+
+/ {
+ chosen {
+  zephyr,entropy = &trng;
+  zephyr,flash-controller = &flash_controller;
+ };
+
+ cpus {
+  #address-cells = <1>;
+  #size-cells = <0>;
+
+  cpu0: cpu@0 {
+   device_type = "cpu";
+   compatible = "arm,cortex-m4";
+   reg = <0>;
+   cpu-power-states = <&idle &standby>;
+  };
+
+  power-states {
+   idle: idle {
+    compatible = "zephyr,power-state";
+    power-state-name = "suspend-to-idle";
+    min-residency-us = <1000>;
+   };
+
+   standby: standby {
+    compatible = "zephyr,power-state";
+    power-state-name = "standby";
+    min-residency-us = <5000>;
+    exit-latency-us = <240>;
+   };
+  };
+ };
+
+ sram0: memory@20000000 {
+  compatible = "mmio-sram";
+ };
+
+
+ sram1: memory@11000000 {
+  compatible = "zephyr,memory-region", "mmio-sram";
+  reg = <0x11000000 0x2000>;
+  zephyr,memory-region = "SRAM1";
+ };
+
+ sysclk: system-clock {
+  compatible = "fixed-clock";
+  clock-frequency = <48000000>;
+  #clock-cells = <0>;
+ };
+
+ soc {
+  pinctrl: pinctrl@40081000 {
+   compatible = "ti,cc13xx-cc26xx-pinctrl";
+   reg = <0x40081000 0x1000>;
+  };
+
+  gpio0: gpio@40022000 {
+   compatible = "ti,cc13xx-cc26xx-gpio";
+   reg = <0x40022000 0x400>;
+   interrupts = <0 0>;
+   status = "disabled";
+   gpio-controller;
+   #gpio-cells = <2>;
+  };
+
+  trng: random@40028000 {
+   compatible = "ti,cc13xx-cc26xx-trng";
+   reg = <0x40028000 0x2000>;
+   interrupts = <33 0>;
+   status = "disabled";
+  };
+
+  flash_controller: flash-controller@40030000 {
+   compatible = "ti,cc13xx-cc26xx-flash-controller";
+   reg = <0x40030000 0x4000>;
+
+   #address-cells = <1>;
+   #size-cells = <1>;
+
+   flash0: flash@0 {
+    compatible = "soc-nv-flash";
+    erase-block-size = <((8) * 1024)>;
+    write-block-size = <1>;
+   };
+  };
+
+  gpt0: timer@40010000 {
+   compatible = "ti,cc13xx-cc26xx-timer";
+   reg = <0x40010000 0x1000>;
+   interrupts = <15 0 16 0>;
+   interrupt-names = "gpt0a", "gpt0b";
+   status = "disabled";
+
+   pwm0: pwm {
+    compatible = "ti,cc13xx-cc26xx-timer-pwm";
+    #pwm-cells = <3>;
+    status = "disabled";
+   };
+  };
+
+  gpt1: timer@40011000 {
+   compatible = "ti,cc13xx-cc26xx-timer";
+   reg = <0x40011000 0x1000>;
+   interrupts = <17 0 18 0>;
+   interrupt-names = "gpt1a", "gpt1b";
+   status = "disabled";
+
+   pwm1: pwm {
+    compatible = "ti,cc13xx-cc26xx-timer-pwm";
+    #pwm-cells = <3>;
+    status = "disabled";
+   };
+  };
+
+  gpt2: timer@40012000 {
+   compatible = "ti,cc13xx-cc26xx-timer";
+   reg = <0x40012000 0x1000>;
+   interrupts = <19 0 20 0>;
+   interrupt-names = "gpt2a", "gpt2b";
+   status = "disabled";
+
+   pwm2: pwm {
+    compatible = "ti,cc13xx-cc26xx-timer-pwm";
+    #pwm-cells = <3>;
+    status = "disabled";
+   };
+  };
+
+  gpt3: timer@40013000 {
+   compatible = "ti,cc13xx-cc26xx-timer";
+   reg = <0x40013000 0x1000>;
+   interrupts = <21 0 22 0>;
+   interrupt-names = "gpt3a", "gpt3b";
+   status = "disabled";
+
+   pwm3: pwm {
+    compatible = "ti,cc13xx-cc26xx-timer-pwm";
+    #pwm-cells = <3>;
+    status = "disabled";
+   };
+  };
+
+  uart0: uart@40001000 {
+   compatible = "ti,cc13xx-cc26xx-uart";
+   reg = <0x40001000 0x1000>;
+   interrupts = <5 0>;
+   clocks = <&sysclk>;
+   status = "disabled";
+  };
+
+  uart1: uart@4000b000 {
+   compatible = "ti,cc13xx-cc26xx-uart";
+   reg = <0x4000b000 0x1000>;
+   interrupts = <36 0>;
+   clocks = <&sysclk>;
+   status = "disabled";
+  };
+
+  i2c0: i2c@40002000 {
+   compatible = "ti,cc13xx-cc26xx-i2c";
+   #address-cells = <1>;
+   #size-cells = <0>;
+   reg = <0x40002000 0x1000>;
+   interrupts = <1 0>;
+   clock-frequency = <100000>;
+   status = "disabled";
+  };
+
+  spi0: spi@40000000 {
+   compatible = "ti,cc13xx-cc26xx-spi";
+   #address-cells = <1>;
+   #size-cells = <0>;
+   reg = <0x40000000 0x1000>;
+   interrupts = <7 0>;
+   status = "disabled";
+  };
+
+  spi1: spi@40008000 {
+   compatible = "ti,cc13xx-cc26xx-spi";
+   #address-cells = <1>;
+   #size-cells = <0>;
+   reg = <0x40008000 0x1000>;
+   interrupts = <8 0>;
+   status = "disabled";
+  };
+
+
+  rtc: rtc@40092000 {
+   compatible = "ti,cc13xx-cc26xx-rtc-timer";
+   reg = <0x40092000 0x1000>;
+   interrupts = <4 0>;
+   status = "okay";
+  };
+
+  radio: radio@40040000 {
+   compatible = "ti,cc13xx-cc26xx-radio";
+   status = "disabled";
+
+   reg = <0x40040000 0x1000
+          0x40041000 0x2000
+          0x40043000 0x1000
+          0x40044000 0x1000>;
+   reg-names = "RFC_PWR", "RFC_DBELL", "RFC_RAT", "RFC_FSCA";
+
+   ieee802154: ieee802154 {
+    compatible = "ti,cc13xx-cc26xx-ieee802154";
+    status = "disabled";
+   };
+
+   ieee802154g: ieee802154g {
+    compatible = "ti,cc13xx-cc26xx-ieee802154-subghz";
+    status = "disabled";
+   };
+  };
+
+  wdt0: watchdog@40080000 {
+   compatible = "ti,cc13xx-cc26xx-watchdog";
+   reg = <0x40080000 0x1000>;
+   interrupts = <14 0>;
+   status = "disabled";
+  };
+
+  adc0: adc@400cb008 {
+   compatible = "ti,cc13xx-cc26xx-adc";
+   reg = <0x400cb008 0x1>;
+   interrupts = <32 0>;
+   status = "disabled";
+   #io-channel-cells = <1>;
+  };
+ };
+};
+
+&nvic {
+ arm,num-irq-priority-bits = <3>;
+};
+
+&systick {
+ status = "disabled";
+};
+# 9 "/home/alex/workspace/gordios/pandora_workspace/zephyr/dts/arm/ti/cc1352r7.dtsi" 2 3 4
+
+/ {
+ sram0: memory@20000000 {
+  reg = <0x20000000 ((144) * 1024)>;
+ };
+};
+
+&flash0 {
+ reg = <0x0 ((704) * 1024)>;
+
+ partitions {
+  compatible = "fixed-partitions";
+  #address-cells = <1>;
+  #size-cells = <1>;
+
+
+  ti_ccfg_partition: partition@affa8 {
+   compatible = "zephyr,memory-region";
+   reg = <0xaffa8 88>;
+   zephyr,memory-region = "FLASH_CCFG";
+  };
+ };
+};
+# 10 "/home/alex/workspace/gordios/pandora_workspace/zephyr/boards/ti/cc1352p7_launchpad/cc1352p7_lp.dts" 2
+# 1 "/home/alex/workspace/gordios/pandora_workspace/zephyr/boards/ti/cc1352p7_launchpad/../common/launchxl.dtsi" 1
+
+
+
+
+
+
+# 1 "/home/alex/workspace/gordios/pandora_workspace/zephyr/boards/ti/cc1352p7_launchpad/../common/boosterpack_connector.dtsi" 1
+
+
+
+
+
+
+/ {
+ boosterpack_header: connector {
+  compatible = "ti,boosterpack-header";
+  #gpio-cells = <2>;
+  gpio-map = <2 0 &gpio0 23 0>,
+      <3 0 &gpio0 12 0>,
+      <4 0 &gpio0 13 0>,
+      <5 0 &gpio0 22 0>,
+      <6 0 &gpio0 24 0>,
+      <7 0 &gpio0 10 0>,
+      <8 0 &gpio0 21 0>,
+      <9 0 &gpio0 4 0>,
+      <10 0 &gpio0 5 0>,
+      <12 0 &gpio0 14 0>,
+      <13 0 &gpio0 15 0>,
+      <14 0 &gpio0 8 0>,
+      <15 0 &gpio0 9 0>,
+      <18 0 &gpio0 11 0>,
+      <19 0 &gpio0 3 0>,
+      <23 0 &gpio0 25 0>,
+      <24 0 &gpio0 26 0>,
+      <25 0 &gpio0 27 0>,
+      <26 0 &gpio0 28 0>,
+      <27 0 &gpio0 29 0>,
+      <28 0 &gpio0 30 0>,
+      <31 0 &gpio0 17 0>,
+      <32 0 &gpio0 16 0>,
+      <36 0 &gpio0 18 0>,
+      <37 0 &gpio0 19 0>,
+      <38 0 &gpio0 20 0>,
+      <39 0 &gpio0 6 0>,
+      <40 0 &gpio0 7 0>;
+ };
+};
+
+boosterpack_i2c: &i2c0 {};
+boosterpack_spi: &spi0 {};
+boosterpack_serial: &uart0 {};
+# 8 "/home/alex/workspace/gordios/pandora_workspace/zephyr/boards/ti/cc1352p7_launchpad/../common/launchxl.dtsi" 2
+# 1 "/home/alex/workspace/gordios/pandora_workspace/zephyr/boards/ti/cc1352p7_launchpad/../common/launchxl-pinctrl.dtsi" 1
+
+
+
+
+
+
+# 1 "/home/alex/workspace/gordios/pandora_workspace/zephyr/include/zephyr/dt-bindings/pinctrl/cc13xx_cc26xx-pinctrl.h" 1 3 4
+# 8 "/home/alex/workspace/gordios/pandora_workspace/zephyr/boards/ti/cc1352p7_launchpad/../common/launchxl-pinctrl.dtsi" 2
+
+&pinctrl {
+
+ uart0_tx_default: uart0_tx_default {
+  pinmux = <13 0x00000010>;
+  bias-disable;
+ };
+ uart0_rx_default: uart0_rx_default {
+  pinmux = <12 0x0000000F>;
+  bias-disable;
+  input-enable;
+ };
+
+
+ uart1_tx_default: uart1_tx_default {
+  pinmux = <22 0x00000014>;
+  bias-disable;
+ };
+ uart1_rx_default: uart1_rx_default {
+  pinmux = <24 0x00000013>;
+  bias-disable;
+  input-enable;
+ };
+
+
+ i2c0_scl_default: i2c0_scl_default {
+  pinmux = <4 0x0000000E>;
+  bias-pull-up;
+  drive-open-drain;
+  input-enable;
+ };
+ i2c0_sda_default: i2c0_sda_default {
+  pinmux = <5 0x0000000D>;
+  bias-pull-up;
+  drive-open-drain;
+  input-enable;
+ };
+ i2c0_scl_sleep: i2c0_scl_sleep {
+  pinmux = <4 0x00000000>;
+  bias-disable;
+ };
+ i2c0_sda_sleep: i2c0_sda_sleep {
+  pinmux = <5 0x00000000>;
+  bias-disable;
+ };
+
+
+ spi0_sck_default: spi0_sck_default {
+  pinmux = <10 0x0000000C>;
+  bias-disable;
+ };
+ spi0_mosi_default: spi0_mosi_default {
+  pinmux = <9 0x0000000A>;
+  bias-disable;
+ };
+ spi0_miso_default: spi0_miso_default {
+  pinmux = <8 0x00000009>;
+  bias-disable;
+  input-enable;
+ };
+ spi0_cs_default: spi0_cs_default {
+  pinmux = <11 0x0000000B>;
+  bias-disable;
+ };
+};
+# 9 "/home/alex/workspace/gordios/pandora_workspace/zephyr/boards/ti/cc1352p7_launchpad/../common/launchxl.dtsi" 2
+# 1 "/home/alex/workspace/gordios/pandora_workspace/zephyr/include/zephyr/dt-bindings/input/input-event-codes.h" 1 3 4
+# 10 "/home/alex/workspace/gordios/pandora_workspace/zephyr/boards/ti/cc1352p7_launchpad/../common/launchxl.dtsi" 2
+
+
+
+/ {
+ aliases {
+  led0 = &led0;
+  led1 = &led1;
+  sw0 = &btn0;
+  sw1 = &btn1;
+  watchdog0 = &wdt0;
+  mcuboot-led0 = &led1;
+  mcuboot-button0 = &btn1;
+ };
+
+ chosen {
+  zephyr,sram = &sram0;
+  zephyr,flash = &flash0;
+  zephyr,console = &uart0;
+  zephyr,shell-uart = &uart0;
+  zephyr,ieee802154 = &ieee802154;
+  zephyr,code-partition = &slot0_partition;
+ };
+
+ leds {
+  compatible = "gpio-leds";
+  led0: led_0 {
+   gpios = <&gpio0 7 (0 << 0)>;
+   label = "Green LED";
+  };
+  led1: led_1 {
+   gpios = <&gpio0 6 (0 << 0)>;
+   label = "Red LED";
+  };
+ };
+
+ keys {
+  compatible = "gpio-keys";
+  btn0: btn_0 {
+   gpios = <&gpio0 15 ((1 << 0) | (1 << 4))>;
+   label = "Push button 1";
+   zephyr,code = <11>;
+  };
+  btn1: btn_1 {
+   gpios = <&gpio0 14 ((1 << 0) | (1 << 4))>;
+   label = "Push button 2";
+   zephyr,code = <2>;
+  };
+ };
+};
+
+&cpu0 {
+ clock-frequency = <48000000>;
+};
+
+&trng {
+ status = "okay";
+};
+
+&gpio0 {
+ status = "okay";
+};
+
+&uart0 {
+ status = "okay";
+ current-speed = <115200>;
+ pinctrl-0 = <&uart0_rx_default &uart0_tx_default>;
+ pinctrl-names = "default";
+};
+
+&uart1 {
+ status = "disabled";
+ current-speed = <115200>;
+ pinctrl-0 = <&uart1_rx_default &uart1_tx_default>;
+ pinctrl-names = "default";
+};
+
+&i2c0 {
+ status = "okay";
+ pinctrl-0 = <&i2c0_scl_default &i2c0_sda_default>;
+ pinctrl-1 = <&i2c0_scl_sleep &i2c0_sda_sleep>;
+ pinctrl-names = "default", "sleep";
+};
+
+&spi0 {
+ status = "okay";
+ pinctrl-0 = <&spi0_sck_default &spi0_mosi_default
+     &spi0_miso_default &spi0_cs_default>;
+ pinctrl-names = "default";
+ cs-gpios = <&gpio0 11 (1 << 0)>;
+};
+
+&radio {
+ status = "okay";
+};
+
+&ieee802154 {
+ status = "okay";
+};
+
+&ieee802154g {
+ status = "disabled";
+};
+
+&wdt0 {
+ status = "okay";
+};
+# 11 "/home/alex/workspace/gordios/pandora_workspace/zephyr/boards/ti/cc1352p7_launchpad/cc1352p7_lp.dts" 2
+# 1 "/home/alex/workspace/gordios/pandora_workspace/zephyr/boards/ti/cc1352p7_launchpad/../common/launchxl-flash-p7.dtsi" 1
+
+
+
+
+
+
+&flash0 {
+ partitions {
+
+  boot_partition: partition@0 {
+   label = "mcuboot";
+   reg = <0x00000000 0x0000a000>;
+  };
+
+
+  slot0_partition: partition@a000 {
+   label = "image-0";
+   reg = <0x0000a000 0x0004e000>;
+  };
+
+  slot1_partition: partition@58000 {
+   label = "image-1";
+   reg = <0x00058000 0x0004e000>;
+  };
+
+
+  storage_partition: partition@a6000 {
+   label = "storage";
+   reg = <0x000a6000 0x00008000>;
+  };
+
+
+
+
+ };
+};
+# 12 "/home/alex/workspace/gordios/pandora_workspace/zephyr/boards/ti/cc1352p7_launchpad/cc1352p7_lp.dts" 2
+# 1 "/home/alex/workspace/gordios/pandora_workspace/zephyr/boards/ti/cc1352p7_launchpad/../common/launchxl_sky13317.dtsi" 1
+
+
+
+
+
+
+/ {
+# 21 "/home/alex/workspace/gordios/pandora_workspace/zephyr/boards/ti/cc1352p7_launchpad/../common/launchxl_sky13317.dtsi"
+ antenna_mux0: antenna_mux0 {
+  compatible = "skyworks,sky13317";
+  status = "okay";
+  gpios = <&gpio0 28 (0 << 0)>, <&gpio0 29 (0 << 0)>, <&gpio0 30 (0 << 0)>;
+
+  pinctrl-0 = <&board_ant_24g_off &board_ant_tx_pa_off &board_ant_subg_off>;
+  pinctrl-1 = <&board_ant_24g_on &board_ant_tx_pa_off &board_ant_subg_off>;
+  pinctrl-2 = <&board_ant_24g_on &board_ant_tx_pa_on &board_ant_subg_off>;
+  pinctrl-3 = <&board_ant_24g_off &board_ant_tx_pa_off &board_ant_subg_on>;
+  pinctrl-4 = <&board_ant_24g_off &board_ant_tx_pa_on &board_ant_subg_on>;
+  pinctrl-names = "default", "ant_24g", "ant_24g_pa", "ant_subg", "ant_subg_pa";
+ };
+};
+
+&pinctrl {
+
+ board_ant_24g_off: board_ant_24g_off {
+  pinmux = <28 0x00000000>;
+  bias-disable;
+ };
+ board_ant_24g_on: board_ant_24g_on {
+  pinmux = <28 0x0000002F>;
+  bias-disable;
+ };
+ board_ant_tx_pa_off: board_ant_tx_pa_off {
+  pinmux = <29 0x00000000>;
+  bias-disable;
+ };
+ board_ant_tx_pa_on: board_ant_tx_pa_on {
+  pinmux = <29 0x00000032>;
+  bias-disable;
+ };
+ board_ant_subg_off: board_ant_subg_off {
+  pinmux = <30 0x00000000>;
+  bias-disable;
+ };
+ board_ant_subg_on: board_ant_subg_on {
+  pinmux = <30 0x0000002F>;
+  bias-disable;
+ };
+};
+# 13 "/home/alex/workspace/gordios/pandora_workspace/zephyr/boards/ti/cc1352p7_launchpad/cc1352p7_lp.dts" 2
+
+/ {
+ model = "TI CC1352P7 LaunchPad";
+ compatible = "ti,lp-cc1352p7";
+};
+# 0 "<command-line>" 2
+# 1 "/home/alex/workspace/gordios/pandora_workspace/pandora/samples/net/openthread/narada_light/boards/cc1352p7_lp.overlay" 1
+/ {
+ switch1 {
+  compatible = "narada,switch-gpio";
+
+  gpios = <&gpio0 7 (0 << 0)>;
+ };
+
+ switch2 {
+  compatible = "narada,switch-gpio";
+
+  gpios = <&gpio0 6 (0 << 0)>;
+ };
+
+};
+# 0 "<command-line>" 2
+# 1 "/home/alex/workspace/gordios/pandora_workspace/zephyr/misc/empty_file.c"
