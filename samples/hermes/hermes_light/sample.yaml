@@ -1,0 +1,11 @@
+sample:
+  description: Hermes light controller sample with CoAP communication
+  name: Hermes Light Controller
+tests:
+  sample.hermes.light:
+    build_only: true
+    platform_allow:
+      - esp32c3_devkitm
+      - esp32_devkitc/esp32/procpu
+      - esp32c6_devkitc/esp32c6/hpcore
+      - nucleo_f429zi
