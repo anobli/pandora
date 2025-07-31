@@ -36,6 +36,8 @@ struct narada_resource {
 		.data = _data,                                                                     \
 	}
 
+int narada_server_start(void);
+int narada_server_stop(void);
 #endif /* CONFIG_NARADA_SERVER */
 
 int narada_req_init(struct narada_request *request, const char *path, uint8_t *buf, int len,
