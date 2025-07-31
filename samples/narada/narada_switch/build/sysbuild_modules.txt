@@ -1,0 +1,1 @@
+"mcuboot":"/home/alex/workspace/gordios/pandora_workspace/bootloader/mcuboot":"/home/alex/workspace/gordios/pandora_workspace/bootloader/mcuboot/boot/zephyr/sysbuild"

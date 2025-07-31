@@ -1,0 +1,43 @@
+/ {
+	chosen {
+		narada-device = &narada_device;
+		zephyr,settings-partition = &storage_partition;
+	};
+
+	longpress {
+		input = <&{/gpio_keys}>;
+		compatible = "zephyr,input-longpress";
+		input-codes = <INPUT_KEY_0>;
+		short-codes = <INPUT_KEY_A>;
+		long-codes = <INPUT_KEY_X>;
+		long-delay-ms = <2000>;
+	};
+
+	narada_device: narada_device {
+		compatible = "gordios,narada";
+		device_type = "switch";
+	};
+
+	narada_switch: narada_switch {
+		compatible = "narada,switch-client-input";
+		input-code = <INPUT_KEY_A>;
+	};
+
+	narada_pairing: narada_pairing {
+		compatible = "narada,pairing-client-input";
+		device = <&narada_device>;
+		input-code = <INPUT_KEY_X>;
+	};
+};
+
+&flash0 {
+	partitions {
+		/* Set 48KB of storage at the beginning of bank2 in order to have 3 sectors smaller than 32K
+		 * 	(nvs.h: uint16_t sector_size)
+		 */
+		storage_partition: partition@100000 {
+			label = "storage";
+			reg = <0x000100000 DT_SIZE_K(48)>;
+		};
+	};
+};

@@ -1,0 +1,4 @@
+west:
+  command: /home/alex/zephyr-venv/bin/west build -p -b cc1352p7_lp .
+  topdir: /home/alex/workspace/gordios/pandora_workspace
+  version: 1.3.0

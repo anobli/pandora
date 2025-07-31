@@ -1,0 +1,34 @@
+# Available runners configured by board.cmake.
+runners:
+- misc-flasher
+- openocd
+
+# Default flash runner if --runner is not given.
+flash-runner: misc-flasher
+
+# Default debug runner if --runner is not given.
+debug-runner: openocd
+
+# Common runner configuration values.
+config:
+  board_dir: /home/alex/workspace/gordios/pandora_workspace/zephyr/boards/ti/cc1352p7_launchpad
+  # Build outputs:
+  elf_file: zephyr.elf
+  hex_file: zephyr.hex
+  bin_file: zephyr.bin
+  # Host tools:
+  gdb: /opt/zephyr-sdk-0.16.8/arm-zephyr-eabi/bin/arm-zephyr-eabi-gdb
+  openocd: /opt/zephyr-sdk-0.16.8/sysroots/x86_64-pokysdk-linux/usr/bin/openocd
+  openocd_search:
+    - /opt/zephyr-sdk-0.16.8/sysroots/x86_64-pokysdk-linux/usr/share/openocd/scripts
+
+# Runner specific arguments
+args:
+  misc-flasher:
+    - /home/alex/zephyr-venv/bin/cc1352_flasher
+    - --bcf
+  openocd:
+    - --cmd-load
+    - flash write_image erase
+    - --cmd-verify
+    - verify_image

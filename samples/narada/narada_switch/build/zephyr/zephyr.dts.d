@@ -1,0 +1,29 @@
+empty_file.o: \
+ /home/alex/workspace/gordios/pandora_workspace/zephyr/misc/empty_file.c \
+ /home/alex/workspace/gordios/pandora_workspace/zephyr/boards/ti/cc1352p7_launchpad/cc1352p7_lp.dts \
+ /home/alex/workspace/gordios/pandora_workspace/zephyr/dts/arm/ti/cc1352r7.dtsi \
+ /home/alex/workspace/gordios/pandora_workspace/zephyr/dts/common/mem.h \
+ /home/alex/workspace/gordios/pandora_workspace/zephyr/dts/arm/ti/cc13xx_cc26xx.dtsi \
+ /home/alex/workspace/gordios/pandora_workspace/zephyr/dts/arm/armv7-m.dtsi \
+ /home/alex/workspace/gordios/pandora_workspace/zephyr/dts/common/skeleton.dtsi \
+ /home/alex/workspace/gordios/pandora_workspace/zephyr/include/zephyr/dt-bindings/adc/adc.h \
+ /home/alex/workspace/gordios/pandora_workspace/zephyr/include/zephyr/dt-bindings/dt-util.h \
+ /home/alex/workspace/gordios/pandora_workspace/zephyr/include/zephyr/sys/util_macro.h \
+ /home/alex/workspace/gordios/pandora_workspace/zephyr/include/zephyr/sys/util_internal.h \
+ /home/alex/workspace/gordios/pandora_workspace/zephyr/include/zephyr/sys/util_loops.h \
+ /home/alex/workspace/gordios/pandora_workspace/zephyr/include/zephyr/sys/util_listify.h \
+ /home/alex/workspace/gordios/pandora_workspace/zephyr/include/zephyr/sys/util_internal_is_eq.h \
+ /home/alex/workspace/gordios/pandora_workspace/zephyr/include/zephyr/sys/util_internal_util_inc.h \
+ /home/alex/workspace/gordios/pandora_workspace/zephyr/include/zephyr/sys/util_internal_util_dec.h \
+ /home/alex/workspace/gordios/pandora_workspace/zephyr/include/zephyr/sys/util_internal_util_x2.h \
+ /home/alex/workspace/gordios/pandora_workspace/zephyr/include/zephyr/dt-bindings/i2c/i2c.h \
+ /home/alex/workspace/gordios/pandora_workspace/zephyr/include/zephyr/dt-bindings/gpio/gpio.h \
+ /home/alex/workspace/gordios/pandora_workspace/zephyr/include/zephyr/dt-bindings/pwm/pwm.h \
+ /home/alex/workspace/gordios/pandora_workspace/zephyr/boards/ti/cc1352p7_launchpad/../common/launchxl.dtsi \
+ /home/alex/workspace/gordios/pandora_workspace/zephyr/boards/ti/cc1352p7_launchpad/../common/boosterpack_connector.dtsi \
+ /home/alex/workspace/gordios/pandora_workspace/zephyr/boards/ti/cc1352p7_launchpad/../common/launchxl-pinctrl.dtsi \
+ /home/alex/workspace/gordios/pandora_workspace/zephyr/include/zephyr/dt-bindings/pinctrl/cc13xx_cc26xx-pinctrl.h \
+ /home/alex/workspace/gordios/pandora_workspace/zephyr/include/zephyr/dt-bindings/input/input-event-codes.h \
+ /home/alex/workspace/gordios/pandora_workspace/zephyr/boards/ti/cc1352p7_launchpad/../common/launchxl-flash-p7.dtsi \
+ /home/alex/workspace/gordios/pandora_workspace/zephyr/boards/ti/cc1352p7_launchpad/../common/launchxl_sky13317.dtsi \
+ /home/alex/workspace/gordios/pandora_workspace/pandora/samples/net/openthread/narada_switch/boards/cc1352p7_lp.overlay

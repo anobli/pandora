@@ -1,0 +1,300 @@
+menu "pandora (/home/alex/workspace/gordios/pandora_workspace/pandora)"
+osource "/home/alex/workspace/gordios/pandora_workspace/pandora/Kconfig"
+config ZEPHYR_PANDORA_MODULE
+	bool
+	default y
+endmenu
+menu "acpica (/home/alex/workspace/gordios/pandora_workspace/modules/lib/acpica)"
+osource "$(ZEPHYR_ACPICA_KCONFIG)"
+config ZEPHYR_ACPICA_MODULE
+	bool
+	default y
+endmenu
+menu "cmsis (/home/alex/workspace/gordios/pandora_workspace/modules/hal/cmsis)"
+osource "$(ZEPHYR_CMSIS_KCONFIG)"
+config ZEPHYR_CMSIS_MODULE
+	bool
+	default y
+endmenu
+menu "cmsis-dsp (/home/alex/workspace/gordios/pandora_workspace/modules/lib/cmsis-dsp)"
+osource "$(ZEPHYR_CMSIS_DSP_KCONFIG)"
+config ZEPHYR_CMSIS_DSP_MODULE
+	bool
+	default y
+endmenu
+menu "cmsis-nn (/home/alex/workspace/gordios/pandora_workspace/modules/lib/cmsis-nn)"
+osource "$(ZEPHYR_CMSIS_NN_KCONFIG)"
+config ZEPHYR_CMSIS_NN_MODULE
+	bool
+	default y
+endmenu
+menu "cmsis_6 (/home/alex/workspace/gordios/pandora_workspace/modules/hal/cmsis_6)"
+osource "$(ZEPHYR_CMSIS_6_KCONFIG)"
+config ZEPHYR_CMSIS_6_MODULE
+	bool
+	default y
+endmenu
+menu "fatfs (/home/alex/workspace/gordios/pandora_workspace/modules/fs/fatfs)"
+osource "$(ZEPHYR_FATFS_KCONFIG)"
+config ZEPHYR_FATFS_MODULE
+	bool
+	default y
+endmenu
+config ZEPHYR_ADI_MODULE
+	bool
+	default y
+menu "hal_ambiq (/home/alex/workspace/gordios/pandora_workspace/modules/hal/ambiq)"
+osource "$(ZEPHYR_HAL_AMBIQ_KCONFIG)"
+config ZEPHYR_HAL_AMBIQ_MODULE
+	bool
+	default y
+endmenu
+config ZEPHYR_ATMEL_MODULE
+	bool
+	default y
+menu "hal_bouffalolab (/home/alex/workspace/gordios/pandora_workspace/modules/hal/bouffalolab)"
+osource "$(ZEPHYR_HAL_BOUFFALOLAB_KCONFIG)"
+config ZEPHYR_HAL_BOUFFALOLAB_MODULE
+	bool
+	default y
+endmenu
+menu "hal_espressif (/home/alex/workspace/gordios/pandora_workspace/modules/hal/espressif)"
+osource "/home/alex/workspace/gordios/pandora_workspace/modules/hal/espressif/zephyr/Kconfig"
+config ZEPHYR_HAL_ESPRESSIF_MODULE
+	bool
+	default y
+
+config ZEPHYR_HAL_ESPRESSIF_MODULE_BLOBS
+	bool
+endmenu
+menu "hal_ethos_u (/home/alex/workspace/gordios/pandora_workspace/modules/hal/ethos_u)"
+osource "$(ZEPHYR_HAL_ETHOS_U_KCONFIG)"
+config ZEPHYR_HAL_ETHOS_U_MODULE
+	bool
+	default y
+endmenu
+menu "hal_gigadevice (/home/alex/workspace/gordios/pandora_workspace/modules/hal/gigadevice)"
+osource "$(ZEPHYR_HAL_GIGADEVICE_KCONFIG)"
+config ZEPHYR_HAL_GIGADEVICE_MODULE
+	bool
+	default y
+endmenu
+menu "hal_infineon (/home/alex/workspace/gordios/pandora_workspace/modules/hal/infineon)"
+osource "$(ZEPHYR_HAL_INFINEON_KCONFIG)"
+config ZEPHYR_HAL_INFINEON_MODULE
+	bool
+	default y
+
+config ZEPHYR_HAL_INFINEON_MODULE_BLOBS
+	bool
+endmenu
+menu "hal_intel (/home/alex/workspace/gordios/pandora_workspace/modules/hal/intel)"
+osource "/home/alex/workspace/gordios/pandora_workspace/modules/hal/intel/zephyr/Kconfig"
+config ZEPHYR_HAL_INTEL_MODULE
+	bool
+	default y
+endmenu
+config ZEPHYR_MICROCHIP_MODULE
+	bool
+	default y
+menu "hal_nordic (/home/alex/workspace/gordios/pandora_workspace/modules/hal/nordic)"
+osource "$(ZEPHYR_HAL_NORDIC_KCONFIG)"
+config ZEPHYR_HAL_NORDIC_MODULE
+	bool
+	default y
+
+config ZEPHYR_HAL_NORDIC_MODULE_BLOBS
+	bool
+endmenu
+config ZEPHYR_NUVOTON_MODULE
+	bool
+	default y
+menu "hal_nxp (/home/alex/workspace/gordios/pandora_workspace/modules/hal/nxp)"
+osource "$(ZEPHYR_HAL_NXP_KCONFIG)"
+config ZEPHYR_HAL_NXP_MODULE
+	bool
+	default y
+
+config ZEPHYR_HAL_NXP_MODULE_BLOBS
+	bool
+endmenu
+config ZEPHYR_OPENISA_MODULE
+	bool
+	default y
+config ZEPHYR_QUICKLOGIC_MODULE
+	bool
+	default y
+config ZEPHYR_HAL_RENESAS_MODULE
+	bool
+	default y
+
+config ZEPHYR_HAL_RENESAS_MODULE_BLOBS
+	bool
+menu "hal_rpi_pico (/home/alex/workspace/gordios/pandora_workspace/modules/hal/rpi_pico)"
+osource "$(ZEPHYR_HAL_RPI_PICO_KCONFIG)"
+config ZEPHYR_HAL_RPI_PICO_MODULE
+	bool
+	default y
+endmenu
+menu "hal_silabs (/home/alex/workspace/gordios/pandora_workspace/modules/hal/silabs)"
+osource "$(ZEPHYR_HAL_SILABS_KCONFIG)"
+config ZEPHYR_HAL_SILABS_MODULE
+	bool
+	default y
+
+config ZEPHYR_HAL_SILABS_MODULE_BLOBS
+	bool
+endmenu
+menu "hal_st (/home/alex/workspace/gordios/pandora_workspace/modules/hal/st)"
+osource "$(ZEPHYR_HAL_ST_KCONFIG)"
+config ZEPHYR_HAL_ST_MODULE
+	bool
+	default y
+endmenu
+config ZEPHYR_HAL_STM32_MODULE
+	bool
+	default y
+
+config ZEPHYR_HAL_STM32_MODULE_BLOBS
+	bool
+menu "hal_tdk (/home/alex/workspace/gordios/pandora_workspace/modules/hal/tdk)"
+osource "$(ZEPHYR_HAL_TDK_KCONFIG)"
+config ZEPHYR_HAL_TDK_MODULE
+	bool
+	default y
+endmenu
+menu "hal_telink (/home/alex/workspace/gordios/pandora_workspace/modules/hal/telink)"
+osource "/home/alex/workspace/gordios/pandora_workspace/modules/hal/telink/Kconfig"
+config ZEPHYR_HAL_TELINK_MODULE
+	bool
+	default y
+endmenu
+config ZEPHYR_TI_MODULE
+	bool
+	default y
+menu "hal_wch (/home/alex/workspace/gordios/pandora_workspace/modules/hal/wch)"
+osource "$(ZEPHYR_HAL_WCH_KCONFIG)"
+config ZEPHYR_HAL_WCH_MODULE
+	bool
+	default y
+endmenu
+config ZEPHYR_HAL_WURTHELEKTRONIK_MODULE
+	bool
+	default y
+config ZEPHYR_XTENSA_MODULE
+	bool
+	default y
+menu "hostap (/home/alex/workspace/gordios/pandora_workspace/modules/lib/hostap)"
+osource "$(ZEPHYR_HOSTAP_KCONFIG)"
+config ZEPHYR_HOSTAP_MODULE
+	bool
+	default y
+endmenu
+menu "liblc3 (/home/alex/workspace/gordios/pandora_workspace/modules/lib/liblc3)"
+osource "$(ZEPHYR_LIBLC3_KCONFIG)"
+config ZEPHYR_LIBLC3_MODULE
+	bool
+	default y
+endmenu
+config ZEPHYR_LIBMCTP_MODULE
+	bool
+	default y
+config ZEPHYR_LIBMETAL_MODULE
+	bool
+	default y
+menu "littlefs (/home/alex/workspace/gordios/pandora_workspace/modules/fs/littlefs)"
+osource "$(ZEPHYR_LITTLEFS_KCONFIG)"
+config ZEPHYR_LITTLEFS_MODULE
+	bool
+	default y
+endmenu
+menu "loramac-node (/home/alex/workspace/gordios/pandora_workspace/modules/lib/loramac-node)"
+osource "$(ZEPHYR_LORAMAC_NODE_KCONFIG)"
+config ZEPHYR_LORAMAC_NODE_MODULE
+	bool
+	default y
+endmenu
+menu "lvgl (/home/alex/workspace/gordios/pandora_workspace/modules/lib/gui/lvgl)"
+osource "/home/alex/workspace/gordios/pandora_workspace/modules/lib/gui/lvgl/zephyr/Kconfig"
+config ZEPHYR_LVGL_MODULE
+	bool
+	default y
+endmenu
+menu "mbedtls (/home/alex/workspace/gordios/pandora_workspace/modules/crypto/mbedtls)"
+osource "$(ZEPHYR_MBEDTLS_KCONFIG)"
+config ZEPHYR_MBEDTLS_MODULE
+	bool
+	default y
+endmenu
+config ZEPHYR_MCUBOOT_MODULE
+	bool
+	default y
+config ZEPHYR_MIPI_SYS_T_MODULE
+	bool
+	default y
+menu "nrf_wifi (/home/alex/workspace/gordios/pandora_workspace/modules/lib/nrf_wifi)"
+osource "$(ZEPHYR_NRF_WIFI_KCONFIG)"
+config ZEPHYR_NRF_WIFI_MODULE
+	bool
+	default y
+
+config ZEPHYR_NRF_WIFI_MODULE_BLOBS
+	bool
+endmenu
+config ZEPHYR_OPEN_AMP_MODULE
+	bool
+	default y
+menu "openthread (/home/alex/workspace/gordios/pandora_workspace/modules/lib/openthread)"
+osource "$(ZEPHYR_OPENTHREAD_KCONFIG)"
+config ZEPHYR_OPENTHREAD_MODULE
+	bool
+	default y
+endmenu
+menu "percepio (/home/alex/workspace/gordios/pandora_workspace/modules/debug/percepio)"
+osource "/home/alex/workspace/gordios/pandora_workspace/modules/debug/percepio/zephyr/Kconfig"
+config ZEPHYR_PERCEPIO_MODULE
+	bool
+	default y
+endmenu
+menu "picolibc (/home/alex/workspace/gordios/pandora_workspace/modules/lib/picolibc)"
+osource "/home/alex/workspace/gordios/pandora_workspace/modules/lib/picolibc/zephyr/Kconfig"
+config ZEPHYR_PICOLIBC_MODULE
+	bool
+	default y
+endmenu
+menu "segger (/home/alex/workspace/gordios/pandora_workspace/modules/debug/segger)"
+osource "$(ZEPHYR_SEGGER_KCONFIG)"
+config ZEPHYR_SEGGER_MODULE
+	bool
+	default y
+endmenu
+config ZEPHYR_TINYCRYPT_MODULE
+	bool
+	default y
+menu "trusted-firmware-a (/home/alex/workspace/gordios/pandora_workspace/modules/tee/tf-a/trusted-firmware-a)"
+osource "$(ZEPHYR_TRUSTED_FIRMWARE_A_KCONFIG)"
+config ZEPHYR_TRUSTED_FIRMWARE_A_MODULE
+	bool
+	default y
+endmenu
+menu "trusted-firmware-m (/home/alex/workspace/gordios/pandora_workspace/modules/tee/tf-m/trusted-firmware-m)"
+osource "$(ZEPHYR_TRUSTED_FIRMWARE_M_KCONFIG)"
+config ZEPHYR_TRUSTED_FIRMWARE_M_MODULE
+	bool
+	default y
+endmenu
+menu "uoscore-uedhoc (/home/alex/workspace/gordios/pandora_workspace/modules/lib/uoscore-uedhoc)"
+osource "$(ZEPHYR_UOSCORE_UEDHOC_KCONFIG)"
+config ZEPHYR_UOSCORE_UEDHOC_MODULE
+	bool
+	default y
+endmenu
+menu "zcbor (/home/alex/workspace/gordios/pandora_workspace/modules/lib/zcbor)"
+osource "$(ZEPHYR_ZCBOR_KCONFIG)"
+config ZEPHYR_ZCBOR_MODULE
+	bool
+	default y
+endmenu
+config ZEPHYR_NRF_HW_MODELS_MODULE
+	bool
+	default y
