@@ -498,7 +498,7 @@ static void discovery_work_handler(struct k_work *work)
 	if (ret) {
 		LOG_ERR("Server discovery failed: %d", ret);
 		discovery_active = false;
-#ifdef CONFIG_NARADA_STATE
+#ifdef CONFIG_NARADA_SERVICE
 		narada_state_discovery_failed();
 #endif
 		return;
@@ -522,7 +522,7 @@ static void discovery_work_handler(struct k_work *work)
 		if (ret) {
 			LOG_ERR("Failed to register device: %d", ret);
 			discovery_active = false;
-#ifdef CONFIG_NARADA_STATE
+#ifdef CONFIG_NARADA_SERVICE
 			narada_state_discovery_failed();
 #endif
 			return;
@@ -540,13 +540,13 @@ static void discovery_work_handler(struct k_work *work)
 		discovery_active = false;
 		LOG_INF("Discovery completed successfully with auto-captured server IP");
 
-#ifdef CONFIG_NARADA_STATE
+#ifdef CONFIG_NARADA_SERVICE
 		narada_state_discovery_completed();
 #endif
 	} else {
 		/* Discovery failed */
 		discovery_active = false;
-#ifdef CONFIG_NARADA_STATE
+#ifdef CONFIG_NARADA_SERVICE
 		narada_state_discovery_failed();
 #endif
 	}

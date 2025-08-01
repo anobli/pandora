@@ -7,9 +7,7 @@
 
 #include <narada/narada.h>
 #include <narada/service.h>
-#ifdef CONFIG_NARADA_DISCOVERY
 #include <narada/discovery.h>
-#endif
 
 #include <zephyr/logging/log.h>
 LOG_MODULE_DECLARE(narada, CONFIG_NARADA_LOG_LEVEL);
@@ -127,15 +125,10 @@ static void narada_disconnected_run(void *obj)
 	struct narada_state_ctx *ctx = obj;
 
 	if (ctx->events & EVENT_CONNECTED) {
-#ifdef CONFIG_NARADA_DISCOVERY
 		smf_set_state(SMF_CTX(obj), &narada_states[NARADA_STATE_DISCOVERING]);
-#else
-		smf_set_state(SMF_CTX(obj), &narada_states[NARADA_STATE_RUNNING]);
-#endif
 	}
 }
 
-#ifdef CONFIG_NARADA_DISCOVERY
 static void narada_discovering_entry(void *obj)
 {
 	LOG_INF("Device is discovering server");
@@ -164,45 +157,13 @@ static void narada_discovering_run(void *obj)
 	}
 }
 
-static void narada_ready_entry(void *obj)
-{
-	LOG_INF("Device is ready for operation");
-#ifdef CONFIG_LED
-	if (status_led) {
-		led_on(status_led, LED_STATUS_0);
-	}
-#endif
-}
-
-static void narada_ready_run(void *obj)
-{
-	struct narada_state_ctx *ctx = obj;
-
-	if (ctx->events & EVENT_DISCONNECTED) {
-		/* Connection lost - need to rediscover when reconnected */
-		smf_set_state(SMF_CTX(obj), &narada_states[NARADA_STATE_DISCONNECTED]);
-	}
-}
-
-static void narada_ready_exit(void *obj)
-{
-#ifdef CONFIG_LED
-	if (status_led) {
-		led_off(status_led, LED_STATUS_0);
-	}
-#endif
-}
-#endif
-
 const struct smf_state narada_states[] = {
 	[NARADA_STATE_INIT] =
 		SMF_CREATE_STATE(narada_init_entry, narada_disconnected_run, NULL, NULL, NULL),
 	[NARADA_STATE_DISCONNECTED] = SMF_CREATE_STATE(narada_disconnected_entry,
 						       narada_disconnected_run, NULL, NULL, NULL),
-#ifdef CONFIG_NARADA_DISCOVERY
 	[NARADA_STATE_DISCOVERING] = SMF_CREATE_STATE(narada_discovering_entry,
 						      narada_discovering_run, NULL, NULL, NULL),
-#endif
 	[NARADA_STATE_RUNNING] = SMF_CREATE_STATE(narada_running_entry, narada_running_run,
 						  narada_running_exit, NULL, NULL),
 };
