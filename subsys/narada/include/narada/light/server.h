@@ -16,6 +16,8 @@ struct narada_light_api {
 	int (*init)(struct narada_light_resource *sw);
 	int (*set_state)(struct narada_light_resource *sw, int state);
 	int (*get_state)(struct narada_light_resource *sw);
+	int (*set_brightness)(struct narada_light_resource *sw, uint8_t brightness);
+	int (*set_color)(struct narada_light_resource *sw, uint8_t r, uint8_t g, uint8_t b);
 };
 
 int narada_light_init(struct narada_resource *rsc);

@@ -12,3 +12,11 @@ config NARADA_LIGHT_GPIO
 	default y if DT_HAS_NARADA_LIGHT_GPIO_ENABLED
 	help
 	  Support for GPIO light.
+
+config NARADA_LIGHT_RGBCT
+	bool "RGB-CT light"
+	select NARADA_LIGHT
+	select NARADA_LIGHT_SERVER
+	default y if DT_HAS_NARADA_LIGHT_RGBCT_ENABLED
+	help
+	  Support for RGB-CT light.
