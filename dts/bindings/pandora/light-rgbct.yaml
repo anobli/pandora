@@ -1,0 +1,22 @@
+description: RGBCT light
+
+compatible: "pandora,light-rgbct"
+
+properties:
+  device_type:
+    type: string
+    enum:
+      - "light"
+    default: "light"
+  capabilities:
+    type: string-array
+    enum:
+      - "on_off"
+      - "dimming"
+      - "color_control"
+    default:
+      - "on_off"
+  pwms:
+    type: phandle-array
+  pwm-names:
+    type: string-array

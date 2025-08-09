@@ -1,0 +1,15 @@
+config LIGHT
+	bool "Light driver"
+
+if LIGHT
+
+config LIGHT_SHELL
+	bool "Light shell"
+	depends on SHELL
+
+config LIGHT_RGBCT
+	bool "Light RGB-CT"
+	default y
+	depends on DT_HAS_PANDORA_LIGHT_RGBCT_ENABLED
+
+endif
