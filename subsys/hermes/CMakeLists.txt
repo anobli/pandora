@@ -13,3 +13,7 @@ zephyr_linker_sources(DATA_SECTIONS iterables.ld)
 zephyr_iterable_section(NAME coap_resource_hermes_service
   GROUP DATA_REGION ${XIP_ALIGN_WITH_INPUT}
   SUBALIGN ${CONFIG_LINKER_ITERABLE_SUBALIGN})
+
+
+zephyr_library_sources_ifdef(CONFIG_SETTINGS settings.c)
+zephyr_linker_sources_ifdef(CONFIG_SETTINGS DATA_SECTIONS settings.ld)

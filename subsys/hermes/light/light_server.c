@@ -2,6 +2,7 @@
 #include <zephyr/data/json.h>
 
 #include <hermes/hermes.h>
+#include <hermes/settings.h>
 #include <zephyr/drivers/light.h>
 
 #include <zephyr/logging/log.h>
@@ -66,6 +67,8 @@ void hermes_light_handler_put_state(struct hermes_resource *rsc, const void *dat
 	ret = pandora_light_set_state(rsc->dev, light_data.state > 0);
 	if (ret) {
 		LOG_ERR("Failed to set light state: %d", ret);
+	} else {
+		hermes_settings_save_all();
 	}
 }
 
@@ -93,6 +96,8 @@ void hermes_light_handler_put_brightness(struct hermes_resource *rsc, const void
 	ret = pandora_light_set_brightness(rsc->dev, light_data.brightness);
 	if (ret) {
 		LOG_ERR("Failed to set light brightness: %d", ret);
+	} else {
+		hermes_settings_save_all();
 	}
 }
 
@@ -120,6 +125,8 @@ void hermes_light_handler_put_temperature(struct hermes_resource *rsc, const voi
 	ret = pandora_light_set_temperature(rsc->dev, light_data.temperature);
 	if (ret) {
 		LOG_ERR("Failed to set light temperature: %d", ret);
+	} else {
+		hermes_settings_save_all();
 	}
 }
 
@@ -146,10 +153,21 @@ void hermes_light_handler_put_color(struct hermes_resource *rsc, const void *dat
 	ret = pandora_light_set_color(rsc->dev, light_data.color);
 	if (ret) {
 		LOG_ERR("Failed to set light color: %d", ret);
+	} else {
+		hermes_settings_save_all();
 	}
 }
 
+#if 0
+#define DEFINE_HERMES_LIGHT_SETTING(node_id, name)                                                 \
+	HERMES_SETTING(DT_HERMES_RESOURCE_NAME_TOKEN(node_id), name,                               \
+		       hermes_light_data##node_id.name)
+#else
+#define DEFINE_HERMES_LIGHT_SETTING(node_id, name)
+#endif
+
 #define DEFINE_HERMES_LIGHT_EP(node_id, _ep)                                                       \
+	DEFINE_HERMES_LIGHT_SETTING(node_id, _ep);                                                 \
 	DT_HERMES_RESOURCE_DEFINE(node_id, _ep, hermes_light_handler_get_##_ep,                    \
 				  hermes_light_handler_put_##_ep, NULL);
 
