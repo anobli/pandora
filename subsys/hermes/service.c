@@ -7,7 +7,9 @@
 
 #include <hermes/hermes.h>
 #include <hermes/service.h>
+
 #include <hermes/discovery.h>
+#include <hermes/wifi.h>
 
 #include <zephyr/logging/log.h>
 LOG_MODULE_DECLARE(hermes, CONFIG_HERMES_LOG_LEVEL);
@@ -107,6 +109,10 @@ static void hermes_init_entry(void *obj)
 
 	hermes_init();
 	hermes_devices_init();
+#ifdef CONFIG_WIFI
+	hermes_wifi_init();
+	hermes_wifi_try_connect();
+#endif
 }
 
 static void hermes_disconnected_entry(void *obj)
@@ -134,6 +140,14 @@ static void hermes_disconnected_run(void *obj)
 
 	if (ctx->events & EVENT_CONNECTED) {
 		smf_set_state(SMF_CTX(obj), &hermes_states[HERMES_STATE_DISCOVERING]);
+	}
+
+	if (ctx->events & EVENT_DISCONNECTED) {
+#ifdef CONFIG_WIFI
+		/* TODO: Add a timer to switch to AP mode if we can't still connect after to much
+		 * time*/
+		hermes_wifi_try_connect();
+#endif
 	}
 }
 

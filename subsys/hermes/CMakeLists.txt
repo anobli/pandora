@@ -7,6 +7,7 @@ zephyr_include_directories(include)
 zephyr_library_sources(device.c discovery.c hermes_libcoap.c)
 zephyr_library_sources_ifdef(CONFIG_HERMES_SERVICE service.c)
 zephyr_library_sources_ifdef(CONFIG_HERMES_SHELL shell.c)
+zephyr_library_sources_ifdef(CONFIG_WIFI wifi.c)
 
 add_subdirectory_ifdef(CONFIG_HERMES_LIGHT light)
 
