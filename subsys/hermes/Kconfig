@@ -16,6 +16,10 @@ config HERMES_SERVICE
 	  Provide a service that manage the different events
 	  that could affect Hermes state such network disconnection.
 
+config HERMES_SHELL
+	bool "Hermes shell"
+	depends on SHELL
+
 config HERMES_SERVER
 	bool
 	depends on COAP && COAP_SERVER
