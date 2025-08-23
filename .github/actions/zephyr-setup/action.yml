@@ -1,0 +1,47 @@
+name: Setup Zephyr
+description: Setup zephyr and codechecker
+inputs:
+  path:
+    description: 'The path where to fetch the sources'
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: 3.11
+
+    - name: Install codechecker
+      shell: bash
+      run: pip install codechecker
+
+    - name: Cache west modules
+      uses: actions/cache@v4
+      env:
+        cache-name: cache-zephyr-modules
+        west_yml: ${{ inputs.path }}/west.yml
+      with:
+        path: |
+          modules/
+          tools/
+          zephyr/
+          bootloader/
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('${{ west_yml }}') }}
+        restore-keys: |
+          ${{ runner.os }}-build-${{ env.cache-name }}-
+          ${{ runner.os }}-build-
+          ${{ runner.os }}-
+        timeout-minutes: 2
+        continue-on-error: true
+
+    - name: Setup Zephyr project
+      uses: zephyrproject-rtos/action-zephyr-setup@v1
+      with:
+        app-path: ${{ inputs.path }}
+        toolchains: arm-zephyr-eabi:xtensa-espressif_esp32_zephyr-elf:xtensa-espressif_esp32s2_zephyr-elf:xtensa-espressif_esp32s3_zephyr-elf:riscv64-zephyr-elf
+
+    - name: Fetch ESP32 HAL blobs
+      shell: bash
+      run: west blobs fetch hal_espressif

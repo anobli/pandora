@@ -1,0 +1,38 @@
+name: Build Pandora Samples
+
+permissions:
+  checks: write
+  pull-requests: write
+
+on:
+  push:
+    branches: [ main, abailon/hermes_dev ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build-samples:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout Pandora repository
+      uses: actions/checkout@v4
+      with:
+        path: pandora
+
+    - name: Build samples with Twister
+      uses: ./pandora/.github/actions/twister
+      with:
+        path: pandora
+        args: --build-only -T pandora/samples --verbose
+        name: "Pandora Samples"
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: twister-build-results
+        path: |
+          twister-out/
+        retention-days: 7
