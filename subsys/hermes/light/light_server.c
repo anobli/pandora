@@ -158,20 +158,42 @@ void hermes_light_handler_put_color(struct hermes_resource *rsc, const void *dat
 	}
 }
 
-#if 0
-#define DEFINE_HERMES_LIGHT_SETTING(node_id, name)                                                 \
-	HERMES_SETTING(DT_HERMES_RESOURCE_NAME_TOKEN(node_id), name,                               \
-		       hermes_light_data##node_id.name)
-#else
-#define DEFINE_HERMES_LIGHT_SETTING(node_id, name)
-#endif
+int hermes_light_settings_load(const struct device *dev)
+{
+	struct pandora_light_data *data = pandora_light_get_data(dev);
+
+	hermes_settings_load_one(dev->name, "state", &data->state, sizeof(data->state));
+	hermes_settings_load_one(dev->name, "brightness", &data->brightness,
+				 sizeof(data->brightness));
+	hermes_settings_load_one(dev->name, "temperature", &data->temperature,
+				 sizeof(data->temperature));
+	hermes_settings_load_one(dev->name, "color", &data->color, sizeof(data->color));
+
+	pandora_light_update(dev);
+
+	return 0;
+}
+
+int hermes_light_settings_save(const struct device *dev)
+{
+	struct pandora_light_data *data = pandora_light_get_data(dev);
+
+	hermes_settings_save_one(dev->name, "state", &data->state, sizeof(data->state));
+	hermes_settings_save_one(dev->name, "brightness", &data->brightness,
+				 sizeof(data->brightness));
+	hermes_settings_save_one(dev->name, "temperature", &data->temperature,
+				 sizeof(data->temperature));
+	hermes_settings_save_one(dev->name, "color", &data->color, sizeof(data->color));
+
+	return 0;
+}
 
 #define DEFINE_HERMES_LIGHT_EP(node_id, _ep)                                                       \
-	DEFINE_HERMES_LIGHT_SETTING(node_id, _ep);                                                 \
 	DT_HERMES_RESOURCE_DEFINE(node_id, _ep, hermes_light_handler_get_##_ep,                    \
 				  hermes_light_handler_put_##_ep, NULL);
 
 #define DEFINE_HERMES_LIGHT(node_id)                                                               \
+	DT_HERMES_SETTINGS(node_id, hermes_light_settings_load, hermes_light_settings_save, NULL); \
 	DEFINE_HERMES_LIGHT_EP(node_id, state);                                                    \
 	DEFINE_HERMES_LIGHT_EP(node_id, brightness);                                               \
 	DEFINE_HERMES_LIGHT_EP(node_id, temperature);                                              \
