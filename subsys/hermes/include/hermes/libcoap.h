@@ -1,3 +1,8 @@
+/*
+ * SPDX-License-Identifier: Apache-2.0
+ * Copyright 2025 Alexandre Bailon
+ */
+
 #ifndef HERMES_LIBCOAP_H
 #define HERMES_LIBCOAP_H
 

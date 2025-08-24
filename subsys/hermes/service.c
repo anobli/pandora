@@ -1,3 +1,8 @@
+/*
+ * SPDX-License-Identifier: Apache-2.0
+ * Copyright 2025 Alexandre Bailon
+ */
+
 #include <zephyr/kernel.h>
 #include <zephyr/drivers/led.h>
 #include <zephyr/net/net_event.h>

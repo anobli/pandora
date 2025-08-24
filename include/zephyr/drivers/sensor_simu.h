@@ -1,3 +1,8 @@
+/*
+ * SPDX-License-Identifier: Apache-2.0
+ * Copyright 2025 Alexandre Bailon
+ */
+
 #ifndef ZEPHYR_SENSOR_SIMULATOR_H_
 #define ZEPHYR_SENSOR_SIMULATOR_H_
 
