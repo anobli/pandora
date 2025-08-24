@@ -1,3 +1,8 @@
+/*
+ * SPDX-License-Identifier: Apache-2.0
+ * Copyright 2025 Alexandre Bailon
+ */
+
 #include <errno.h>
 #include <zephyr/init.h>
 #include <zephyr/settings/settings.h>

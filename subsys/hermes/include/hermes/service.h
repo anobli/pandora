@@ -1,3 +1,8 @@
+/*
+ * SPDX-License-Identifier: Apache-2.0
+ * Copyright 2025 Alexandre Bailon
+ */
+
 #ifndef HERMES_SERVICE_H
 #define HERMES_SERVICE_H
 

@@ -1,3 +1,8 @@
+/*
+ * SPDX-License-Identifier: Apache-2.0
+ * Copyright 2025 Alexandre Bailon
+ */
+
 #include <hermes/hermes.h>
 
 #define HERMES_BUILD_DEVICE_TYPE(type) DT_CAT3(HERMES_, type, _DEVICE_TYPE)
