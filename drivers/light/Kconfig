@@ -7,9 +7,18 @@ config LIGHT_SHELL
 	bool "Light shell"
 	depends on SHELL
 
+config LIGHT_GPIO
+	bool "Light GPIO"
+	default y
+	depends on DT_HAS_PANDORA_LIGHT_GPIO_ENABLED
+
 config LIGHT_RGBCT
 	bool "Light RGB-CT"
 	default y
 	depends on DT_HAS_PANDORA_LIGHT_RGBCT_ENABLED
+
+module = LIGHT
+module-str = light
+source "subsys/logging/Kconfig.template.log_config"
 
 endif
