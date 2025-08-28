@@ -4,6 +4,7 @@
  */
 
 #include <stdlib.h>
+#include <stdio.h>
 #include <zephyr/shell/shell.h>
 
 #include <zephyr/drivers/light.h>

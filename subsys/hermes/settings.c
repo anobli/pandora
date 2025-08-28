@@ -4,6 +4,7 @@
  */
 
 #include <errno.h>
+#include <stdio.h>
 #include <zephyr/init.h>
 #include <zephyr/settings/settings.h>
 
