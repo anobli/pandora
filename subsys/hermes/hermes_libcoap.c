@@ -16,6 +16,9 @@ static const uint16_t hermes_port = HERMES_PORT;
 
 COAP_SERVICE_DEFINE(hermes_service, "0.0.0.0", &hermes_port, 0);
 
+/* Ensure 'strtok_r' is available even with -std=c99. */
+char *strtok_r(char *str, const char *delim, char **saveptr);
+
 int hermes_handler_get(struct coap_resource *resource, struct coap_packet *request,
 		       struct sockaddr *addr, socklen_t addr_len)
 {

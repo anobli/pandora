@@ -15,6 +15,7 @@
 
 #include <hermes/discovery.h>
 #include <hermes/wifi.h>
+#include <hermes/native_sim.h>
 
 #include <zephyr/logging/log.h>
 LOG_MODULE_DECLARE(hermes, CONFIG_HERMES_LOG_LEVEL);
@@ -63,6 +64,12 @@ void hermes_state_discovery_failed(void)
 {
 	LOG_DBG("Discovery failed event");
 	k_event_post(&hermes_state_ctx.smf_event, EVENT_DISCOVERY_FAILED);
+}
+
+void hermes_state_connected(void)
+{
+	LOG_DBG("Connected event");
+	k_event_post(&hermes_state_ctx.smf_event, EVENT_CONNECTED);
 }
 
 void hermes_state_disconnected(void)
@@ -117,6 +124,9 @@ static void hermes_init_entry(void *obj)
 #ifdef CONFIG_WIFI
 	hermes_wifi_init();
 	hermes_wifi_try_connect();
+#endif
+#ifdef CONFIG_BOARD_NATIVE_SIM
+	hermes_native_net_init();
 #endif
 }
 
