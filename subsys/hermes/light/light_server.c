@@ -204,4 +204,5 @@ int hermes_light_settings_save(const struct device *dev)
 	DEFINE_HERMES_LIGHT_EP(node_id, temperature);                                              \
 	DEFINE_HERMES_LIGHT_EP(node_id, color);
 
+DT_FOREACH_STATUS_OKAY(pandora_light_gpio, DEFINE_HERMES_LIGHT)
 DT_FOREACH_STATUS_OKAY(pandora_light_rgbct, DEFINE_HERMES_LIGHT)
