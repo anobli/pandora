@@ -1,0 +1,29 @@
+/ {
+	gpio0: gpio_emul {
+		status = "okay";
+		compatible = "zephyr,gpio-emul";
+		rising-edge;
+		falling-edge;
+		high-level;
+		low-level;
+		gpio-controller;
+		#gpio-cells = <2>;
+	};
+
+	pandora_device: pandora_device {
+		compatible = "pandora,device";
+		device-id = "native_sim";
+		heartbeat-interval = <60>;
+
+		light1 {
+			device_type = "light";
+			compatible = "pandora,light-gpio";
+			gpios = <&gpio0 7 GPIO_ACTIVE_HIGH>;
+		};
+	};
+
+	discovery: discovery {
+		compatible = "pandora,discovery";
+		device = <&pandora_device>;
+	};
+};
