@@ -1,0 +1,11 @@
+compatible: nabucasa,esphome-logger
+description: |
+  Bindings for logger ESPHome component
+properties:
+  level:
+    type: string
+    required: false
+    default: DEBUG
+  on_message:
+    type: string
+    required: false

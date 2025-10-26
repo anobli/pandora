@@ -1,0 +1,19 @@
+# Copyright (c) 2024 Alexandre Bailon
+# SPDX-License-Identifier: Apache-2.0
+
+description: |
+  This file describes the base properties for an ESPHOME entity.
+
+properties:
+    device_name:
+      type: string
+      required: true
+    object_id:
+      type: string
+      required: false
+    icon:
+      type: string
+      required: false
+    disabled_by_default:
+      type: boolean
+      required: false

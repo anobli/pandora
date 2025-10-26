@@ -1,0 +1,39 @@
+# Copyright (c) 2024 Alexandre Bailon
+# SPDX-License-Identifier: Apache-2.0
+
+choice
+        prompt "ESPHOME_RPC log level limit"
+        default ESPHOME_RPC_LOG_LEVEL_DEFAULT
+
+config ESPHOME_RPC_LOG_LEVEL_DEFAULT
+        bool "System limit (LOG_MAX_LEVEL)"
+
+config ESPHOME_RPC_LOG_LEVEL_DBG
+        bool "Debug"
+
+config ESPHOME_RPC_LOG_LEVEL_INF
+        bool "Info"
+
+config ESPHOME_RPC_LOG_LEVEL_WRN
+        bool "Warning"
+
+config ESPHOME_RPC_LOG_LEVEL_ERR
+        bool "Error"
+
+config ESPHOME_RPC_LOG_LEVEL_NONE
+        bool "None"
+
+endchoice
+
+config ESPHOME_RPC_LOG_LEVEL
+        int
+        default 0 if ESPHOME_RPC_LOG_LEVEL_NONE
+        default 1 if ESPHOME_RPC_LOG_LEVEL_ERR
+        default 2 if ESPHOME_RPC_LOG_LEVEL_WRN
+        default 3 if ESPHOME_RPC_LOG_LEVEL_INF
+        default 4 if ESPHOME_RPC_LOG_LEVEL_DBG
+        default 5 if ESPHOME_RPC_LOG_LEVEL_DEFAULT
+
+config ESPHOME_RPC_DUMP
+        bool "Dump input and output data"
+        default n

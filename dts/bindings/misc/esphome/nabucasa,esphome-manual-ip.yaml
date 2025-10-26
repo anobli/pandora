@@ -1,0 +1,23 @@
+# A YAML binding matching the node
+
+compatible: "nabucasa,esphome-manual-ip"
+description: "Wifi component"
+
+include: [base.yaml]
+
+properties:
+  static_ip:
+    type: string
+    description: Static IP of device
+  gateway:
+    type: string
+    description: Gateway of local network
+  subnet:
+    type: string
+    description: Subnet of local network
+  dns1:
+    type: string
+    description: Main server DNS to use
+  dns2:
+    type: string
+    description: Second server DNS to use

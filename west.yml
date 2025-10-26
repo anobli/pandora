@@ -13,3 +13,7 @@ manifest:
       remote: anobli
       revision: abailon/dev
       import: true
+    - name: protobuf-c
+      revision: a41892bb04cbd9fad18e32953c3fb1498f93ce70
+      path: modules/lib/protobuf-c
+      remote: anobli

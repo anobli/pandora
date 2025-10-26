@@ -1,0 +1,27 @@
+# A YAML binding matching the node
+
+compatible: "nabucasa,esphome-api"
+description: "Enable support of esphome"
+
+include: [base.yaml]
+
+properties:
+    "#address-cells":
+      type: int
+      required: false
+      default: 1
+      const: 1
+    "#size-cells":
+      type: int
+      required: false
+      default: 0
+      const: 0
+    password:
+      type: string
+      required: true
+      description: password required to connect to device.
+    port:
+      type: int
+      required: false
+      default: 6053
+      description: The port to run the API Server on.

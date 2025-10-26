@@ -1,0 +1,13 @@
+# A YAML binding matching the node
+
+compatible: "nabucasa,esphome-sensor-timestamp"
+description: "Enable support of esphome timestamp sensor"
+
+include: [base.yaml, "nabucasa,esphome-entity.yaml"]
+
+properties:
+    device_class:
+      type: string
+      enum:
+        - "timestamp"
+      required: true

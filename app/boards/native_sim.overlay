@@ -1,0 +1,44 @@
+/ {
+        esphome {
+                compatible = "nabucasa,esphome";
+                entity_id = "zephyr_esphome";
+                friendly_name = " Zephyr ESPHOME sample device";
+                status = "okay";
+        };
+
+        ha-btn-1 {
+                compatible = "nabucasa,esphome-button-template";
+                device_name = "Button 1";
+                on_press = "ha_btn_1_on_push_cb";
+                status = "okay";
+        };
+
+        ha-btn-2 {
+                compatible = "nabucasa,esphome-button-template";
+                device_name = "Button 2";
+                on_press = "ha_btn_2_on_push_cb";
+                status = "okay";
+        };
+
+        timestamp {
+                compatible = "nabucasa,esphome-sensor-timestamp";
+                device_class = "timestamp";
+                device_name = "Timestamp";
+                status = "okay";
+        };
+
+        gpio-switch-0 {
+                compatible = "nabucasa,esphome-switch-gpio";
+                device_name = "GPIO LED 0";
+                gpios = <&gpio0 0 GPIO_ACTIVE_HIGH>;
+                status = "okay";
+        };
+
+        api {
+                compatible = "nabucasa,esphome-api";
+                entity_id = "zephyr_esphome";
+                friendly_name = " Zephyr ESPHOME sample device";
+                password = "mypassword";
+                status = "okay";
+        };
+};

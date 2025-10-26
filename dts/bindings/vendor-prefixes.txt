@@ -13,3 +13,4 @@
 # zephyr-keep-sorted-start
 pandora	Pandora
 # zephyr-keep-sorted-stop
+nabucasa	Nabu Casa

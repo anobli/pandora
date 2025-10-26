@@ -1,0 +1,14 @@
+# A YAML binding matching the node
+
+compatible: "nabucasa,esphome-button-template"
+description: "Enable support of esphome button"
+
+include: [base.yaml, "nabucasa,esphome-entity.yaml"]
+
+properties:
+    on_press:
+      type: string
+      required: true
+      description: |
+        Set the name of the function to call on push event
+        comming from homeassistant.
