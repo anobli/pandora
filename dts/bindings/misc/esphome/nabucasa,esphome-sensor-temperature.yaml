@@ -1,0 +1,26 @@
+# A YAML binding matching the node
+
+compatible: "nabucasa,esphome-sensor-temperature"
+description: "Enable support of esphome tenmperature sensor"
+
+include: [base.yaml, "nabucasa,esphome-entity.yaml"]
+
+properties:
+    sensor:
+      type: phandle
+      required: true
+    device_class:
+      type: string
+      enum:
+        - "temperature"
+      default: "temperature"
+      required: false
+    unit:
+      type: string
+      enum:
+        - "ESPHOME_UNIT_CELSUIS"
+        - "ESPHOME_UNIT_FAHRENHEIT"
+      default: "ESPHOME_UNIT_CELSUIS"
+      required: false
+    icon:
+      default: "mdi:thermometer"

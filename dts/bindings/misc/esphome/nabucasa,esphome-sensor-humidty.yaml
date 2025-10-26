@@ -1,0 +1,25 @@
+# A YAML binding matching the node
+
+compatible: "nabucasa,esphome-sensor-humidity"
+description: "Enable support of esphome humidity sensor"
+
+include: [base.yaml, "nabucasa,esphome-entity.yaml"]
+
+properties:
+    sensor:
+      type: phandle
+      required: true
+    device_class:
+      type: string
+      enum:
+        - "humidity"
+      default: "humidity"
+      required: false
+    unit:
+      type: string
+      enum:
+        - "ESPHOME_UNIT_PERCENT"
+      default: "ESPHOME_UNIT_PERCENT"
+      required: false
+    icon:
+      default: "mdi:water-percent"

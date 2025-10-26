@@ -1,0 +1,49 @@
+config ESPHOME_COMPONENT_API
+	bool "ESPHome API"
+	default y
+	depends on DT_HAS_NABUCASA_ESPHOME_API_ENABLED
+
+config ESPHOME_COMPONENT_SWITCH
+	bool
+
+config ESPHOME_COMPONENT_SWITCH_HBRIDGE
+	bool "H-bridge support"
+	depends on DT_HAS_NABUCASA_ESPHOME_SWITCH_HBRIDGE_ENABLED
+	default y
+	select ESPHOME_COMPONENT_SWITCH
+
+config ESPHOME_COMPONENT_SWITCH_GPIO
+	bool "Enable support of GPIO switch"
+	default y
+	depends on DT_HAS_NABUCASA_ESPHOME_SWITCH_GPIO_ENABLED
+	select ESPHOME_COMPONENT_SWITCH
+
+config ESPHOME_COMPONENT_SENSOR
+	bool
+
+config ESPHOME_COMPONENT_SENSOR_TEMPERATURE
+	bool "Enable support of temperature sensors"
+	default y
+	depends on DT_HAS_NABUCASA_ESPHOME_SENSOR_TEMPERATURE_ENABLED
+    select ESPHOME_COMPONENT_SENSOR
+
+config ESPHOME_COMPONENT_SENSOR_HUMIDITY
+	bool "Enable support of humidity sensors"
+	default y
+	depends on DT_HAS_NABUCASA_ESPHOME_SENSOR_HUMIDITY_ENABLED
+    select ESPHOME_COMPONENT_SENSOR
+
+config ESPHOME_COMPONENT_SENSOR_TIMESTAMP
+	bool "Enable support of timestamp sensors"
+	default y
+	depends on DT_HAS_NABUCASA_ESPHOME_SENSOR_TIMESTAMP_ENABLED
+    select ESPHOME_COMPONENT_SENSOR
+
+config ESPHOME_COMPONENT_BUTTON
+	bool
+
+config ESPHOME_COMPONENT_BUTTON_TEMPLATE
+	bool "Enable support of template button"
+	default y
+	depends on DT_HAS_NABUCASA_ESPHOME_BUTTON_TEMPLATE_ENABLED
+    select ESPHOME_COMPONENT_BUTTON

@@ -1,0 +1,33 @@
+compatible: nabucasa,esphome-switch-hbridge
+description: |
+  The hbridge switch platform allows you to drive an h-bridge controlled latching relay.
+include: [base.yaml, "nabucasa,esphome-entity.yaml"]
+
+properties:
+  id:
+    type: string
+    required: false
+  inverted:
+    type: boolean
+    required: false
+  internal:
+    type: boolean
+    required: false
+  on_turn_on:
+    type: string
+    required: false
+  on_turn_off:
+    type: string
+    required: false
+  on-gpios:
+    type: phandle-array
+    required: true
+  off-gpios:
+    type: phandle-array
+    required: true
+  pulse_length:
+    type: int
+    required: false
+  wait_time:
+    type: int
+    required: false

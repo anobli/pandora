@@ -1,0 +1,24 @@
+# A YAML binding matching the node
+
+compatible: "nabucasa,esphome-wifi"
+description: "Wifi component"
+
+include: [base.yaml]
+
+properties:
+  reboot_timeout:
+    type: int
+    description: The amount of time (in seconds) to wait before rebooting when no WiFi connection exists.
+    default: 900
+  on_connect:
+    type: string
+    description: |
+      Set the name of the function to call on connect event.
+  on_disconnect:
+    type: string
+    description: |
+      Set the name of the function to call on disconnect event.
+  on_error:
+    type: string
+    description: |
+      Set the name of the function to call on error event.

@@ -9,3 +9,4 @@ zephyr_include_directories(include)
 
 add_subdirectory(drivers)
 add_subdirectory_ifdef(CONFIG_HERMES subsys/hermes)
+add_subdirectory_ifdef(CONFIG_ESPHOME subsys/net/lib/esphome)

@@ -1,0 +1,2 @@
+zephyr_library_sources_ifdef(CONFIG_ESPHOME_COMPONENT_SWITCH_GPIO gpio.c)
+zephyr_library_sources_ifdef(CONFIG_ESPHOME_COMPONENT_SWITCH_HBRIDGE hbridge.c)

@@ -1,0 +1,117 @@
+# Copyright (c) 2024 Alexandre Bailon
+# SPDX-License-Identifier: Apache-2.0
+
+menuconfig ESPHOME
+	bool "ESPHOME"
+	depends on DT_HAS_NABUCASA_ESPHOME_ENABLED
+	help
+	  Enable ESPHOME
+
+if ESPHOME
+
+rsource "components/Kconfig"
+rsource "components/api/rpc/Kconfig"
+
+config ESPHOME_COMPONENT_MDNS
+        bool "mDNS responder"
+        depends on MDNS_RESPONDER_DNS_SD
+        default y
+        help
+          Allows ESPHome client (e.g home assistant) to discover
+          and configure automatically the device on network.
+          If disabled, user will have to manually give the device IP
+          to home assistant to connect device.
+
+choice
+        prompt "ESPHOME log level limit"
+        default ESPHOME_LOG_LEVEL_DEFAULT
+
+config ESPHOME_LOG_LEVEL_DEFAULT
+        bool "System limit (LOG_MAX_LEVEL)"
+
+config ESPHOME_LOG_LEVEL_DBG
+        bool "Debug"
+
+config ESPHOME_LOG_LEVEL_INF
+        bool "Info"
+
+config ESPHOME_LOG_LEVEL_WRN
+        bool "Warning"
+
+config ESPHOME_LOG_LEVEL_ERR
+        bool "Error"
+
+config ESPHOME_LOG_LEVEL_NONE
+        bool "None"
+
+endchoice
+
+config ESPHOME_LOG_LEVEL
+        int
+        default 0 if ESPHOME_LOG_LEVEL_NONE
+        default 1 if ESPHOME_LOG_LEVEL_ERR
+        default 2 if ESPHOME_LOG_LEVEL_WRN
+        default 3 if ESPHOME_LOG_LEVEL_INF
+        default 4 if ESPHOME_LOG_LEVEL_DBG
+        default 5 if ESPHOME_LOG_LEVEL_DEFAULT
+
+config ESPHOME_INIT_PRIORITY
+        int "ESPHOME init priority"
+        default 50
+
+config ESPHOME_COMPONENT_WIFI
+        bool "Enable wifi support"
+        depends on WIFI
+        default y
+
+config ESPHOME_COMPONENT_OPENTHREAD
+        bool "Enable OpenThread support"
+        depends on NET_L2_OPENTHREAD
+        default y
+
+endif
+
+config ESPHOME_COMPONENT_OTA
+        bool "Enable support of ESPHome OTA"
+        help
+          ESPHome has it own OTA protocol.
+          This enables support of this protocol.
+          Still, this doesn't allow using firmware built using ESPHome
+          because binary format is not the same.
+
+
+if ESPHOME_COMPONENT_OTA
+choice
+        prompt "ESPHOME OTA log level limit"
+        default ESPHOME_OTA_LOG_LEVEL_DEFAULT
+
+config ESPHOME_OTA_LOG_LEVEL_DEFAULT
+        bool "System limit (LOG_MAX_LEVEL)"
+
+config ESPHOME_OTA_LOG_LEVEL_DBG
+        bool "Debug"
+
+config ESPHOME_OTA_LOG_LEVEL_INF
+        bool "Info"
+
+config ESPHOME_OTA_LOG_LEVEL_WRN
+        bool "Warning"
+
+config ESPHOME_OTA_LOG_LEVEL_ERR
+        bool "Error"
+
+config ESPHOME_OTA_LOG_LEVEL_NONE
+        bool "None"
+
+endchoice
+
+config ESPHOME_OTA_LOG_LEVEL
+        int
+        default 0 if ESPHOME_OTA_LOG_LEVEL_NONE
+        default 1 if ESPHOME_OTA_LOG_LEVEL_ERR
+        default 2 if ESPHOME_OTA_LOG_LEVEL_WRN
+        default 3 if ESPHOME_OTA_LOG_LEVEL_INF
+        default 4 if ESPHOME_OTA_LOG_LEVEL_DBG
+        default 5 if ESPHOME_OTA_LOG_LEVEL_DEFAULT
+
+endif

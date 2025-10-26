@@ -1,0 +1,1 @@
+zephyr_library_sources(wifi.c wifi_credentials.c)
