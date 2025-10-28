@@ -12,6 +12,7 @@ tests:
     platform_allow:
       - native_sim
       - nucleo_f429zi
+      - beagleconnect_freedom
     integration_platforms:
       - native_sim
   sample.net.esphome.ot:
