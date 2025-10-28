@@ -1,0 +1,46 @@
+/*
+ * Copyright (c) 2025 Alexandre Bailon
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+/ {
+	chosen {
+		zephyr,ieee802154 = &ieee802154;
+	};
+
+        esphome {
+                compatible = "nabucasa,esphome";
+                entity_id = "zephyr_esphome";
+                friendly_name = " Zephyr ESPHOME beagleconnect freedom";
+                status = "okay";
+
+		api {
+			compatible = "nabucasa,esphome-api";
+			password = "mypassword";
+			status = "okay";
+		};
+
+		temperature {
+			compatible = "nabucasa,esphome-sensor-temperature";
+			device_name = "temperature";
+			sensor = <&humidity>;
+			device_class = "temperature";
+		};
+
+		humidity {
+			compatible = "nabucasa,esphome-sensor-humidity";
+			device_name = "humidity";
+			sensor = <&humidity>;
+			device_class = "humidity";
+		};
+        };
+};
+
+&ieee802154 {
+	status = "okay";
+};
+
+&ieee802154g {
+	status = "disabled";
+};
