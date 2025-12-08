@@ -74,16 +74,16 @@ struct esphome_sensor_api esphome_humidity_sensor = {
 	.read = device_read_humidity,
 };
 
-#define DEFINE_ESPHOME_SENSOR_HUMIDITY(_num)                                                    \
+#define DEFINE_ESPHOME_SENSOR_HUMIDITY(_num)                                                       \
                                                                                                    \
-	struct esphome_humidity_sensor_config esphome_humidity_sensor_config##_num = {       \
+	struct esphome_humidity_sensor_config esphome_humidity_sensor_config##_num = {             \
 		.sensor = DEVICE_DT_GET(DT_PHANDLE_BY_IDX(DT_DRV_INST(_num), sensor, 0)),          \
 	};                                                                                         \
 	static struct esphome_sensor_data esphome_sensor_data_##_num;                              \
                                                                                                    \
 	DEVICE_DT_INST_DEFINE(_num, esphome_sensor_init, NULL, &esphome_sensor_data_##_num,        \
-			      &esphome_humidity_sensor_config##_num, POST_KERNEL,               \
-			      CONFIG_ESPHOME_INIT_PRIORITY, &esphome_humidity_sensor);          \
+			      &esphome_humidity_sensor_config##_num, POST_KERNEL,                  \
+			      CONFIG_ESPHOME_INIT_PRIORITY, &esphome_humidity_sensor);             \
 	DEFINE_ESPHOME_SENSOR_ENTITY(_num, esphome_humidity_sensor_##_num);
 
 DT_INST_FOREACH_STATUS_OKAY(DEFINE_ESPHOME_SENSOR_HUMIDITY);

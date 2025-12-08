@@ -5,5 +5,5 @@
 
 void esphome_delay(uint64_t delay_us)
 {
-        k_sleep(K_USEC(delay_us));
+	k_sleep(K_USEC(delay_us));
 }

@@ -8497,7 +8497,7 @@ int esphome_rpc_service(void *arg1, void *arg2, void *arg3)
 			}
 		}
 
-	error:
+error:
 		zsock_close(rpc_data->socket);
 		LOG_INF("Connection from %s closed\n", addrstr);
 	}

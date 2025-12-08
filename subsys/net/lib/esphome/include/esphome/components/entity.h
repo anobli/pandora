@@ -25,7 +25,8 @@
 	char uid_buf[MAX_UNIQUE_ID_LEN];                                                           \
 	DT_ENTITY_STRCPY_SAFE(_resp, _cfg, name);                                                  \
 	DT_ENTITY_STRCPY_SAFE(_resp, _cfg, object_id);                                             \
-	(_resp)->unique_id= esphome_build_unique_id((_cfg)->unique_id, uid_buf, MAX_UNIQUE_ID_LEN);\
+	(_resp)->unique_id =                                                                       \
+		esphome_build_unique_id((_cfg)->unique_id, uid_buf, MAX_UNIQUE_ID_LEN);            \
 	DT_ENTITY_STRCPY_SAFE(_resp, _cfg, icon);                                                  \
 	(_resp)->disabled_by_default = (_cfg)->disabled_by_default;                                \
 	(_resp)->entity_category = (_cfg)->entity_category;                                        \
@@ -44,8 +45,8 @@
 				       .entity_category = 0, .device_class = _device_class,        \
 		}
 
-#define ESPHOME_UNIT_PERCENT "%"
-#define ESPHOME_UNIT_CELSUIS "°C"
+#define ESPHOME_UNIT_PERCENT    "%"
+#define ESPHOME_UNIT_CELSUIS    "°C"
 #define ESPHOME_UNIT_FAHRENHEIT "°F"
 
 struct esphome_entity_config {
