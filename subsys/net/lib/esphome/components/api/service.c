@@ -13,6 +13,10 @@
 #include <esphome/esphome.h>
 #include <rpc/esphome_rpc.h>
 
+#ifdef CONFIG_ESPHOME_COMPONENT_OPENTHREAD
+#include "../openthread/service.h"
+#endif
+
 #include <zephyr/logging/log.h>
 LOG_MODULE_REGISTER(ESPHome, CONFIG_ESPHOME_LOG_LEVEL);
 
@@ -23,6 +27,9 @@ LOG_MODULE_REGISTER(ESPHome, CONFIG_ESPHOME_LOG_LEVEL);
 
 static int esphome_init(const struct device *dev)
 {
+#ifdef CONFIG_ESPHOME_COMPONENT_OPENTHREAD
+	esphome_ot_init(dev);
+#endif
 	esphome_entity_init(dev);
 	return 0;
 }
