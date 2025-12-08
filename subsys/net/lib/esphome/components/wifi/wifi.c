@@ -156,29 +156,27 @@ int esphome_wifi_init(const struct device *dev)
 		.password = DT_PROP(node_id, password),                                            \
 	},
 
-#define DEFINE_ESPHOME_WIFI(_num)                                                                  \
+#define DEFINE_ESPHOME_WIFI(_num)                                                                    \
 	COND_CODE_1(DT_NODE_HAS_PROP(_num, on_connect),                                            \
-		    (extern int DT_STRING_TOKEN(DT_DRV_INST(_num), on_connect)()), ())             \
+		    (extern int DT_STRING_TOKEN(DT_DRV_INST(_num), on_connect)()), ()) \
 	COND_CODE_1(DT_NODE_HAS_PROP(_num, on_disconnect),                                         \
-		    (extern int DT_STRING_TOKEN(DT_DRV_INST(_num), on_disconnect)()), ())          \
+		    (extern int DT_STRING_TOKEN(DT_DRV_INST(_num), on_disconnect)()), ()) \
 	COND_CODE_1(DT_NODE_HAS_PROP(_num, on_error),                                              \
-		    (extern int DT_STRING_TOKEN(DT_DRV_INST(_num), on_error)()), ())               \
-	static const struct esphome_wifi_config esphome_wifi_config_##_num = {                     \
-		.on_connect =                                                                      \
-			COND_CODE_1(DT_NODE_HAS_PROP(_num, on_connect),                            \
-				    (DT_STRING_TOKEN(DT_DRV_INST(_num), on_connect)), (NULL)),     \
-		.on_disconnect =                                                                   \
-			COND_CODE_1(DT_NODE_HAS_PROP(_num, on_disconnect),                         \
-				    (DT_STRING_TOKEN(DT_DRV_INST(_num), on_disconnect)), (NULL)),  \
-		.on_error = COND_CODE_1(DT_NODE_HAS_PROP(_num, on_errort),                         \
-					(DT_STRING_TOKEN(DT_DRV_INST(_num), on_error)), (NULL)),   \
-	};                                                                                         \
-	static struct esphome_wifi_data esphome_wifi_data_##_num = {                               \
-		.dev = DEVICE_DT_INST_GET(_num),                                                   \
-	};                                                                                         \
-                                                                                                   \
-	DEVICE_DT_INST_DEFINE(_num, esphome_wifi_init, NULL, &esphome_wifi_data_##_num,            \
-			      &esphome_wifi_config_##_num, POST_KERNEL,                            \
+		    (extern int DT_STRING_TOKEN(DT_DRV_INST(_num), on_error)()), ()) \
+	static const struct esphome_wifi_config esphome_wifi_config_##_num = {                       \
+		.on_connect = COND_CODE_1(DT_NODE_HAS_PROP(_num, on_connect),                            \
+				    (DT_STRING_TOKEN(DT_DRV_INST(_num), on_connect)), (NULL)),                     \
+			 .on_disconnect = COND_CODE_1(DT_NODE_HAS_PROP(_num, on_disconnect),                         \
+				    (DT_STRING_TOKEN(DT_DRV_INST(_num), on_disconnect)), (NULL)),         \
+				  .on_error = COND_CODE_1(DT_NODE_HAS_PROP(_num, on_errort),                         \
+					(DT_STRING_TOKEN(DT_DRV_INST(_num), on_error)), (NULL)),     \
+	};                                                                                           \
+	static struct esphome_wifi_data esphome_wifi_data_##_num = {                                 \
+		.dev = DEVICE_DT_INST_GET(_num),                                                     \
+	};                                                                                           \
+                                                                                                     \
+	DEVICE_DT_INST_DEFINE(_num, esphome_wifi_init, NULL, &esphome_wifi_data_##_num,              \
+			      &esphome_wifi_config_##_num, POST_KERNEL,                              \
 			      CONFIG_ESPHOME_INIT_PRIORITY, NULL);
 
 DT_INST_FOREACH_STATUS_OKAY(DEFINE_ESPHOME_WIFI);

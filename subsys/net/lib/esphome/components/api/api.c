@@ -81,10 +81,11 @@ char *get_mac_address_string(char *buffer, int size)
 	for (int i = 0; i < link_addr->len; i++) {
 		char tmp[4];
 
-		if (i == 0)
+		if (i == 0) {
 			sprintf(tmp, "%02x", link_addr->addr[i]);
-		else
+		} else {
 			sprintf(tmp, ":%02x", link_addr->addr[i]);
+		}
 		strcat(buffer, tmp);
 	}
 

@@ -33,9 +33,13 @@ void ot_srp_callback(otError aError, const otSrpClientHostInfo *aHostInfo,
 static char mac[MAC_ADDRESS_LEN];
 otDnsTxtEntry txtEntries[] = {
 	{.mKey = "version", .mValue = (const uint8_t *)"1.0", .mValueLength = 3},
-	{.mKey = "board", .mValue = (const uint8_t *)CONFIG_BOARD, .mValueLength = sizeof(CONFIG_BOARD)},
+	{.mKey = "board",
+	 .mValue = (const uint8_t *)CONFIG_BOARD,
+	 .mValueLength = sizeof(CONFIG_BOARD)},
 	{.mKey = "mac", .mValue = (const uint8_t *)mac, .mValueLength = sizeof(MAC_ADDRESS_LEN)},
-	{.mKey = "friendly_name", .mValue = (const uint8_t *)friendly_name, .mValueLength = sizeof(friendly_name)},
+	{.mKey = "friendly_name",
+	 .mValue = (const uint8_t *)friendly_name,
+	 .mValueLength = sizeof(friendly_name)},
 };
 
 int ot_srp_init(const struct device *dev)
