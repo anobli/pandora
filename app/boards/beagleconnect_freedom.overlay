@@ -11,13 +11,12 @@
 
         esphome {
                 compatible = "nabucasa,esphome";
-                entity_id = "zephyr_esphome";
-                friendly_name = " Zephyr ESPHOME beagleconnect freedom";
+                entity_id = "bcf";
+                friendly_name = "BeagleConnect Freedom";
                 status = "okay";
 
 		api {
 			compatible = "nabucasa,esphome-api";
-			password = "mypassword";
 			status = "okay";
 		};
 
