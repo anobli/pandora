@@ -5,10 +5,10 @@
 
 #include <zephyr/device.h>
 #include <zephyr/data/json.h>
-
-#include <hermes/hermes.h>
-#include <hermes/settings.h>
 #include <zephyr/drivers/light.h>
+
+#include <pandora/settings.h>
+#include <hermes/hermes.h>
 
 #include <zephyr/logging/log.h>
 LOG_MODULE_DECLARE(hermes, CONFIG_HERMES_LOG_LEVEL);
@@ -73,7 +73,7 @@ void hermes_light_handler_put_state(struct hermes_resource *rsc, const void *dat
 	if (ret) {
 		LOG_ERR("Failed to set light state: %d", ret);
 	} else {
-		hermes_settings_save_all();
+		pandora_settings_save_all();
 	}
 }
 
@@ -102,7 +102,7 @@ void hermes_light_handler_put_brightness(struct hermes_resource *rsc, const void
 	if (ret) {
 		LOG_ERR("Failed to set light brightness: %d", ret);
 	} else {
-		hermes_settings_save_all();
+		pandora_settings_save_all();
 	}
 }
 
@@ -131,7 +131,7 @@ void hermes_light_handler_put_temperature(struct hermes_resource *rsc, const voi
 	if (ret) {
 		LOG_ERR("Failed to set light temperature: %d", ret);
 	} else {
-		hermes_settings_save_all();
+		pandora_settings_save_all();
 	}
 }
 
@@ -159,7 +159,7 @@ void hermes_light_handler_put_color(struct hermes_resource *rsc, const void *dat
 	if (ret) {
 		LOG_ERR("Failed to set light color: %d", ret);
 	} else {
-		hermes_settings_save_all();
+		pandora_settings_save_all();
 	}
 }
 
@@ -167,12 +167,12 @@ int hermes_light_settings_load(const struct device *dev)
 {
 	struct pandora_light_data *data = pandora_light_get_data(dev);
 
-	hermes_settings_load_one(dev->name, "state", &data->state, sizeof(data->state));
-	hermes_settings_load_one(dev->name, "brightness", &data->brightness,
-				 sizeof(data->brightness));
-	hermes_settings_load_one(dev->name, "temperature", &data->temperature,
-				 sizeof(data->temperature));
-	hermes_settings_load_one(dev->name, "color", &data->color, sizeof(data->color));
+	pandora_settings_load_one(dev->name, "state", &data->state, sizeof(data->state));
+	pandora_settings_load_one(dev->name, "brightness", &data->brightness,
+				  sizeof(data->brightness));
+	pandora_settings_load_one(dev->name, "temperature", &data->temperature,
+				  sizeof(data->temperature));
+	pandora_settings_load_one(dev->name, "color", &data->color, sizeof(data->color));
 
 	pandora_light_update(dev);
 
@@ -183,12 +183,12 @@ int hermes_light_settings_save(const struct device *dev)
 {
 	struct pandora_light_data *data = pandora_light_get_data(dev);
 
-	hermes_settings_save_one(dev->name, "state", &data->state, sizeof(data->state));
-	hermes_settings_save_one(dev->name, "brightness", &data->brightness,
-				 sizeof(data->brightness));
-	hermes_settings_save_one(dev->name, "temperature", &data->temperature,
-				 sizeof(data->temperature));
-	hermes_settings_save_one(dev->name, "color", &data->color, sizeof(data->color));
+	pandora_settings_save_one(dev->name, "state", &data->state, sizeof(data->state));
+	pandora_settings_save_one(dev->name, "brightness", &data->brightness,
+				  sizeof(data->brightness));
+	pandora_settings_save_one(dev->name, "temperature", &data->temperature,
+				  sizeof(data->temperature));
+	pandora_settings_save_one(dev->name, "color", &data->color, sizeof(data->color));
 
 	return 0;
 }
@@ -198,7 +198,8 @@ int hermes_light_settings_save(const struct device *dev)
 				  hermes_light_handler_put_##_ep, NULL);
 
 #define DEFINE_HERMES_LIGHT(node_id)                                                               \
-	DT_HERMES_SETTINGS(node_id, hermes_light_settings_load, hermes_light_settings_save, NULL); \
+	DT_PANDORA_SETTINGS(node_id, hermes_light_settings_load, hermes_light_settings_save,       \
+			    NULL);                                                                 \
 	DEFINE_HERMES_LIGHT_EP(node_id, state);                                                    \
 	DEFINE_HERMES_LIGHT_EP(node_id, brightness);                                               \
 	DEFINE_HERMES_LIGHT_EP(node_id, temperature);                                              \

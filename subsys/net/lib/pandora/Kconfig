@@ -1,0 +1,15 @@
+# Copyright (c) 2025 Alexandre Bailon
+# SPDX-License-Identifier: Apache-2.0
+#
+
+config PANDORA_SERVICE
+	bool "Pandora service"
+	default y if SMF
+	depends on SMF && EVENTS
+	help
+	  Provide a service that manage the different events
+	  that could affect Hermes state such network disconnection.
+
+module = PANDORA
+module-str = Pandora
+source "subsys/logging/Kconfig.template.log_config"

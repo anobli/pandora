@@ -5,16 +5,16 @@
 
 #include <zephyr/shell/shell.h>
 
-#include <hermes/settings.h>
+#include <pandora/settings.h>
 
 static int cmd_settings_save_all(const struct shell *sh, size_t argc, char **argv)
 {
-	return hermes_settings_save_all();
+	return pandora_settings_save_all();
 }
 
 static int cmd_settings_erase_all(const struct shell *sh, size_t argc, char **argv)
 {
-	return hermes_settings_erase_all();
+	return pandora_settings_erase_all();
 }
 
 SHELL_STATIC_SUBCMD_SET_CREATE(sub_settings,

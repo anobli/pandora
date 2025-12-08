@@ -3,5 +3,6 @@
 #
 
 rsource "drivers/Kconfig"
+rsource "subsys/net/lib/pandora/Kconfig"
 rsource "subsys/net/lib/hermes/Kconfig"
 rsource "subsys/net/lib/esphome/Kconfig"
