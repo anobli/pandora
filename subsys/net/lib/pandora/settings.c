@@ -9,14 +9,13 @@
 #include <zephyr/settings/settings.h>
 
 #include <zephyr/logging/log.h>
-LOG_MODULE_DECLARE(hermes, CONFIG_HERMES_LOG_LEVEL);
+LOG_MODULE_DECLARE(Pandora, CONFIG_PANDORA_LOG_LEVEL);
 
-#include <hermes/hermes.h>
-#include <hermes/settings.h>
+#include <pandora/settings.h>
 
 #define KEY_LEN_MAX 64
 
-int hermes_settings_save_one(const char *domain, const char *prop, void *value, size_t val_len)
+int pandora_settings_save_one(const char *domain, const char *prop, void *value, size_t val_len)
 {
 	char key[KEY_LEN_MAX];
 	int ret;
@@ -31,7 +30,7 @@ int hermes_settings_save_one(const char *domain, const char *prop, void *value, 
 	return 0;
 }
 
-int hermes_settings_load_one(const char *domain, const char *prop, void *value, size_t val_len)
+int pandora_settings_load_one(const char *domain, const char *prop, void *value, size_t val_len)
 {
 	char key[KEY_LEN_MAX];
 	int ret;
@@ -45,7 +44,7 @@ int hermes_settings_load_one(const char *domain, const char *prop, void *value, 
 	return ret;
 }
 
-int hermes_settings_erase_one(const char *domain, const char *prop)
+int pandora_settings_erase_one(const char *domain, const char *prop)
 {
 	char key[KEY_LEN_MAX];
 	int ret;
@@ -59,11 +58,11 @@ int hermes_settings_erase_one(const char *domain, const char *prop)
 	return ret;
 }
 
-int hermes_settings_load_all(void)
+int pandora_settings_load_all(void)
 {
 	int ret;
 
-	STRUCT_SECTION_FOREACH(hermes_setting, setting) {
+	STRUCT_SECTION_FOREACH(pandora_setting, setting) {
 		ret = setting->load_cb(setting->dev);
 		if (ret) {
 			if (setting->dev) {
@@ -78,11 +77,11 @@ int hermes_settings_load_all(void)
 	return 0;
 }
 
-int hermes_settings_save_all(void)
+int pandora_settings_save_all(void)
 {
 	int ret;
 
-	STRUCT_SECTION_FOREACH(hermes_setting, setting) {
+	STRUCT_SECTION_FOREACH(pandora_setting, setting) {
 		ret = setting->save_cb(setting->dev);
 		if (ret) {
 			if (setting->dev) {
@@ -97,11 +96,11 @@ int hermes_settings_save_all(void)
 	return 0;
 }
 
-int hermes_settings_erase_all(void)
+int pandora_settings_erase_all(void)
 {
 	int ret;
 
-	STRUCT_SECTION_FOREACH(hermes_setting, setting) {
+	STRUCT_SECTION_FOREACH(pandora_setting, setting) {
 		if (!setting->erase_cb) {
 			continue;
 		}
@@ -120,7 +119,7 @@ int hermes_settings_erase_all(void)
 	return 0;
 }
 
-static int hermes_settings_init(void)
+static int pandora_settings_init(void)
 {
 	int ret;
 
@@ -129,9 +128,9 @@ static int hermes_settings_init(void)
 		LOG_ERR("Failed to initialize settings");
 		return ret;
 	}
-	hermes_settings_load_all();
+	pandora_settings_load_all();
 
 	return 0;
 }
 
-SYS_INIT(hermes_settings_init, APPLICATION, 0);
+SYS_INIT(pandora_settings_init, APPLICATION, 0);

@@ -8,14 +8,6 @@ config HERMES
 
 if HERMES
 
-config HERMES_SERVICE
-	bool "Hermes service"
-	default y if SMF
-	depends on SMF && EVENTS
-	help
-	  Provide a service that manage the different events
-	  that could affect Hermes state such network disconnection.
-
 config HERMES_SHELL
 	bool "Hermes shell"
 	depends on SHELL
