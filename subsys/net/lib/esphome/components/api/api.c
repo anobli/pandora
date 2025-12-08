@@ -17,7 +17,6 @@
 #include <zephyr/logging/log.h>
 LOG_MODULE_DECLARE(ESPHome, CONFIG_ESPHOME_LOG_LEVEL);
 
-#define MAC_ADDRESS_LEN 24
 #define MAX_DEVICE_NAME 64
 
 void _esphome_get_version(const struct esphome_config *config, char *version, size_t len)
