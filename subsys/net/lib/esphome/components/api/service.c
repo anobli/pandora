@@ -32,7 +32,7 @@ static int esphome_init(const struct device *dev)
 	static const struct esphome_config esphome_config_##_num = {                               \
 		.name = DT_PROP(DT_INST_PARENT(_num), entity_id),                                  \
 		.friendly_name = DT_PROP_OR(DT_INST_PARENT(_num), friendly_name, ""),              \
-		.password = DT_INST_PROP_OR(_num, password, ""),                                   \
+		.password = DT_INST_PROP_OR(_num, password, NULL),                                   \
 		.port = DT_INST_PROP(_num, port),                                                  \
 		.api_version_major = 1,                                                            \
 		.api_version_minor = 10,                                                           \

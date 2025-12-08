@@ -18,7 +18,7 @@ properties:
       const: 0
     password:
       type: string
-      required: true
+      required: false
       description: password required to connect to device.
     port:
       type: int
