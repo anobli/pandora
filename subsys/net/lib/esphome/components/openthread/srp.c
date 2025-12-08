@@ -6,7 +6,7 @@
 
 #include <zephyr/sys/util.h>
 #include <zephyr/logging/log.h>
-LOG_MODULE_DECLARE(ESPHome);
+LOG_MODULE_DECLARE(ESPHomeOT);
 
 #include <esphome/esphome.h>
 

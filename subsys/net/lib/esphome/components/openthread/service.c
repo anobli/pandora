@@ -5,7 +5,7 @@
  */
 
 #include <zephyr/logging/log.h>
-LOG_MODULE_DECLARE(ESPHome);
+LOG_MODULE_REGISTER(ESPHomeOT);
 
 #include <zephyr/net/openthread.h>
 #include <openthread/thread.h>
