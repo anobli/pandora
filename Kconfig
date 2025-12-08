@@ -3,5 +3,5 @@
 #
 
 rsource "drivers/Kconfig"
-rsource "subsys/hermes/Kconfig"
+rsource "subsys/net/lib/hermes/Kconfig"
 rsource "subsys/net/lib/esphome/Kconfig"

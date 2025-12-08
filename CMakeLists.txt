@@ -8,5 +8,5 @@ set(PANDORA_BASE ${CMAKE_CURRENT_LIST_DIR} CACHE STRING "Pandora base dir")
 zephyr_include_directories(include)
 
 add_subdirectory(drivers)
-add_subdirectory_ifdef(CONFIG_HERMES subsys/hermes)
+add_subdirectory_ifdef(CONFIG_HERMES subsys/net/lib/hermes)
 add_subdirectory_ifdef(CONFIG_ESPHOME subsys/net/lib/esphome)
