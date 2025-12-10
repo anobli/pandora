@@ -1,8 +1,7 @@
 #include <zephyr/device.h>
 #include <zephyr/kernel.h>
 
-#define DT_DRV_COMPAT NABUCASA_ESPHOME
-#define ESPHOME_NODE  DT_PATH(esphome)
+#include <esphome/esphome.h>
 
 #define DEFINE_ACTION_FUNCTION(node_id, prop)                                                      \
 	extern void DT_STRING_UNQUOTED(node_id, prop)(const struct device *dev);                   \
@@ -32,3 +31,14 @@ int esphome_service(void *arg1, void *arg2, void *arg3)
 
 K_THREAD_DEFINE(esphome_tid, ESPHOME_STACK_SIZE, esphome_service, NULL, NULL, NULL,
 		0 /* todo: set priority */, 0, 0);
+
+static const struct esphome_config esphome_config = {
+	.name = DT_PROP(ESPHOME_NODE, entity_id),
+	.friendly_name = DT_PROP_OR(ESPHOME_NODE, friendly_name, ""),
+	.compilation_time = __DATE__ " " __TIME__,
+};
+
+const struct esphome_config *esphome_get_config(void)
+{
+	return &esphome_config;
+}

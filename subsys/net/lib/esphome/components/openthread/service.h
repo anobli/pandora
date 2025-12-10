@@ -6,4 +6,4 @@
 
 #include <zephyr/device.h>
 
-int esphome_ot_init(const struct device *dev);
+int esphome_ot_init();

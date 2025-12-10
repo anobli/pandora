@@ -4,8 +4,6 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-#define DT_DRV_COMPAT nabucasa_esphome_api
-
 #include <zephyr/device.h>
 #include <zephyr/kernel.h>
 
@@ -34,26 +32,23 @@ static int esphome_init(const struct device *dev)
 	return 0;
 }
 
-#define DEFINE_ESPHOME(_num)                                                                       \
-                                                                                                   \
-	static const struct esphome_config esphome_config_##_num = {                               \
-		.name = DT_PROP(DT_INST_PARENT(_num), entity_id),                                  \
-		.friendly_name = DT_PROP_OR(DT_INST_PARENT(_num), friendly_name, ""),              \
-		.password = DT_INST_PROP_OR(_num, password, NULL),                                 \
-		.port = DT_INST_PROP(_num, port),                                                  \
-		.api_version_major = 1,                                                            \
-		.api_version_minor = 10,                                                           \
-		.compilation_time = __DATE__ " " __TIME__,                                         \
-		.server_info = "",                                                                 \
-	};                                                                                         \
-	static struct esphome_data esphome_data_##_num;                                            \
-                                                                                                   \
-	DEVICE_DT_INST_DEFINE(_num, esphome_init, NULL, &esphome_data_##_num,                      \
-			      &esphome_config_##_num, POST_KERNEL, CONFIG_ESPHOME_INIT_PRIORITY,   \
-			      NULL);                                                               \
-                                                                                                   \
-	K_THREAD_DEFINE(esphome_tid_##_num, ESPHOME_STACK_SIZE, esphome_rpc_service,               \
-			DEVICE_DT_INST_GET(_num), DT_INST_PROP(_num, port), NULL,                  \
-			0 /* todo: set priority */, 0, 0);
+static const struct esphome_api_config esphome_config = {
+	.password = DT_INST_PROP_OR(ESPHOME_API_NODE, password, NULL),
+	.port = DT_PROP(ESPHOME_API_NODE, port),
+	.api_version_major = 1,
+	.api_version_minor = 10,
+	.server_info = "",
+};
 
-DT_INST_FOREACH_STATUS_OKAY(DEFINE_ESPHOME);
+const struct esphome_api_config *esphome_get_api_config(void)
+{
+	return &esphome_config;
+}
+
+static struct esphome_data esphome_data;
+DEVICE_DT_DEFINE(ESPHOME_API_NODE, esphome_init, NULL, &esphome_data, &esphome_config, POST_KERNEL,
+		 CONFIG_ESPHOME_INIT_PRIORITY, NULL);
+
+K_THREAD_DEFINE(esphome_api_tid, ESPHOME_STACK_SIZE, esphome_rpc_service,
+		DEVICE_DT_GET(ESPHOME_API_NODE), DT_PROP(ESPHOME_API_NODE, port), NULL,
+		0 /* todo: set priority */, 0, 0);
