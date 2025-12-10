@@ -42,7 +42,7 @@ otDnsTxtEntry txtEntries[] = {
 	 .mValueLength = sizeof(friendly_name)},
 };
 
-int ot_srp_init(const struct device *dev)
+int ot_srp_init()
 {
 	otError error;
 	otInstance *ot;
@@ -52,7 +52,8 @@ int ot_srp_init(const struct device *dev)
 	char *service_name;
 	uint16_t size;
 
-	const struct esphome_config *cfg = dev->config;
+	const struct esphome_config *cfg = esphome_get_config();
+	const struct esphome_api_config *api_cfg = esphome_get_api_config();
 
 	if (ot_srp_init_done) {
 		return 0;
@@ -87,7 +88,7 @@ int ot_srp_init(const struct device *dev)
 		LOG_ERR("Failed to allocate SRP service: %s", otThreadErrorToString(error));
 		return -1;
 	}
-	entry->mService.mPort = cfg->port;
+	entry->mService.mPort = api_cfg->port;
 
 	instance_name = otSrpClientBuffersGetServiceEntryInstanceNameString(entry, &size);
 	size = MIN(size, strlen(cfg->name) + 1);

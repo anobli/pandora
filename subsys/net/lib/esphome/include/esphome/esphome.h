@@ -9,25 +9,22 @@
 
 #include <stdint.h>
 
+#define ESPHOME_NODE DT_COMPAT_GET_ANY_STATUS_OKAY(nabucasa_esphome)
+
 struct esphome_config {
 	const char *name;
 	const char *friendly_name;
-	const char *server_info;
-	uint32_t api_version_major;
-	uint32_t api_version_minor;
 	const char *compilation_time;
 	const char *project_name;
 	const char *project_version;
 	const char *model;
 	const char *manufacturer;
-
-	const char *password;
-
-	int port;
 };
 
 struct esphome_data {
 	int socket;
 };
+
+const struct esphome_config *esphome_get_config(void);
 
 #endif /* __ESPHOME__ */

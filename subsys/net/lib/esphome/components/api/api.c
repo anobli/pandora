@@ -19,11 +19,12 @@ LOG_MODULE_DECLARE(ESPHome, CONFIG_ESPHOME_LOG_LEVEL);
 
 #define MAX_DEVICE_NAME 64
 
-void _esphome_get_version(const struct esphome_config *config, char *version, size_t len)
+void _esphome_get_version(const struct esphome_api_config *api_config, char *version, size_t len)
 {
 	int ret;
 
-	ret = snprintf(version, len, "%d.%d", config->api_version_major, config->api_version_minor);
+	ret = snprintf(version, len, "%d.%d", api_config->api_version_major,
+		       api_config->api_version_minor);
 	if ((size_t)ret > len) {
 		LOG_WRN("%s: the string has been troncated\n", __func__);
 	}
@@ -94,7 +95,8 @@ char *get_mac_address_string(char *buffer, int size)
 
 int HelloRequestCb(const struct device *dev, HelloRequest *request)
 {
-	const struct esphome_config *config = dev->config;
+	const struct esphome_config *config = esphome_get_config();
+	const struct esphome_api_config *api_config = dev->config;
 	char buffer[MAX_DEVICE_NAME];
 
 	ARG_UNUSED(request);
@@ -102,20 +104,20 @@ int HelloRequestCb(const struct device *dev, HelloRequest *request)
 	/* TODO: negotiate API version  */
 	HelloResponse response = HELLO_RESPONSE__INIT;
 	response.name = get_unique_device_name(config->name, buffer, MAX_DEVICE_NAME);
-	response.server_info = (char *)config->server_info;
-	response.api_version_major = config->api_version_major;
-	response.api_version_minor = config->api_version_minor;
+	response.server_info = (char *)api_config->server_info;
+	response.api_version_major = api_config->api_version_major;
+	response.api_version_minor = api_config->api_version_minor;
 
 	return HelloResponseWrite(dev, &response);
 }
 
 int ConnectRequestCb(const struct device *dev, ConnectRequest *request)
 {
-	const struct esphome_config *config = dev->config;
+	const struct esphome_api_config *api_config = dev->config;
 	ConnectResponse response = CONNECT_RESPONSE__INIT;
 
-	if (config->password) {
-		response.invalid_password = strcmp(config->password, request->password);
+	if (api_config->password) {
+		response.invalid_password = strcmp(api_config->password, request->password);
 	}
 	return ConnectResponseWrite(dev, &response);
 }
@@ -123,16 +125,17 @@ int ConnectRequestCb(const struct device *dev, ConnectRequest *request)
 int DeviceInfoRequestCb(const struct device *dev)
 {
 	char version[32];
-	const struct esphome_config *config = dev->config;
+	const struct esphome_config *config = esphome_get_config();
+	const struct esphome_api_config *api_config = dev->config;
 	char name[MAX_DEVICE_NAME];
 	char mac[MAC_ADDRESS_LEN];
 	DeviceInfoResponse response = DEVICE_INFO_RESPONSE__INIT;
 
-	if (config->password && strlen(config->password)) {
+	if (api_config->password && strlen(api_config->password)) {
 		response.uses_password = true;
 	}
 	response.name = get_unique_device_name(config->name, name, MAX_DEVICE_NAME);
-	_esphome_get_version(config, version, ARRAY_SIZE(version));
+	_esphome_get_version(api_config, version, ARRAY_SIZE(version));
 	response.esphome_version = version;
 	response.compilation_time = (char *)config->compilation_time;
 	response.project_name = (char *)config->project_name;
