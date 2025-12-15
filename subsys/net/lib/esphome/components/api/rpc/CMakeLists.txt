@@ -2,7 +2,7 @@
 
 include(esphome.cmake OPTIONAL)
 
-zephyr_library(esphome_rpc)
+zephyr_library()
 zephyr_library_include_directories(.)
 
 FILE(GLOB esphome_src *.c)
