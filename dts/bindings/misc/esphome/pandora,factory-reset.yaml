@@ -1,0 +1,14 @@
+compatible: pandora,factory-reset
+description: |
+  This enables and configure the factory reset component.
+  It could be used to erase network credentials and any other settings
+  to restore the device to it initial state.
+properties:
+  input-code:
+    type: int
+    description: |
+      The input code to wait to trigger a factory reset.
+      Basically, this is made to work with the longpress input driver.
+      This lets the driver deal with the button and here we just use
+      the result to figure out if we need to do a factory reset.
+    required: true

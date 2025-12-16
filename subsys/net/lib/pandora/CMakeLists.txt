@@ -11,3 +11,5 @@ zephyr_library_sources_ifdef(CONFIG_BOARD_NATIVE_SIM native_sim.c)
 
 zephyr_library_sources_ifdef(CONFIG_SETTINGS settings.c)
 zephyr_linker_sources_ifdef(CONFIG_SETTINGS DATA_SECTIONS settings.ld)
+
+zephyr_library_sources_ifdef(CONFIG_PANDORA_FACTORY_RESET factory_reset.c)

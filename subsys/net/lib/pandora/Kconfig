@@ -10,6 +10,11 @@ config PANDORA_SERVICE
 	  Provide a service that manage the different events
 	  that could affect Hermes state such network disconnection.
 
+config PANDORA_FACTORY_RESET
+	bool "Factory reset component"
+	default y
+	depends on DT_HAS_PANDORA_FACTORY_RESET_ENABLED && REBOOT && INPUT
+
 module = PANDORA
 module-str = Pandora
 source "subsys/logging/Kconfig.template.log_config"
