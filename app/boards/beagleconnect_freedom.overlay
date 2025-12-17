@@ -33,6 +33,20 @@
 			sensor = <&humidity>;
 			device_class = "humidity";
 		};
+
+		longpress {
+			input = <&{/gpio_keys}>;
+			compatible = "zephyr,input-longpress";
+			input-codes = <INPUT_KEY_0>;
+			short-codes = <INPUT_KEY_A>;
+			long-codes = <INPUT_KEY_X>;
+			long-delay-ms = <2000>;
+		};
+
+		factory_reset {
+			compatible = "pandora,factory-reset";
+			input-code = <INPUT_KEY_X>;
+		};
         };
 };
 
