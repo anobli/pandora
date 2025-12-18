@@ -38,7 +38,7 @@ static void hermes_wifi_handler_put_credentials(struct hermes_resource *rsc, con
 	pandora_wifi_set_credentials(&credentials);
 }
 
-static void wifi_event_handler(struct net_mgmt_event_callback *cb, uint32_t mgmt_event,
+static void wifi_event_handler(struct net_mgmt_event_callback *cb, uint64_t mgmt_event,
 			       struct net_if *iface)
 {
 	switch (mgmt_event) {
