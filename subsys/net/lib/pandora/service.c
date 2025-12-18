@@ -186,7 +186,7 @@ const struct smf_state pandora_states[] = {
 
 struct net_mgmt_event_callback net_event_callback;
 
-static void net_event_handler(struct net_mgmt_event_callback *cb, unsigned int mgmt_event,
+static void net_event_handler(struct net_mgmt_event_callback *cb, uint64_t mgmt_event,
 			      struct net_if *iface)
 {
 	if (mgmt_event == NET_EVENT_IPV4_ADDR_ADD) {
