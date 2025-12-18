@@ -153,7 +153,7 @@ static void hermes_multicast_buffer_free(uint8_t *buffer)
 int hermes_req_init(struct hermes_request *request, const char *path, uint8_t *buf, int len,
 		    hermes_req_handler handler, void *data)
 {
-	request->request.path = path;
+	strncpy(request->request.path, path, MAX_PATH_SIZE);
 	request->request.payload = buf;
 	request->request.len = len;
 	request->request.user_data = request;
@@ -169,7 +169,7 @@ int hermes_req_init(struct hermes_request *request, const char *path, uint8_t *b
 int hermes_multicast_req_init(struct hermes_request *request, const char *path, uint8_t *buf,
 			      int len, hermes_multicast_req_handler handler, void *data)
 {
-	request->request.path = path;
+	strncpy(request->request.path, path, MAX_PATH_SIZE);
 	request->request.payload = buf;
 	request->request.len = len;
 	request->request.user_data = request;
@@ -182,21 +182,21 @@ int hermes_multicast_req_init(struct hermes_request *request, const char *path, 
 	return 0;
 }
 
-static void on_coap_response(int16_t result_code, size_t offset, const uint8_t *payload, size_t len,
-			     bool last_block, void *user_data)
+static void on_coap_response(const struct coap_client_response_data *data,
+			     void *user_data)
 {
 	struct hermes_request *req = user_data;
 	//	LOG_INF("CoAP response, result_code=%d, offset=%u, len=%u", result_code, offset,
 	// len);
 
-	if ((COAP_RESPONSE_CODE_CONTENT == result_code) && last_block) {
+	if ((COAP_RESPONSE_CODE_CONTENT == data->result_code) && data->last_block) {
 		//		int64_t elapsed_time = k_uptime_delta(&start_time);
 		if (req->handler) {
-			req->handler(req->data, payload, len);
+			req->handler(req->data, data->payload, data->payload_len);
 		}
 
 		k_sem_give(&req->coap_done_sem);
-	} else if (COAP_RESPONSE_CODE_CONTENT != result_code) {
+	} else if (COAP_RESPONSE_CODE_CONTENT != data->result_code) {
 		//		LOG_ERR("Error during CoAP download, result_code=%d", result_code);
 		k_sem_give(&req->coap_done_sem);
 	}
@@ -212,7 +212,6 @@ int hermes_req_send(struct hermes_client *client, struct hermes_request *hermes_
 	request->method = method;
 	request->confirmable = true;
 	request->cb = on_coap_response;
-	request->options = NULL;
 	request->num_options = 0;
 	request->fmt = COAP_CONTENT_FORMAT_TEXT_PLAIN;
 
@@ -309,7 +308,7 @@ int hermes_multicast_req(struct hermes_client *client, struct hermes_request *he
 	}
 
 	/* Parse path and add URI-Path options */
-	if (hermes_request->request.path) {
+	if (strlen(hermes_request->request.path)) {
 		size_t path_len = strlen(hermes_request->request.path);
 		/* Use a small static buffer for path parsing */
 		static char path_buffer[HERMES_MAX_PATH_LEN];
