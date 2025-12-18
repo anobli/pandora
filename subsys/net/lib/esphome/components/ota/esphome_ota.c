@@ -154,12 +154,12 @@ int esphome_ota_read_data(int socket, char *buf, int size)
 	uint8_t error_code = 0;
 	int ret;
 
-	ret = zsock_recv(socket, buf, size, ZSOCK_MSG_WAITALL);
-	if (ret != size) {
+	ret = zsock_recv(socket, buf, size, 0);
+	if (ret < 0) {
 		goto error;
 	}
 
-	return 0;
+	return ret;
 
 error:
 	zsock_send(socket, &error_code, 1, 0);
@@ -252,17 +252,17 @@ int esphome_ota_run(int socket, struct flash_img_context *ctx)
 	while (total < ota_size) {
 		size_t requested = MIN(sizeof(buf), ota_size - total);
 		ret = esphome_ota_read_data(socket, buf, requested);
-		if (ret) {
+		if (ret < 0) {
 			goto error;
 		}
 
 		/* TODO: write data to flash */
-		bool last = (ota_size - total) <= sizeof(buf) ? true : false;
-		if (flash_img_buffered_write(ctx, buf, requested, last) != 0) {
+		bool last = (ota_size - total) <= ret ? true : false;
+		if (flash_img_buffered_write(ctx, buf, ret, last) != 0) {
 			goto error;
 		}
 
-		total += requested;
+		total += ret;
 		while (size_acknowledged + OTA_BLOCK_SIZE <= total ||
 		       (total == ota_size && size_acknowledged < ota_size)) {
 			buf[0] = OTA_RESPONSE_CHUNK_OK;
