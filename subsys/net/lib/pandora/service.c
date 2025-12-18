@@ -65,13 +65,15 @@ static void pandora_running_entry(void *obj)
 #endif
 }
 
-static void pandora_running_run(void *obj)
+static enum smf_state_result pandora_running_run(void *obj)
 {
 	struct pandora_state_ctx *ctx = obj;
 
 	if (ctx->events & PANDORA_EVENT_DISCONNECTED) {
 		smf_set_state(SMF_CTX(obj), &pandora_states[PANDORA_STATE_DISCONNECTED]);
 	}
+
+	return SMF_EVENT_HANDLED;
 }
 
 static void pandora_running_exit(void *obj)
@@ -120,7 +122,7 @@ static void pandora_disconnected_entry(void *obj)
 #endif
 }
 
-static void pandora_disconnected_run(void *obj)
+static enum smf_state_result pandora_disconnected_run(void *obj)
 {
 	struct pandora_state_ctx *ctx = obj;
 
@@ -135,6 +137,8 @@ static void pandora_disconnected_run(void *obj)
 		pandora_wifi_try_connect();
 #endif
 	}
+
+	return SMF_EVENT_HANDLED;
 }
 
 static void pandora_discovering_entry(void *obj)
@@ -152,7 +156,7 @@ static void pandora_discovering_entry(void *obj)
 #endif
 }
 
-static void pandora_discovering_run(void *obj)
+static enum smf_state_result pandora_discovering_run(void *obj)
 {
 	struct pandora_state_ctx *ctx = obj;
 
@@ -165,6 +169,8 @@ static void pandora_discovering_run(void *obj)
 	} else if (ctx->events & PANDORA_EVENT_DISCONNECTED) {
 		smf_set_state(SMF_CTX(obj), &pandora_states[PANDORA_STATE_DISCONNECTED]);
 	}
+
+	return SMF_EVENT_HANDLED;
 }
 
 const struct smf_state pandora_states[] = {
