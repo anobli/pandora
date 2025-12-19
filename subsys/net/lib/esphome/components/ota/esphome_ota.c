@@ -13,16 +13,42 @@ LOG_MODULE_REGISTER(ESPHomeOTA);
 
 #include "esphome_ota.h"
 
-#define USE_OTA_VERSION 2
-#define OTA_BLOCK_SIZE  8192
+#define OTA_BLOCK_SIZE 8192
 
-int esphome_ota_read_magic(int socket)
+uint8_t MAGIC_BYTES[] = {0x6C, 0x26, 0xF7, 0x5C, 0x45};
+
+#ifndef CONFIG_TEST
+static inline int esphome_ota_recv(int socket, void *data, size_t len, int flags)
+{
+	return zsock_recv(socket, data, len, flags);
+}
+
+static int inline esphome_ota_send(int socket, void *data, size_t len, int flags)
+{
+	return zsock_send(socket, data, len, flags);
+}
+#else  /* CONFIG_TEST */
+int (*esphome_ota_test_recv)(int socket, void *data, size_t len, int flags);
+int (*esphome_ota_test_send)(int socket, void *data, size_t len, int flags);
+
+static inline int esphome_ota_recv(int socket, void *data, size_t len, int flags)
+{
+	return esphome_ota_test_recv(socket, data, len, flags);
+}
+
+static int inline esphome_ota_send(int socket, void *data, size_t len, int flags)
+{
+	return esphome_ota_test_send(socket, data, len, flags);
+}
+#endif /* CONFIG_TEST */
+
+STATIC int esphome_ota_read_magic(int socket)
 {
 	uint8_t error_code = 0;
 	char magic_bytes[sizeof(MAGIC_BYTES)];
 	int ret;
 
-	ret = zsock_recv(socket, magic_bytes, sizeof(MAGIC_BYTES), ZSOCK_MSG_WAITALL);
+	ret = esphome_ota_recv(socket, magic_bytes, sizeof(MAGIC_BYTES), ZSOCK_MSG_WAITALL);
 	if (ret != sizeof(MAGIC_BYTES)) {
 		return -EIO;
 	}
@@ -35,16 +61,16 @@ int esphome_ota_read_magic(int socket)
 	return 0;
 
 error:
-	zsock_send(socket, &error_code, 1, 0);
+	esphome_ota_send(socket, &error_code, 1, 0);
 	return -EIO;
 }
 
-int esphome_ota_send_version(int socket)
+STATIC int esphome_ota_send_version(int socket)
 {
 	char buf[2] = {OTA_RESPONSE_OK, USE_OTA_VERSION};
 	int ret;
 
-	ret = zsock_send(socket, buf, sizeof(buf), 0);
+	ret = esphome_ota_send(socket, buf, sizeof(buf), 0);
 	if (ret != sizeof(buf)) {
 		return -EIO;
 	}
@@ -52,12 +78,12 @@ int esphome_ota_send_version(int socket)
 	return 0;
 }
 
-int esphome_ota_read_features(int socket, uint8_t *ota_features)
+STATIC int esphome_ota_read_features(int socket, uint8_t *ota_features)
 {
 	char buf[1];
 	int ret;
 
-	ret = zsock_recv(socket, buf, sizeof(buf), ZSOCK_MSG_WAITALL);
+	ret = esphome_ota_recv(socket, buf, sizeof(buf), ZSOCK_MSG_WAITALL);
 	if (ret != sizeof(buf)) {
 		return -EIO;
 	}
@@ -66,7 +92,7 @@ int esphome_ota_read_features(int socket, uint8_t *ota_features)
 
 	/* Send ack */
 	buf[0] = OTA_RESPONSE_HEADER_OK;
-	ret = zsock_send(socket, buf, sizeof(buf), 0);
+	ret = esphome_ota_send(socket, buf, sizeof(buf), 0);
 	if (ret != sizeof(buf)) {
 		return -EIO;
 	}
@@ -74,14 +100,14 @@ int esphome_ota_read_features(int socket, uint8_t *ota_features)
 	return 0;
 }
 
-int esphome_ota_send_auth_ok(int socket)
+STATIC int esphome_ota_send_auth_ok(int socket)
 {
 	char buf[1];
 	int ret;
 
 	/* Send ack */
 	buf[0] = OTA_RESPONSE_AUTH_OK;
-	ret = zsock_send(socket, buf, sizeof(buf), 0);
+	ret = esphome_ota_send(socket, buf, sizeof(buf), 0);
 	if (ret != sizeof(buf)) {
 		return -EIO;
 	}
@@ -89,12 +115,12 @@ int esphome_ota_send_auth_ok(int socket)
 	return 0;
 }
 
-int esphome_ota_read_size(int socket, size_t *ota_size)
+STATIC int esphome_ota_read_size(int socket, size_t *ota_size)
 {
 	char buf[4];
 	int ret;
 
-	ret = zsock_recv(socket, buf, sizeof(buf), ZSOCK_MSG_WAITALL);
+	ret = esphome_ota_recv(socket, buf, sizeof(buf), ZSOCK_MSG_WAITALL);
 	if (ret != sizeof(buf)) {
 		return -EIO;
 	}
@@ -108,14 +134,14 @@ int esphome_ota_read_size(int socket, size_t *ota_size)
 	return 0;
 }
 
-int esphome_ota_send_prepare_ok(int socket)
+STATIC int esphome_ota_send_prepare_ok(int socket)
 {
 	char buf[1];
 	int ret;
 
 	/* Send ack */
 	buf[0] = OTA_RESPONSE_UPDATE_PREPARE_OK;
-	ret = zsock_send(socket, buf, sizeof(buf), 0);
+	ret = esphome_ota_send(socket, buf, sizeof(buf), 0);
 	if (ret != sizeof(buf)) {
 		return -EIO;
 	}
@@ -123,12 +149,12 @@ int esphome_ota_send_prepare_ok(int socket)
 	return 0;
 }
 
-int esphome_ota_read_md5(int socket, char *md5_buf, int size)
+STATIC int esphome_ota_read_md5(int socket, char *md5_buf, int size)
 {
 	uint8_t error_code = 0;
 	int ret;
 
-	ret = zsock_recv(socket, md5_buf, size - 1, ZSOCK_MSG_WAITALL);
+	ret = esphome_ota_recv(socket, md5_buf, size - 1, ZSOCK_MSG_WAITALL);
 	if (ret != (size - 1)) {
 		goto error;
 	}
@@ -137,7 +163,7 @@ int esphome_ota_read_md5(int socket, char *md5_buf, int size)
 
 	/* Send ack */
 	md5_buf[0] = OTA_RESPONSE_BIN_MD5_OK;
-	ret = zsock_send(socket, md5_buf, 1, 0);
+	ret = esphome_ota_send(socket, md5_buf, 1, 0);
 	if (ret != 1) {
 		return -EIO;
 	}
@@ -145,16 +171,16 @@ int esphome_ota_read_md5(int socket, char *md5_buf, int size)
 	return 0;
 
 error:
-	zsock_send(socket, &error_code, 1, 0);
+	esphome_ota_send(socket, &error_code, 1, 0);
 	return -EIO;
 }
 
-int esphome_ota_read_data(int socket, char *buf, int size)
+STATIC int esphome_ota_read_data(int socket, char *buf, int size)
 {
 	uint8_t error_code = 0;
 	int ret;
 
-	ret = zsock_recv(socket, buf, size, 0);
+	ret = esphome_ota_recv(socket, buf, size, 0);
 	if (ret < 0) {
 		goto error;
 	}
@@ -162,7 +188,7 @@ int esphome_ota_read_data(int socket, char *buf, int size)
 	return ret;
 
 error:
-	zsock_send(socket, &error_code, 1, 0);
+	esphome_ota_send(socket, &error_code, 1, 0);
 	return -EIO;
 }
 
@@ -171,7 +197,7 @@ int esphome_ota_send_data_ack(int socket)
 	char buf[1] = {OTA_RESPONSE_OK};
 	int ret;
 
-	ret = zsock_send(socket, buf, sizeof(buf), 0);
+	ret = esphome_ota_send(socket, buf, sizeof(buf), 0);
 	if (ret != sizeof(buf)) {
 		return -EIO;
 	}
@@ -179,12 +205,12 @@ int esphome_ota_send_data_ack(int socket)
 	return 0;
 }
 
-int esphome_ota_read_ack(int socket)
+STATIC int esphome_ota_read_ack(int socket)
 {
 	char buf[1];
 	int ret;
 
-	ret = zsock_recv(socket, buf, 1, ZSOCK_MSG_WAITALL);
+	ret = esphome_ota_recv(socket, buf, 1, ZSOCK_MSG_WAITALL);
 	if (ret != 1) {
 		return -EIO;
 	}
@@ -196,7 +222,7 @@ int esphome_ota_read_ack(int socket)
 	return 0;
 }
 
-int esphome_ota_run(int socket, struct flash_img_context *ctx)
+STATIC int esphome_ota_run(int socket, struct flash_img_context *ctx)
 {
 	size_t ota_size;
 	uint8_t ota_features;
@@ -266,7 +292,7 @@ int esphome_ota_run(int socket, struct flash_img_context *ctx)
 		while (size_acknowledged + OTA_BLOCK_SIZE <= total ||
 		       (total == ota_size && size_acknowledged < ota_size)) {
 			buf[0] = OTA_RESPONSE_CHUNK_OK;
-			ret = zsock_send(socket, buf, 1, 0);
+			ret = esphome_ota_send(socket, buf, 1, 0);
 			if (ret != 1) {
 				goto error;
 			}
@@ -275,7 +301,7 @@ int esphome_ota_run(int socket, struct flash_img_context *ctx)
 	}
 
 	buf[0] = OTA_RESPONSE_RECEIVE_OK;
-	ret = zsock_send(socket, buf, 1, 0);
+	ret = esphome_ota_send(socket, buf, 1, 0);
 	if (ret != 1) {
 		goto error;
 	}
@@ -284,7 +310,7 @@ int esphome_ota_run(int socket, struct flash_img_context *ctx)
 	boot_request_upgrade(1);
 
 	buf[0] = OTA_RESPONSE_UPDATE_END_OK;
-	ret = zsock_send(socket, buf, 1, 0);
+	ret = esphome_ota_send(socket, buf, 1, 0);
 	if (ret != 1) {
 		goto error;
 	}
