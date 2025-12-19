@@ -10,7 +10,6 @@ zephyr_library_sources(action.c)
 zephyr_library_sources_ifdef(CONFIG_ESPHOME_COMPONENT_LOGGER logger.c)
 
 add_subdirectory_ifdef(CONFIG_ESPHOME_COMPONENT_API api)
-add_subdirectory_ifdef(CONFIG_ESPHOME_COMPONENT_OTA ota)
 add_subdirectory_ifdef(CONFIG_ESPHOME_COMPONENT_BUTTON button)
 add_subdirectory_ifdef(CONFIG_ESPHOME_COMPONENT_OPENTHREAD openthread)
 add_subdirectory_ifdef(CONFIG_ESPHOME_COMPONENT_SENSOR sensor)
