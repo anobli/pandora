@@ -1,0 +1,21 @@
+tests:
+  esphome.component.ota.pytest:
+    tags: esphome net
+    harness: pytest
+    harness_config:
+      pytest_dut_scope: session
+    platform_allow:
+      - qemu_x86
+      - native_sim
+    integration_platforms:
+      - qemu_x86
+  esphome.component.ota.unittest:
+    tags: esphome net
+    platform_allow:
+      - qemu_x86
+      - native_sim
+    integration_platforms:
+      - qemu_x86
+    extra_configs:
+      - CONFIG_ZTEST=y
+    expect_reboot: true
