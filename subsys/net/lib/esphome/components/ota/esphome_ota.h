@@ -1,5 +1,15 @@
+
+
 #ifndef ESPHOME_OTA_H
 #define ESPHOME_OTA_H
+
+#include <zephyr/net/net_ip.h>
+#include <zephyr/net/socket.h>
+#include <zephyr/dfu/flash_img.h>
+
+#include "esphome_ota_test.h"
+
+#define USE_OTA_VERSION 2
 
 enum OTAResponseTypes {
 	OTA_RESPONSE_OK = 0x00,
@@ -37,7 +47,5 @@ enum OTAState {
 	OTA_ABORT,
 	OTA_ERROR,
 };
-
-uint8_t MAGIC_BYTES[] = {0x6C, 0x26, 0xF7, 0x5C, 0x45};
 
 #endif /* ESPHOME_OTA_H */
