@@ -345,6 +345,11 @@ int esphome_ota_service(void *arg1, void *arg2, void *arg3)
 	struct sockaddr client_addr;
 	char addrstr[INET6_ADDRSTRLEN];
 
+	struct timeval timeo_optval = {
+                .tv_sec = 1,
+                .tv_usec = 0,
+        };
+
 	static struct sockaddr server_addr;
 
 	if (!boot_is_img_confirmed()) {
@@ -428,6 +433,11 @@ int esphome_ota_service(void *arg1, void *arg2, void *arg3)
 			LOG_DBG("accept() failed (%d)", errno);
 			continue;
 		}
+
+	if (zsock_setsockopt(socket, ZSOCK_SOL_SOCKET, ZSOCK_SO_RCVTIMEO,
+                             &timeo_optval, sizeof(timeo_optval))) {
+                LOG_WRN("Failed to set reception timeout on packet socket");
+        }
 
 		zsock_inet_ntop(server_addr.sa_family, addrp, addrstr, sizeof(addrstr));
 		LOG_DBG("accepted connection from [%s]:%u", addrstr, ntohs(*portp));
