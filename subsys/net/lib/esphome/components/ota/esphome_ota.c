@@ -49,8 +49,9 @@ STATIC int esphome_ota_read_magic(int socket)
 	int ret;
 
 	ret = esphome_ota_recv(socket, magic_bytes, sizeof(MAGIC_BYTES), ZSOCK_MSG_WAITALL);
-	if (ret != sizeof(MAGIC_BYTES)) {
-		return -EIO;
+	if (ret <= 0) {
+		error_code = OTA_RESPONSE_ERROR_MAGIC;
+		goto error;
 	}
 
 	if (memcmp(MAGIC_BYTES, magic_bytes, sizeof(MAGIC_BYTES))) {
@@ -151,6 +152,7 @@ STATIC int esphome_ota_send_prepare_ok(int socket)
 
 STATIC int esphome_ota_read_md5(int socket, char *md5_buf, int size)
 {
+	char md5_ack[] = { OTA_RESPONSE_BIN_MD5_OK };
 	uint8_t error_code = 0;
 	int ret;
 
@@ -162,8 +164,7 @@ STATIC int esphome_ota_read_md5(int socket, char *md5_buf, int size)
 	md5_buf[size - 1] = '\0';
 
 	/* Send ack */
-	md5_buf[0] = OTA_RESPONSE_BIN_MD5_OK;
-	ret = esphome_ota_send(socket, md5_buf, 1, 0);
+	ret = esphome_ota_send(socket, md5_ack, 1, 0);
 	if (ret != 1) {
 		return -EIO;
 	}
@@ -190,19 +191,6 @@ STATIC int esphome_ota_read_data(int socket, char *buf, int size)
 error:
 	esphome_ota_send(socket, &error_code, 1, 0);
 	return -EIO;
-}
-
-int esphome_ota_send_data_ack(int socket)
-{
-	char buf[1] = {OTA_RESPONSE_OK};
-	int ret;
-
-	ret = esphome_ota_send(socket, buf, sizeof(buf), 0);
-	if (ret != sizeof(buf)) {
-		return -EIO;
-	}
-
-	return 0;
 }
 
 STATIC int esphome_ota_read_ack(int socket)
