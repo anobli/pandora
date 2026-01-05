@@ -267,24 +267,32 @@ STATIC int esphome_ota_run(int socket, struct flash_img_context *ctx)
 
 	ret = esphome_ota_send_prepare_ok(socket);
 	if (ret) {
+		LOG_ERR("Failed to send prepare ok");
 		goto error;
 	}
 
 	ret = esphome_ota_read_md5(socket, buf, 32 + 1);
 	if (ret) {
+		LOG_ERR("Failed to read ota md5");
 		goto error;
 	}
 
 	while (total < ota_size) {
 		size_t requested = MIN(sizeof(buf), ota_size - total);
+
 		ret = esphome_ota_read_data(socket, buf, requested);
-		if (ret < 0) {
+		if (ret <= 0) {
+			LOG_ERR("Failed to read ota data");
+			if (ret == 0) {
+				ret = -ENODATA;
+			}
 			goto error;
 		}
 
 		/* TODO: write data to flash */
 		bool last = (ota_size - total) <= ret ? true : false;
 		if (flash_img_buffered_write(ctx, buf, ret, last) != 0) {
+			LOG_ERR("Failed to write ota data");
 			goto error;
 		}
 
@@ -294,6 +302,7 @@ STATIC int esphome_ota_run(int socket, struct flash_img_context *ctx)
 			buf[0] = OTA_RESPONSE_CHUNK_OK;
 			ret = esphome_ota_send(socket, buf, 1, 0);
 			if (ret != 1) {
+				LOG_ERR("Failed to send chunk ok");
 				goto error;
 			}
 			size_acknowledged += OTA_BLOCK_SIZE;
@@ -303,6 +312,7 @@ STATIC int esphome_ota_run(int socket, struct flash_img_context *ctx)
 	buf[0] = OTA_RESPONSE_RECEIVE_OK;
 	ret = esphome_ota_send(socket, buf, 1, 0);
 	if (ret != 1) {
+		LOG_ERR("Failed to send receive ok");
 		goto error;
 	}
 
@@ -312,11 +322,13 @@ STATIC int esphome_ota_run(int socket, struct flash_img_context *ctx)
 	buf[0] = OTA_RESPONSE_UPDATE_END_OK;
 	ret = esphome_ota_send(socket, buf, 1, 0);
 	if (ret != 1) {
+		LOG_ERR("Failed to send update end ok");
 		goto error;
 	}
 
 	ret = esphome_ota_read_ack(socket);
 	if (ret) {
+		LOG_ERR("Failed to receive ack");
 		goto error;
 	}
 
@@ -373,7 +385,7 @@ static int esphome_ota_service(void *arg1, void *arg2, void *arg3)
 
 	server_fd = zsock_socket(server_addr.sa_family, SOCK_STREAM, 0);
 	if (server_fd < 0) {
-		LOG_DBG("socket() failed (%d)", errno);
+		LOG_ERR("socket() failed (%d)", errno);
 		return errno;
 	}
 
@@ -381,7 +393,7 @@ static int esphome_ota_service(void *arg1, void *arg2, void *arg3)
 
 	ret = zsock_bind(server_fd, &server_addr, sizeof(server_addr));
 	if (ret < 0) {
-		LOG_DBG("bind() failed (%d)", errno);
+		LOG_ERR("bind() failed (%d)", errno);
 		zsock_close(server_fd);
 		return errno;
 	}
@@ -399,7 +411,7 @@ static int esphome_ota_service(void *arg1, void *arg2, void *arg3)
 
 	ret = zsock_listen(server_fd, 1);
 	if (ret < 0) {
-		LOG_DBG("listen() failed (%d)", errno);
+		LOG_ERR("listen() failed (%d)", errno);
 		zsock_close(server_fd);
 		return errno;
 	}
@@ -412,7 +424,7 @@ static int esphome_ota_service(void *arg1, void *arg2, void *arg3)
 		len = sizeof(client_addr);
 		socket = zsock_accept(server_fd, (struct sockaddr *)&client_addr, &len);
 		if (socket < 0) {
-			LOG_DBG("accept() failed (%d)", errno);
+			LOG_WRN("accept() failed (%d)", errno);
 			continue;
 		}
 
