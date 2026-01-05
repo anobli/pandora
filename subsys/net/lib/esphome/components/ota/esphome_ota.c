@@ -330,12 +330,9 @@ error:
 	return ret;
 }
 
-int esphome_ota_service(void *arg1, void *arg2, void *arg3)
+static int esphome_ota_service(void *arg1, void *arg2, void *arg3)
 {
 	int port = 8266;
-
-	int opt;
-	socklen_t optlen = sizeof(int);
 	int ret;
 
 	int server_fd;
@@ -362,11 +359,11 @@ int esphome_ota_service(void *arg1, void *arg2, void *arg3)
 		return ret;
 	}
 
-	if (IS_ENABLED(CONFIG_NET_IPV6)) {
+	if ((int)arg1 == AF_INET6 && IS_ENABLED(CONFIG_NET_IPV6)) {
 		net_sin6(&server_addr)->sin6_family = AF_INET6;
 		net_sin6(&server_addr)->sin6_addr = in6addr_any;
 		net_sin6(&server_addr)->sin6_port = sys_cpu_to_be16(port);
-	} else if (IS_ENABLED(CONFIG_NET_IPV4)) {
+	} else if ((int)arg1 == AF_INET && IS_ENABLED(CONFIG_NET_IPV4)) {
 		net_sin(&server_addr)->sin_family = AF_INET;
 		net_sin(&server_addr)->sin_addr.s_addr = htonl(INADDR_ANY);
 		net_sin(&server_addr)->sin_port = sys_cpu_to_be16(port);
@@ -382,21 +379,6 @@ int esphome_ota_service(void *arg1, void *arg2, void *arg3)
 
 	LOG_DBG("server_fd is %d", server_fd);
 
-	ret = zsock_getsockopt(server_fd, IPPROTO_IPV6, IPV6_V6ONLY, &opt, &optlen);
-	if (ret == 0) {
-		if (opt) {
-			LOG_INF("IPV6_V6ONLY option is on, turning it off.\n");
-
-			opt = 0;
-			ret = zsock_setsockopt(server_fd, IPPROTO_IPV6, IPV6_V6ONLY, &opt, optlen);
-			if (ret < 0) {
-				LOG_WRN("Cannot turn off IPV6_V6ONLY option\n");
-			} else {
-				LOG_INF("Sharing same socket between IPv6 and IPv4\n");
-			}
-		}
-	}
-
 	ret = zsock_bind(server_fd, &server_addr, sizeof(server_addr));
 	if (ret < 0) {
 		LOG_DBG("bind() failed (%d)", errno);
@@ -404,10 +386,10 @@ int esphome_ota_service(void *arg1, void *arg2, void *arg3)
 		return errno;
 	}
 
-	if (server_addr.sa_family == AF_INET6) {
+	if (server_addr.sa_family == AF_INET6 && IS_ENABLED(CONFIG_NET_IPV6)) {
 		addrp = &net_sin6(&server_addr)->sin6_addr;
 		portp = &net_sin6(&server_addr)->sin6_port;
-	} else {
+	} else if(server_addr.sa_family == AF_INET && IS_ENABLED(CONFIG_NET_IPV4)) {
 		addrp = &net_sin(&server_addr)->sin_addr;
 		portp = &net_sin(&server_addr)->sin_port;
 	}
@@ -455,5 +437,12 @@ int esphome_ota_service(void *arg1, void *arg2, void *arg3)
 
 #define ESPHOME_STACK_SIZE (4096)
 
-K_THREAD_DEFINE(esphome_ota_tid, ESPHOME_STACK_SIZE, esphome_ota_service, NULL, NULL, NULL,
-		0 /* todo: set priority */, 0, 0);
+#if IS_ENABLED(CONFIG_NET_IPV6)
+K_THREAD_DEFINE(esphome_ota_tid_ipv4, ESPHOME_STACK_SIZE, esphome_ota_service, (void *)AF_INET, NULL, NULL,
+		0, 0, 0);
+#endif
+
+#if IS_ENABLED(CONFIG_NET_IPV6)
+K_THREAD_DEFINE(esphome_ota_tid_ipv6, ESPHOME_STACK_SIZE, esphome_ota_service, (void *)AF_INET6, NULL, NULL,
+		0, 0, 0);
+#endif
