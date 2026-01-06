@@ -74,7 +74,7 @@ endif
 config ESPHOME_COMPONENT_OTA
         bool "Enable support of ESPHome OTA"
         default y
-        depends on MCUBOOT_IMG_MANAGER
+        depends on MCUBOOT_IMG_MANAGER && REBOOT
         help
           ESPHome has it own OTA protocol.
           This enables support of this protocol.
