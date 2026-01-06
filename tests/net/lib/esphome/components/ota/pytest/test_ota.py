@@ -78,20 +78,26 @@ class OTATestBufferEntry:
     def set_error(self, error):
         self.__error = error
 
+    def get_error(self):
+        return self.__error
+
     def custom_operation(self, sock):
         pass
+
+    def corrupt_data(self, data, data_len):
+        new_byte = random.randint(0, 255)
+        new_index = random.randrange(0, data_len)
+        new_data = bytearray(data)
+        # TODO: check that value is not the same
+        new_data[new_index] = new_byte
+        return bytes(new_data)
 
     @property
     def data(self):
         if self.__error == ERROR_LEN:
             return self.__data[0:-1]
         elif self.__error == ERROR_DATA:
-            new_byte = random.randint(0, 255)
-            new_index = random.randrange(0, self.__len)
-            new_data = bytearray(self.__data)
-            # TODO: check that value is not the same
-            new_data[new_index] = new_byte
-            return bytes(new_data)
+            return self.corrupt_data(self.__data, self.__len)
         else:
             return self.__data
 
@@ -170,6 +176,11 @@ class OTASendData(OTATestBufferEntry):
             if not chunk:
                 break
             offset += len(chunk)
+
+            # simulate corrupted data transfer if we want to test error handling
+            if self.get_error() == ERROR_DATA:
+                print("Corrupting data")
+                chunk = self.corrupt_data(chunk, len(chunk))
 
             sock.sendall(chunk)
             # Our ESPHOME OTA server only support version 2
@@ -325,3 +336,7 @@ def test_sample(ipv4, ipv6):
     if ipv6:
         test_protocol = OTATestProtocol(ipv6, ota_test_file)
         test_protocol.run()
+
+def test_send_corrupt_and_check_md5(ip):
+    test_protocol = OTATestProtocol(ip, ota_test_file)
+    test_protocol.run_with_error(OTASendData, ERROR_DATA, OTA_RESPONSE_ERROR_MD5_MISMATCH)
