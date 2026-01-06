@@ -11,9 +11,12 @@
 #include <zephyr/logging/log.h>
 LOG_MODULE_REGISTER(ESPHomeOTA);
 
+#include <mbedtls/md5.h>
+
 #include "esphome_ota.h"
 
 #define OTA_BLOCK_SIZE 8192
+#define MD5_HEXDIGEST_SIZE 33
 
 uint8_t MAGIC_BYTES[] = {0x6C, 0x26, 0xF7, 0x5C, 0x45};
 
@@ -41,6 +44,24 @@ static int inline esphome_ota_send(int socket, void *data, size_t len, int flags
 	return esphome_ota_test_send(socket, data, len, flags);
 }
 #endif /* CONFIG_TEST */
+
+STATIC int compare_md5_digest(const char *hexdigest, unsigned char digest[16])
+{
+	int i;
+	int ret;
+
+	for (i = 0; i < 16; i++) {
+		char tmp[3];
+
+		snprintf(tmp, 3, "%02x", digest[i]);
+		ret = memcmp(tmp, &hexdigest[i * 2], 2);
+		if (ret) {
+			return ret;
+		}
+	}
+
+	return 0;
+}
 
 STATIC int esphome_ota_read_magic(int socket)
 {
@@ -217,8 +238,11 @@ STATIC int esphome_ota_run(int socket, struct flash_img_context *ctx)
 	char buf[1024];
 	size_t total = 0;
 	size_t size_acknowledged = 0;
+	char md5_hexdigest[MD5_HEXDIGEST_SIZE];
+	char md5_output[16];
+	struct mbedtls_md5_context md5_ctx;
 
-	int ret;
+	int ret, len;
 
 	ret = esphome_ota_read_magic(socket);
 	if (ret) {
@@ -259,9 +283,16 @@ STATIC int esphome_ota_run(int socket, struct flash_img_context *ctx)
 		goto error;
 	}
 
-	ret = esphome_ota_read_md5(socket, buf, 32 + 1);
+	ret = esphome_ota_read_md5(socket, md5_hexdigest, MD5_HEXDIGEST_SIZE);
 	if (ret) {
 		LOG_ERR("Failed to read ota md5");
+		goto error;
+	}
+
+	mbedtls_md5_init(&md5_ctx);
+	ret = mbedtls_md5_starts(&md5_ctx);
+	if (ret) {
+		LOG_ERR("Failed to start MD5");
 		goto error;
 	}
 
@@ -276,15 +307,23 @@ STATIC int esphome_ota_run(int socket, struct flash_img_context *ctx)
 			}
 			goto error;
 		}
+		len = ret;
+
+		ret = mbedtls_md5_update(&md5_ctx, buf, ret);
+		if (ret) {
+			LOG_ERR("Failed to update MD5");
+			goto error;
+		}
+
 
 		/* TODO: write data to flash */
-		bool last = (ota_size - total) <= ret ? true : false;
-		if (flash_img_buffered_write(ctx, buf, ret, last) != 0) {
+		bool last = (ota_size - total) <= len ? true : false;
+		if (flash_img_buffered_write(ctx, buf, len, last) != 0) {
 			LOG_ERR("Failed to write ota data");
 			goto error;
 		}
 
-		total += ret;
+		total += len;
 		while (size_acknowledged + OTA_BLOCK_SIZE <= total ||
 		       (total == ota_size && size_acknowledged < ota_size)) {
 			buf[0] = OTA_RESPONSE_CHUNK_OK;
@@ -297,6 +336,20 @@ STATIC int esphome_ota_run(int socket, struct flash_img_context *ctx)
 		}
 	}
 
+	ret = mbedtls_md5_finish(&md5_ctx, md5_output);
+	if (ret) {
+		LOG_ERR("Failed to finish MD5");
+		goto error;
+	}
+
+	ret = compare_md5_digest(md5_hexdigest, md5_output);
+	if (ret) {
+		LOG_ERR("MD5 hash doesn't match the expected one");
+		buf[0] = OTA_RESPONSE_ERROR_MD5_MISMATCH;
+		esphome_ota_send(socket, buf, 1, 0);
+		goto error;
+	}
+
 	buf[0] = OTA_RESPONSE_RECEIVE_OK;
 	ret = esphome_ota_send(socket, buf, 1, 0);
 	if (ret != 1) {
@@ -304,7 +357,7 @@ STATIC int esphome_ota_run(int socket, struct flash_img_context *ctx)
 		goto error;
 	}
 
-	/* TODO: check firmware md5, flash write ok, etc */
+	/* TODO: check image signature */
 	boot_request_upgrade(1);
 
 	buf[0] = OTA_RESPONSE_UPDATE_END_OK;
