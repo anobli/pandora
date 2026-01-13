@@ -1,0 +1,14 @@
+config PANDORA_COMPONENT_SWITCH
+	bool
+
+config PANDORA_COMPONENT_SWITCH_HBRIDGE
+	bool "H-bridge support"
+	depends on DT_HAS_PANDORA_SWITCH_HBRIDGE_ENABLED
+	default y
+	select PANDORA_COMPONENT_SWITCH
+
+config PANDORA_COMPONENT_SWITCH_GPIO
+	bool "Enable support of GPIO switch"
+	default y
+	depends on DT_HAS_PANDORA_SWITCH_GPIO_ENABLED
+	select PANDORA_COMPONENT_SWITCH

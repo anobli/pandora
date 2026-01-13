@@ -1,0 +1,20 @@
+compatible: "pandora,switch-gpio"
+description: "Enable support of pandora gpio switch component"
+
+include: ["pandora,component.yaml"]
+
+properties:
+    gpios:
+      type: phandle-array
+      required: true
+    restore_mode:
+      type: string
+      enum:
+        - "SWITCH_ALWAYS_OFF"
+        - "SWITCH_ALWAYS_ON"
+        - "SWITCH_RESTORE_DEFAULT_OFF"
+        - "SWITCH_RESTORE_DEFAULT_ON"
+        - "SWITCH_RESTORE_INVERTED_DEFAULT_OFF"
+        - "SWITCH_RESTORE_INVERTED_DEFAULT_ON"
+        - "SWITCH_RESTORE_DISABLED"
+      default: "SWITCH_ALWAYS_OFF"

@@ -1,0 +1,1 @@
+add_subdirectory_ifdef(CONFIG_PANDORA_COMPONENT_SWITCH switch)

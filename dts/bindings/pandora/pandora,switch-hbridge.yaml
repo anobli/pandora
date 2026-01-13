@@ -1,0 +1,15 @@
+compatible: pandora,switch-hbridge
+description: |
+  The hbridge switch platform allows you to drive an h-bridge controlled latching relay.
+include: ["pandora,component.yaml"]
+
+properties:
+  on-gpios:
+    type: phandle-array
+    required: true
+  off-gpios:
+    type: phandle-array
+    required: true
+  wait-time:
+    type: int
+    required: false

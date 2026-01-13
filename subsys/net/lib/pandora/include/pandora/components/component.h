@@ -5,6 +5,7 @@
 #include <zephyr/sys/iterable_sections.h>
 
 #define PANDORA_COMPONENT_UNDEFINED 0
+#define PANDORA_COMPONENT_SWITCH    1
 
 struct pandora_component_item {
 	const struct device *dev;
