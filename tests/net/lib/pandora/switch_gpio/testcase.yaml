@@ -1,0 +1,4 @@
+tests:
+  pandora.component.switch.gpio:
+    build_only: false
+    platform_allow: native_sim

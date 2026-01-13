@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+#include <pandora/settings.h>
 #include <pandora/components/switch.h>
 
 DEFINE_PANDORA_CB(switch, on_state);
@@ -30,16 +31,12 @@ int pandora_switch_set_state(const struct device *dev, int state)
 
 int pandora_switch_turn_on(const struct device *dev)
 {
-	const struct pandora_switch_component_api *api = dev->api;
-
-	return api->set_state(dev, true);
+	return pandora_switch_set_state(dev, true);
 }
 
 int pandora_switch_turn_off(const struct device *dev)
 {
-	const struct pandora_switch_component_api *api = dev->api;
-
-	return api->set_state(dev, false);
+	return pandora_switch_set_state(dev, false);
 }
 
 int pandora_switch_toggle(const struct device *dev)
@@ -52,10 +49,7 @@ int pandora_switch_toggle(const struct device *dev)
 		return ret;
 	}
 
-	if (state) {
-		return pandora_switch_turn_off(dev);
-	}
-	return pandora_switch_turn_on(dev);
+	return pandora_switch_set_state(dev, !state);
 }
 
 #if IS_ENABLED(CONFIG_SETTINGS)
