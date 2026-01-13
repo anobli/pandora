@@ -1,4 +1,0 @@
-tests:
-  esphome.component.hbridge:
-    build_only: false
-    platform_allow: native_sim

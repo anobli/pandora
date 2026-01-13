@@ -8,20 +8,12 @@ config ESPHOME_COMPONENT_API
 	default y
 	depends on DT_HAS_NABUCASA_ESPHOME_API_ENABLED
 
+if ESPHOME_COMPONENT_API
 config ESPHOME_COMPONENT_SWITCH
-	bool
-
-config ESPHOME_COMPONENT_SWITCH_HBRIDGE
-	bool "H-bridge support"
-	depends on DT_HAS_NABUCASA_ESPHOME_SWITCH_HBRIDGE_ENABLED
+	bool "ESPHome switch support"
+	depends on PANDORA_COMPONENT_SWITCH
 	default y
-	select ESPHOME_COMPONENT_SWITCH
-
-config ESPHOME_COMPONENT_SWITCH_GPIO
-	bool "Enable support of GPIO switch"
-	default y
-	depends on DT_HAS_NABUCASA_ESPHOME_SWITCH_GPIO_ENABLED
-	select ESPHOME_COMPONENT_SWITCH
+endif
 
 config ESPHOME_COMPONENT_SENSOR
 	bool

@@ -13,8 +13,8 @@
 
                 gpio-output {
                         gpio-output-7 {
-                                compatible = "nabucasa,esphome-switch-gpio";
-                                device_name = "GPIO LED 7";
+                                compatible = "pandora,switch-gpio";
+                                component-name = "GPIO LED 7";
                                 gpios = <&gpiob 7 GPIO_ACTIVE_HIGH>;
                                 status = "okay";
                         };

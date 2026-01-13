@@ -167,8 +167,8 @@ int SwitchCommandRequestCb(const struct device *dev, SwitchCommandRequest *reque
 		return -ENODEV;
 	}
 
-	esphome_switch_set_state(switch_dev, request->state);
-	esphome_switch_get_state(switch_dev, &response.state);
+	pandora_switch_set_state(switch_dev, request->state);
+	pandora_switch_get_state(switch_dev, &response.state);
 	response.key = request->key;
 
 	return SwitchStateResponseWrite(dev, &response);
