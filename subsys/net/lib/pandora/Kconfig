@@ -15,6 +15,8 @@ config PANDORA_FACTORY_RESET
 	default y
 	depends on DT_HAS_PANDORA_FACTORY_RESET_ENABLED && REBOOT && INPUT
 
+rsource "components/Kconfig"
+
 module = PANDORA
 module-str = Pandora
 source "subsys/logging/Kconfig.template.log_config"

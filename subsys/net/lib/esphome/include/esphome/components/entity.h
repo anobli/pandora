@@ -32,18 +32,26 @@
 	(_resp)->entity_category = (_cfg)->entity_category;                                        \
 	DT_ENTITY_STRCPY_SAFE(_resp, _cfg, device_class);
 
-#define DT_ESPHOME_NAME DT_PROP(DT_PATH(esphome), entity_id)
+#define DT_ESPHOME_ENTITY_ID DT_PROP(DT_PATH(esphome), entity_id)
 #define DT_ESPHOME_UNIQUE_NAME(_node, _device_class)                                               \
-	DT_ESPHOME_NAME "_" _device_class "_" DT_PROP(_node, device_name)
+	DT_ESPHOME_ENTITY_ID "_" _device_class "_" DT_PROP_OR(_node, component_name, "")           \
+		DT_PROP_OR(_node, device_name, "")
+#define DT_ESPHOME_NAME(_node)                                                                     \
+	DT_PROP_OR(_node, component_name, "") DT_PROP_OR(_node, device_name, "")
+#define DT_ESPHOME_OBJECT_ID(_node)                                                                \
+	STRINGIFY(DT_STRING_TOKEN_OR(_node, component_name, ""))                                                                                  \
+	STRINGIFY(DT_STRING_TOKEN_OR(_node, device_name, ""))
 
 #define DT_ESPHOME_ENTITY(_node, _device_class)                                                    \
 	{                                                                                          \
-		.name = DT_PROP(_node, device_name),                                               \
-		.object_id = STRINGIFY(DT_STRING_TOKEN(_node, device_name)),                        \
-				       .unique_id = DT_ESPHOME_UNIQUE_NAME(_node, _device_class),  \
-				       .icon = NULL, .disabled_by_default = 0,                     \
-				       .entity_category = 0, .device_class = _device_class,        \
-		}
+		.name = DT_ESPHOME_NAME(_node),                                                    \
+		.object_id = DT_ESPHOME_OBJECT_ID(_node),                                          \
+		.unique_id = DT_ESPHOME_UNIQUE_NAME(_node, _device_class),                         \
+		.icon = NULL,                                                                      \
+		.disabled_by_default = 0,                                                          \
+		.entity_category = 0,                                                              \
+		.device_class = _device_class,                                                     \
+	}
 
 #define ESPHOME_UNIT_PERCENT    "%"
 #define ESPHOME_UNIT_CELSUIS    "°C"
