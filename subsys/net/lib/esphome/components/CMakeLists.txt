@@ -8,10 +8,10 @@ endmacro()
 
 zephyr_library_sources(action.c)
 zephyr_library_sources_ifdef(CONFIG_ESPHOME_COMPONENT_LOGGER logger.c)
+zephyr_library_sources_ifdef(CONFIG_ESPHOME_COMPONENT_SWITCH switch.c)
 
 add_subdirectory_ifdef(CONFIG_ESPHOME_COMPONENT_API api)
 add_subdirectory_ifdef(CONFIG_ESPHOME_COMPONENT_BUTTON button)
 add_subdirectory_ifdef(CONFIG_ESPHOME_COMPONENT_OPENTHREAD openthread)
 add_subdirectory_ifdef(CONFIG_ESPHOME_COMPONENT_SENSOR sensor)
-add_subdirectory_ifdef(CONFIG_ESPHOME_COMPONENT_SWITCH switch)
 add_subdirectory_ifdef(CONFIG_ESPHOME_COMPONENT_WIFI wifi)
