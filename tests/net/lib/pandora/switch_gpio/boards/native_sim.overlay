@@ -1,0 +1,10 @@
+#include <zephyr/dt-bindings/gpio/gpio.h>
+
+/ {
+	gpio_switch {
+		compatible = "pandora,switch-gpio";
+		component-name = "Bistablerelay";
+		gpios = <&gpio0 0 GPIO_ACTIVE_HIGH>;
+		status = "okay";
+	};
+};
