@@ -81,7 +81,7 @@ static struct esphome_switch_component_api gpio_switch = {
 			      &esphome_gpio_switch_data_##_num,                                    \
 			      &esphome_gpio_switch_config_##_num, POST_KERNEL,                     \
 			      CONFIG_ESPHOME_INIT_PRIORITY, &gpio_switch);                         \
-	DEFINE_ESPHOME_ENTITY(_num, esphome_gpio_switch_##_num, "switch.gpio",                     \
-			      esphome_switch_list_entity);
+	DEFINE_ESPHOME_ENTITY(DT_INST(_num, DT_DRV_COMPAT), esphome_gpio_switch_##_num,            \
+			      "switch.gpio", esphome_switch_list_entity);
 
 DT_INST_FOREACH_STATUS_OKAY(DEFINE_ESPHOME_SWITCH_GPIO);
