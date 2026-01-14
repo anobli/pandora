@@ -33,14 +33,14 @@
 	DT_ENTITY_STRCPY_SAFE(_resp, _cfg, device_class);
 
 #define DT_ESPHOME_NAME DT_PROP(DT_PATH(esphome), entity_id)
-#define DT_ESPHOME_UNIQUE_NAME(_num, _device_class)                                                \
-	DT_ESPHOME_NAME "_" _device_class "_" DT_INST_PROP(_num, device_name)
+#define DT_ESPHOME_UNIQUE_NAME(_node, _device_class)                                               \
+	DT_ESPHOME_NAME "_" _device_class "_" DT_PROP(_node, device_name)
 
-#define DT_ESPHOME_ENTITY(_num, _device_class)                                                     \
+#define DT_ESPHOME_ENTITY(_node, _device_class)                                                    \
 	{                                                                                          \
-		.name = DT_INST_PROP(_num, device_name),                                           \
-		.object_id = STRINGIFY(DT_STRING_TOKEN(DT_DRV_INST(_num), device_name)),            \
-				       .unique_id = DT_ESPHOME_UNIQUE_NAME(_num, _device_class),   \
+		.name = DT_PROP(_node, device_name),                                               \
+		.object_id = STRINGIFY(DT_STRING_TOKEN(_node, device_name)),                        \
+				       .unique_id = DT_ESPHOME_UNIQUE_NAME(_node, _device_class),  \
 				       .icon = NULL, .disabled_by_default = 0,                     \
 				       .entity_category = 0, .device_class = _device_class,        \
 		}
@@ -73,20 +73,20 @@ struct esphome_entity {
 	int (*list_entity)(const struct device *api_dev, struct esphome_entity *entity);
 };
 
-#define DEFINE_ESPHOME_ENTITY_WITH_CONF(_num, name, _device_class, _list_entity, _priv_conf)       \
+#define DEFINE_ESPHOME_ENTITY_WITH_CONF(_node, name, _device_class, _list_entity, _priv_conf)      \
 	static struct esphome_entity_config name##_entity_config =                                 \
-		DT_ESPHOME_ENTITY(_num, _device_class);                                            \
+		DT_ESPHOME_ENTITY(_node, _device_class);                                           \
 	static struct esphome_entity_data name##_entity_data;                                      \
 	STRUCT_SECTION_ITERABLE(esphome_entity, name) = {                                          \
-		.dev = DEVICE_DT_GET(DT_DRV_INST(_num)),                                           \
+		.dev = DEVICE_DT_GET(_node),                                                       \
 		.config = &name##_entity_config,                                                   \
 		.private_config = _priv_conf,                                                      \
 		.data = &name##_entity_data,                                                       \
 		.list_entity = _list_entity,                                                       \
 	}
 
-#define DEFINE_ESPHOME_ENTITY(_num, name, _device_class, _list_entity)                             \
-	DEFINE_ESPHOME_ENTITY_WITH_CONF(_num, name, _device_class, _list_entity, NULL)
+#define DEFINE_ESPHOME_ENTITY(_node, name, _device_class, _list_entity)                            \
+	DEFINE_ESPHOME_ENTITY_WITH_CONF(_node, name, _device_class, _list_entity, NULL)
 
 #define MAX_UNIQUE_ID_LEN 64
 

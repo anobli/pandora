@@ -25,7 +25,7 @@ LOG_MODULE_DECLARE(ESPHome, CONFIG_ESPHOME_LOG_LEVEL);
                                                                                                    \
 	DEVICE_DT_INST_DEFINE(_num, NULL, NULL, NULL, &esphome_button_config_##_num, POST_KERNEL,  \
 			      CONFIG_ESPHOME_INIT_PRIORITY, NULL);                                 \
-	DEFINE_ESPHOME_ENTITY(_num, esphome_button_template_##_num, "button",                      \
-			      esphome_button_list_entity);
+	DEFINE_ESPHOME_ENTITY(DT_INST(_num, DT_DRV_COMPAT), esphome_button_template_##_num,        \
+			      "button", esphome_button_list_entity);
 
 DT_INST_FOREACH_STATUS_OKAY(DEFINE_ESPHOME_BUTTON);

@@ -117,7 +117,7 @@ static struct esphome_switch_component_api hbridge_switch = {
 			      &esphome_switch_hbridge_data_##_num,                                 \
 			      &esphome_switch_hbridge_config_##_num, POST_KERNEL,                  \
 			      CONFIG_ESPHOME_INIT_PRIORITY, &hbridge_switch);                      \
-	DEFINE_ESPHOME_ENTITY(_num, esphome_switch_hbridge_##_num, "switch.hbridge",               \
-			      esphome_switch_list_entity);
+	DEFINE_ESPHOME_ENTITY(DT_INST(_num, DT_DRV_COMPAT), esphome_switch_hbridge_##_num,         \
+			      "switch.hbridge", esphome_switch_list_entity);
 
 DT_INST_FOREACH_STATUS_OKAY(DEFINE_ESPHOME_SWITCH_HBRIDGE);
