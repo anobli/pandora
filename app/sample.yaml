@@ -12,7 +12,6 @@ tests:
     platform_allow:
       - native_sim
       - nucleo_f429zi
-      - beagleconnect_freedom
     integration_platforms:
       - native_sim
   sample.net.esphome.ot:
@@ -20,5 +19,7 @@ tests:
     extra_args: EXTRA_CONF_FILE=overlay-openthread.conf
     platform_allow:
       - zeus
+      - cc1352p7_lp
+      - beagleconnect_freedom
     integration_platforms:
       - zeus

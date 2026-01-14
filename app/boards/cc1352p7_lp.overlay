@@ -1,0 +1,43 @@
+#include <zephyr/dt-bindings/input/input-event-codes.h>
+
+/ {
+	esphome {
+		compatible = "nabucasa,esphome";
+		entity_id = "zephyr_esphome";
+		friendly_name = " Zephyr ESPHOME cc1352p7_lp";
+		status = "okay";
+
+		api {
+			compatible = "nabucasa,esphome-api";
+			password = "mypassword";
+			status = "okay";
+		};
+
+		gpio-output {
+			gpio-output-7 {
+				compatible = "pandora,switch-gpio";
+				component-name = "GPIO LED 7";
+				gpios = <&gpio0 7 GPIO_ACTIVE_HIGH>;
+				status = "okay";
+			};
+		};
+
+		longpress {
+			input = <&{/keys}>;
+			compatible = "zephyr,input-longpress";
+			input-codes = <INPUT_KEY_0>;
+			short-codes = <INPUT_KEY_A>;
+			long-codes = <INPUT_KEY_X>;
+			long-delay-ms = <2000>;
+		};
+
+		factory_reset {
+			compatible = "pandora,factory-reset";
+			input-code = <INPUT_KEY_X>;
+		};
+	};
+};
+
+&uart0 {
+	zephyr,pm-device-runtime-auto;
+};
