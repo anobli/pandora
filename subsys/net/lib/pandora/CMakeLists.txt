@@ -13,3 +13,5 @@ zephyr_library_sources_ifdef(CONFIG_SETTINGS settings.c)
 zephyr_linker_sources_ifdef(CONFIG_SETTINGS DATA_SECTIONS settings.ld)
 
 zephyr_library_sources_ifdef(CONFIG_PANDORA_FACTORY_RESET factory_reset.c)
+
+zephyr_linker_sources(DATA_SECTIONS iterables.ld)
