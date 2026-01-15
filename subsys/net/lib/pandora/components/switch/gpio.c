@@ -35,7 +35,7 @@ static int pandora_gpio_switch_init(const struct device *dev)
 		return ret;
 	}
 
-	data->state = -EINVAL;
+	data->state = 0;
 
 	return 0;
 }
