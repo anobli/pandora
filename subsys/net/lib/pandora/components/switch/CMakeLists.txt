@@ -1,3 +1,4 @@
 zephyr_library_sources(switch.c)
+zephyr_library_sources_ifdef(CONFIG_PANDORA_SHELL shell.c)
 zephyr_library_sources_ifdef(CONFIG_PANDORA_COMPONENT_SWITCH_GPIO gpio.c)
 zephyr_library_sources_ifdef(CONFIG_PANDORA_COMPONENT_SWITCH_HBRIDGE hbridge.c)
