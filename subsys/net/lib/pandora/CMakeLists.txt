@@ -16,3 +16,5 @@ zephyr_library_sources_ifdef(CONFIG_PANDORA_FACTORY_RESET factory_reset.c)
 
 zephyr_linker_sources(DATA_SECTIONS iterables.ld)
 add_subdirectory(components/)
+
+zephyr_library_sources_ifdef(CONFIG_PANDORA_SHELL shell.c)

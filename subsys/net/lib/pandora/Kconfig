@@ -15,6 +15,11 @@ config PANDORA_FACTORY_RESET
 	default y
 	depends on DT_HAS_PANDORA_FACTORY_RESET_ENABLED && REBOOT && INPUT
 
+config PANDORA_SHELL
+	bool "Pandora shell"
+	default y
+	depends on SHELL
+
 rsource "components/Kconfig"
 
 module = PANDORA
