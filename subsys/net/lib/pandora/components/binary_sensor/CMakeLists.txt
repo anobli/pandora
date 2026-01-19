@@ -1,0 +1,2 @@
+zephyr_library_sources(binary_sensor.c)
+zephyr_library_sources_ifdef(CONFIG_PANDORA_COMPONENT_BINARY_SENSOR_GPIO gpio.c)

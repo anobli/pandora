@@ -1,0 +1,15 @@
+compatible: "pandora,binary-sensor-gpio"
+description: "Enable support of pandora GPIO binary sensor component"
+
+include: ["pandora,component.yaml"]
+
+properties:
+  gpios:
+    type: phandle-array
+    required: true
+  debounce-interval-ms:
+    type: int
+    default: 30
+    description: |
+       Debouncing interval time in milliseconds.
+       If not specified defaults to 30.

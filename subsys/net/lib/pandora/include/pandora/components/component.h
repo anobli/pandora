@@ -4,8 +4,9 @@
 #include <zephyr/device.h>
 #include <zephyr/sys/iterable_sections.h>
 
-#define PANDORA_COMPONENT_UNDEFINED 0
-#define PANDORA_COMPONENT_SWITCH    1
+#define PANDORA_COMPONENT_UNDEFINED     0
+#define PANDORA_COMPONENT_SWITCH        1
+#define PANDORA_COMPONENT_BINARY_SENSOR 2
 
 struct pandora_component_item {
 	const struct device *dev;

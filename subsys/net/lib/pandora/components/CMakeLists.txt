@@ -1,1 +1,2 @@
+add_subdirectory_ifdef(CONFIG_PANDORA_COMPONENT_BINARY_SENSOR binary_sensor)
 add_subdirectory_ifdef(CONFIG_PANDORA_COMPONENT_SWITCH switch)
