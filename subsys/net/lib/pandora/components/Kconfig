@@ -2,4 +2,5 @@ config PANDORA_COMPONENT_INIT_PRIORITY
         int "Pandora component init priority"
         default 50
 
+rsource "binary_sensor/Kconfig"
 rsource "switch/Kconfig"
