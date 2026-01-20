@@ -3,4 +3,5 @@ config PANDORA_COMPONENT_INIT_PRIORITY
         default 50
 
 rsource "binary_sensor/Kconfig"
+rsource "pipeline/Kconfig"
 rsource "switch/Kconfig"
