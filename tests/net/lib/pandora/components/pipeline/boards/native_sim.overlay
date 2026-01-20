@@ -1,0 +1,46 @@
+#include <zephyr/dt-bindings/gpio/gpio.h>
+
+/ {
+	binary_sensor_0: binary_sensor_0 {
+		compatible = "pandora,binary-sensor-gpio";
+		component-name = "Button";
+		gpios = <&gpio0 0 GPIO_ACTIVE_HIGH>;
+		status = "okay";
+	};
+
+	gpio_switch_0: gpio_switch_0 {
+		compatible = "pandora,switch-gpio";
+		component-name = "Bistablerelay";
+		gpios = <&gpio0 1 GPIO_ACTIVE_HIGH>;
+		status = "okay";
+	};
+
+	binary_sensor_1: binary_sensor_1 {
+		compatible = "pandora,binary-sensor-gpio";
+		component-name = "Button";
+		gpios = <&gpio0 2 GPIO_ACTIVE_HIGH>;
+		status = "okay";
+	};
+
+	gpio_switch_1: gpio_switch_1 {
+		compatible = "pandora,switch-gpio";
+		component-name = "Bistablerelay";
+		gpios = <&gpio0 3 GPIO_ACTIVE_HIGH>;
+		status = "okay";
+	};
+
+	pipelines {
+		binary_sensor_on_state_toggle_switch {
+			compatible = "pandora,pipeline";
+			binary-sensor-on-state = <&binary_sensor_0>;
+			switch-toggle = <&gpio_switch_0>;
+		};
+
+		binary_sensor_on_turn_on_toggle_switch {
+			compatible = "pandora,pipeline";
+			binary-sensor-on-turn-on = <&binary_sensor_1>;
+			switch-toggle = <&gpio_switch_1>;
+		};
+
+	};
+};

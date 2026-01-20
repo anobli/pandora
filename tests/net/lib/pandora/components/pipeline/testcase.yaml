@@ -1,0 +1,3 @@
+tests:
+  pandora.component.pipeline:
+    platform_allow: native_sim
