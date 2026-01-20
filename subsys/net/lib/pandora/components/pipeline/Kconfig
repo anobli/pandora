@@ -1,0 +1,7 @@
+config PANDORA_COMPONENT_PIPELINE
+	bool "Pipeline component"
+	depends on DT_HAS_PANDORA_PIPELINE_ENABLED
+	default y
+	help
+	  Pipeline component provide a way to link one or more components.
+	  This allows a components to trigger an action on another components.

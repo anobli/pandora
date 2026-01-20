@@ -1,0 +1,19 @@
+compatible: pandora,pipeline
+description: |
+  This provides a way to configure pipelines.
+  The piplelines makes possible acting on output based on input.
+  The pipelines could be chained.
+properties:
+  component-name:
+    type: string
+    required: true
+    description: |
+      This defines the name as it will appear in HomeAssistant.
+  binary-sensor-on-state:
+    type: phandles
+  binary-sensor-on-turn-on:
+    type: phandles
+  binary-sensor-on-turn-off:
+    type: phandles
+  switch-toggle:
+    type: phandles
