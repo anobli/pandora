@@ -199,7 +199,11 @@ int LightCommandRequestCb(const struct device *dev, LightCommandRequest *request
 
 int SubscribeStatesRequestCb(const struct device *dev)
 {
-	ARG_UNUSED(dev);
+	STRUCT_SECTION_FOREACH(esphome_entity, entity) {
+		if (entity->publish_state) {
+			entity->publish_state(dev, entity);
+		}
+	}
 
 	return 0;
 }

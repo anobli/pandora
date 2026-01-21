@@ -79,9 +79,11 @@ struct esphome_entity {
 	const void *private_config;
 	struct esphome_entity_data *data;
 	int (*list_entity)(const struct device *api_dev, struct esphome_entity *entity);
+	int (*publish_state)(const struct device *api_dev, struct esphome_entity *entity);
 };
 
-#define DEFINE_ESPHOME_ENTITY_WITH_CONF(_node, name, _device_class, _list_entity, _priv_conf)      \
+#define DEFINE_ESPHOME_ENTITY_WITH_CONF(_node, name, _device_class, _list_entity, _publish_state,  \
+					_priv_conf)                                                \
 	static struct esphome_entity_config name##_entity_config =                                 \
 		DT_ESPHOME_ENTITY(_node, _device_class);                                           \
 	static struct esphome_entity_data name##_entity_data;                                      \
@@ -91,10 +93,12 @@ struct esphome_entity {
 		.private_config = _priv_conf,                                                      \
 		.data = &name##_entity_data,                                                       \
 		.list_entity = _list_entity,                                                       \
+		.publish_state = _publish_state,                                                   \
 	}
 
-#define DEFINE_ESPHOME_ENTITY(_node, name, _device_class, _list_entity)                            \
-	DEFINE_ESPHOME_ENTITY_WITH_CONF(_node, name, _device_class, _list_entity, NULL)
+#define DEFINE_ESPHOME_ENTITY(_node, name, _device_class, _list_entity, _publish_state)            \
+	DEFINE_ESPHOME_ENTITY_WITH_CONF(_node, name, _device_class, _list_entity, _publish_state,  \
+					NULL)
 
 #define MAX_UNIQUE_ID_LEN 64
 
@@ -107,7 +111,7 @@ int esphome_entity_init(const struct device *api_dev);
 char *esphome_build_unique_id(const char *base_name, char *buffer, int len);
 #else
 
-#define DEFINE_ESPHOME_ENTITY(_num, name, _device_class, _list_entity)
+#define DEFINE_ESPHOME_ENTITY(_num, name, _device_class, _list_entity, _publish_state)
 
 #endif /* CONFIG_ESPHOME_COMPONENT_API */
 
