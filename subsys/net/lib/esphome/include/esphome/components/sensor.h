@@ -49,7 +49,8 @@ struct esphome_sensor_config {
 		.unit_of_measurement = DT_STRING_UPPER_TOKEN_OR(DT_DRV_INST(_num), unit, NULL),    \
 	};                                                                                         \
 	DEFINE_ESPHOME_ENTITY_WITH_CONF(DT_INST(_num, DT_DRV_COMPAT), name, "sensor",              \
-					esphome_sensor_list_entity, &esphome_sensor_config##_num); \
+					esphome_sensor_list_entity, NULL,                          \
+					&esphome_sensor_config##_num);                             \
 	STRUCT_SECTION_ITERABLE(esphome_sensor_entity, name##sensor_entity) = {                    \
 		.entity = &name,                                                                   \
 	}
