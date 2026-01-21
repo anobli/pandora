@@ -86,32 +86,62 @@
 
 &flash0 {
 	partitions {
-		/* 40 KiB (0xa000) for MCUboot */
+		compatible = "fixed-partitions";
+		#address-cells = <1>;
+		#size-cells = <1>;
+
+		/* Allocate 56 KiB for mcuboot */
 		boot_partition: partition@0 {
 			label = "mcuboot";
-			reg = <0x00000000 0x0000a000>;
+			reg = <0x00000000 DT_SIZE_K(56)>;
 		};
 
-		/* 136 KiB (0x22000) per slot for application */
-		slot0_partition: partition@a000 {
+		/* Allocate 640 KiB for application */
+		slot0_partition: partition@e000 {
 			label = "image-0";
-			reg = <0x0000a000 0x0004e000>;
+			reg = <0x0000e000 DT_SIZE_K(640)>;
 		};
 
-		slot1_partition: partition@58000 {
-			label = "image-1";
-			reg = <0x00058000 0x0004e000>;
-		};
+		/* (avoid touching CCFG) */
+	};
+};
 
-		/* 32 KiB (0x8000) for storage */
-		storage_partition: partition@a6000 {
-			label = "storage";
-			reg = <0x000a6000 0x00008000>;
-		};
+&spi0 {
+	status = "okay";
+	pinctrl-0 = <&spi0_sck_default &spi0_mosi_default
+		     &spi0_miso_default &spi0_cs0_default>;
+	pinctrl-names = "default";
+	cs-gpios = <&gpio0 8 GPIO_ACTIVE_LOW>;
 
-		/* CCFG (customer configuration area) is located in uppermost
-		 * flash sector (0x2000/8 KiB @ 0xae000), keep it unused.
-		 */
+	spi_flash0: mx25l3233f@0 {
+		compatible = "jedec,spi-nor";
+		reg = <0>;
+		spi-max-frequency = <2000000>;
+		size = <0x2000000>;
+		jedec-id = [c2 20 16];
+
+		partitions {
+			compatible = "fixed-partitions";
+			#address-cells = <1>;
+			#size-cells = <1>;
+
+			/* Allocate 640 KiB for application */
+			slot1_partition: partition@0 {
+				label = "image-1";
+				reg = <0x00000000 DT_SIZE_K(640)>;
+			};
+
+			/* Allocate 128 KiB scratch for image swap */
+			scratch_partition: partition@A0000 {
+				label = "image-scratch";
+				reg = <0x000a0000 DT_SIZE_K(128)>;
+			};
+
+			storage_partition: partition@c0000 {
+				label = "storage";
+				reg = <0x000c0000 DT_SIZE_K(1280)>;
+			};
+		};
 	};
 };
 
@@ -125,6 +155,28 @@
 		pinmux = <12 IOC_PORT_MCU_UART0_RX>;
 		bias-disable;
 		input-enable;
+	};
+
+	/* SPI0 */
+	spi0_sck_default: spi0_sck_default {
+		pinmux = <20 IOC_PORT_MCU_SSI0_CLK>;
+		bias-disable;
+	};
+
+	spi0_mosi_default: spi0_mosi_default {
+		pinmux = <19 IOC_PORT_MCU_SSI0_TX>;
+		bias-disable;
+	};
+
+	spi0_miso_default: spi0_miso_default {
+		pinmux = <18 IOC_PORT_MCU_SSI0_RX>;
+		bias-disable;
+		input-enable;
+	};
+
+	spi0_cs0_default: spi0_cs0_default {
+		pinmux = <8 IOC_PORT_GPIO>;
+		bias-disable;
 	};
 
 	/* On-board antenna pinmux states */
