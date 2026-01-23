@@ -182,8 +182,7 @@ int hermes_multicast_req_init(struct hermes_request *request, const char *path, 
 	return 0;
 }
 
-static void on_coap_response(const struct coap_client_response_data *data,
-			     void *user_data)
+static void on_coap_response(const struct coap_client_response_data *data, void *user_data)
 {
 	struct hermes_request *req = user_data;
 	//	LOG_INF("CoAP response, result_code=%d, offset=%u, len=%u", result_code, offset,
