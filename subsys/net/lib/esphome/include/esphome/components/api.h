@@ -2,10 +2,13 @@
 #define ESPHOME_API_COMPONENT_H
 
 #ifdef CONFIG_ESPHOME_COMPONENT_API
+#include <zephyr/device.h>
+
 #include <rpc/esphome_rpc.h>
 #include <rpc/api.pb-c.h>
 
-#define ESPHOME_API_NODE DT_COMPAT_GET_ANY_STATUS_OKAY(nabucasa_esphome_api)
+#define ESPHOME_API_NODE   DT_COMPAT_GET_ANY_STATUS_OKAY(nabucasa_esphome_api)
+#define ESPHOME_API_DEVICE DEVICE_DT_GET(ESPHOME_API_NODE)
 
 struct esphome_api_config {
 	uint32_t api_version_major;
