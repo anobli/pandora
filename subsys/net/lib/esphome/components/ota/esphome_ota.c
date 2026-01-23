@@ -15,7 +15,7 @@ LOG_MODULE_REGISTER(ESPHomeOTA);
 
 #include "esphome_ota.h"
 
-#define OTA_BLOCK_SIZE 8192
+#define OTA_BLOCK_SIZE     8192
 #define MD5_HEXDIGEST_SIZE 33
 
 uint8_t MAGIC_BYTES[] = {0x6C, 0x26, 0xF7, 0x5C, 0x45};
@@ -173,7 +173,7 @@ STATIC int esphome_ota_send_prepare_ok(int socket)
 
 STATIC int esphome_ota_read_md5(int socket, char *md5_buf, int size)
 {
-	char md5_ack[] = { OTA_RESPONSE_BIN_MD5_OK };
+	char md5_ack[] = {OTA_RESPONSE_BIN_MD5_OK};
 	uint8_t error_code = 0;
 	int ret;
 
@@ -315,7 +315,6 @@ STATIC int esphome_ota_run(int socket, struct flash_img_context *ctx)
 			goto error;
 		}
 
-
 		/* TODO: write data to flash */
 		bool last = (ota_size - total) <= len ? true : false;
 		if (flash_img_buffered_write(ctx, buf, len, last) != 0) {
@@ -396,9 +395,9 @@ static int esphome_ota_service(void *arg1, void *arg2, void *arg3)
 	char addrstr[INET6_ADDRSTRLEN];
 
 	struct timeval timeo_optval = {
-                .tv_sec = 1,
-                .tv_usec = 0,
-        };
+		.tv_sec = 1,
+		.tv_usec = 0,
+	};
 
 	static struct sockaddr server_addr;
 
@@ -442,7 +441,7 @@ static int esphome_ota_service(void *arg1, void *arg2, void *arg3)
 	if (server_addr.sa_family == AF_INET6 && IS_ENABLED(CONFIG_NET_IPV6)) {
 		addrp = &net_sin6(&server_addr)->sin6_addr;
 		portp = &net_sin6(&server_addr)->sin6_port;
-	} else if(server_addr.sa_family == AF_INET && IS_ENABLED(CONFIG_NET_IPV4)) {
+	} else if (server_addr.sa_family == AF_INET && IS_ENABLED(CONFIG_NET_IPV4)) {
 		addrp = &net_sin(&server_addr)->sin_addr;
 		portp = &net_sin(&server_addr)->sin_port;
 	}
@@ -469,10 +468,10 @@ static int esphome_ota_service(void *arg1, void *arg2, void *arg3)
 			continue;
 		}
 
-	if (zsock_setsockopt(socket, ZSOCK_SOL_SOCKET, ZSOCK_SO_RCVTIMEO,
-                             &timeo_optval, sizeof(timeo_optval))) {
-                LOG_WRN("Failed to set reception timeout on packet socket");
-        }
+		if (zsock_setsockopt(socket, ZSOCK_SOL_SOCKET, ZSOCK_SO_RCVTIMEO, &timeo_optval,
+				     sizeof(timeo_optval))) {
+			LOG_WRN("Failed to set reception timeout on packet socket");
+		}
 
 		zsock_inet_ntop(server_addr.sa_family, addrp, addrstr, sizeof(addrstr));
 		LOG_DBG("accepted connection from [%s]:%u", addrstr, ntohs(*portp));
@@ -491,11 +490,11 @@ static int esphome_ota_service(void *arg1, void *arg2, void *arg3)
 #define ESPHOME_STACK_SIZE (4096)
 
 #if IS_ENABLED(CONFIG_NET_IPV6)
-K_THREAD_DEFINE(esphome_ota_tid_ipv4, ESPHOME_STACK_SIZE, esphome_ota_service, (void *)AF_INET, NULL, NULL,
-		0, 0, 0);
+K_THREAD_DEFINE(esphome_ota_tid_ipv4, ESPHOME_STACK_SIZE, esphome_ota_service, (void *)AF_INET,
+		NULL, NULL, 0, 0, 0);
 #endif
 
 #if IS_ENABLED(CONFIG_NET_IPV6)
-K_THREAD_DEFINE(esphome_ota_tid_ipv6, ESPHOME_STACK_SIZE, esphome_ota_service, (void *)AF_INET6, NULL, NULL,
-		0, 0, 0);
+K_THREAD_DEFINE(esphome_ota_tid_ipv6, ESPHOME_STACK_SIZE, esphome_ota_service, (void *)AF_INET6,
+		NULL, NULL, 0, 0, 0);
 #endif

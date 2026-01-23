@@ -17,8 +17,7 @@
 #include <zephyr/logging/log.h>
 LOG_MODULE_DECLARE(hermes, CONFIG_HERMES_LOG_LEVEL);
 
-#define NET_EVENT_WIFI_MASK                                                                        \
-	(NET_EVENT_WIFI_AP_STA_CONNECTED | NET_EVENT_WIFI_AP_STA_DISCONNECTED)
+#define NET_EVENT_WIFI_MASK (NET_EVENT_WIFI_AP_STA_CONNECTED | NET_EVENT_WIFI_AP_STA_DISCONNECTED)
 
 static struct net_mgmt_event_callback cb;
 
@@ -65,7 +64,6 @@ static int hermes_wifi_init(void)
 
 	return 0;
 }
-
 
 #define DEFINE_HERMES_WIFI_EP(_ep)                                                                 \
 	HERMES_RESOURCE_DEFINE_DOMAIN(NULL, wifi, _ep, NULL, hermes_wifi_handler_put_##_ep, NULL);
