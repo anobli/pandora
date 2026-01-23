@@ -67,6 +67,18 @@ const struct device *find_device_entity_by_key(uint32_t key)
 	return NULL;
 }
 
+struct esphome_entity *find_entity_by_dev(const struct device *dev)
+{
+	STRUCT_SECTION_FOREACH(esphome_entity, entity) {
+		if (entity->dev == dev) {
+			return entity;
+		}
+	}
+
+	LOG_WRN("No device found matching dev %s\n", dev->name);
+	return NULL;
+}
+
 char *esphome_build_unique_id(const char *base_name, char *buffer, int len)
 {
 	struct net_if *iface;

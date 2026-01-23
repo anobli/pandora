@@ -107,6 +107,7 @@ int _string_copy_safe(char *dest, const char *src, size_t len);
 
 uint32_t fnv1_hash(const char *str);
 const struct device *find_device_entity_by_key(uint32_t key);
+struct esphome_entity *find_entity_by_dev(const struct device *dev);
 int esphome_entity_init(const struct device *api_dev);
 char *esphome_build_unique_id(const char *base_name, char *buffer, int len);
 #else
