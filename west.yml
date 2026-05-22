@@ -6,7 +6,7 @@ manifest:
     - name: zephyrproject-rtos
       url-base: https://github.com/zephyrproject-rtos
     - name: anobli
-      url-base: https://github.com/anobli/
+      url-base: https://github.com/anobli
 
   projects:
     - name: zephyr
